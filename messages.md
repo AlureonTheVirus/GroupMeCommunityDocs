@@ -245,6 +245,115 @@ Status: 201 Created
         "type": "emoji",
         "placeholder": "",
         "charmap": [
+          [ 1, 42 ],
+          [ 2, 34 ]
+        ]
+      }
+    ]
+  }
+}
+```
+
+***
+
+## Edit Message
+
+Edits an existing message
+
+Attachments follow the same rules as defined when sending a message
+
+**Request**
+```
+PUT v4/groups/:group_id/messages/:message_id
+{
+  "text": "Here's the edit!"
+  "attachments": [
+    {
+      "type": "image",
+      "url": "https://i.groupme.com/123456789"
+    },
+    {
+      "type": "image",
+      "url": "https://i.groupme.com/123456789"
+    },
+    {
+      "type": "location",
+      "lat": "40.738206",
+      "lng": "-73.993285",
+      "name": "GroupMe HQ"
+    },
+    {
+      "type": "split",
+      "token": "SPLIT_TOKEN"
+    },
+    {
+      "type": "emoji",
+      "placeholder": "",
+      "charmap": [
+        [ 1, 42 ],
+        [ 2, 34 ]
+      ]
+    }
+  ]
+}
+```
+
+**Parameters**
+* *text* (required)
+
+	string - The text to edit the message to. Can be left empty if at least one attachment is present.
+	
+* *attachments*
+
+	array - A polymorphic list of attachments (locations, images, replies, etc). You may have more than one of any type of attachment, provided clients can display it.
+	
+	For more information on types of attachments and how to send them, check out the [attachments documentation](attachments.md)
+
+**Responses**
+
+```
+Status: 200 OK
+{
+  "message": {
+    "id": "1234567890",
+    "source_guid": "GUID",
+    "created_at": 1302623328,
+    "user_id": "1234567890",
+    "group_id": "1234567890",
+    "name": "John",
+    "avatar_url": "https://i.groupme.com/123456789",
+    "text": "Here's the edit!",
+    "system": false,
+    "pinned_by": "",
+    "pinned_at": null,
+    "favorited_by": [
+      "101",
+      "66",
+      "1234567890"
+    ],
+    "attachments": [
+      {
+        "type": "image",
+        "url": "https://i.groupme.com/123456789"
+      },
+      {
+        "type": "image",
+        "url": "https://i.groupme.com/123456789"
+      },
+      {
+        "type": "location",
+        "lat": "40.738206",
+        "lng": "-73.993285",
+        "name": "GroupMe HQ"
+      },
+      {
+        "type": "split",
+        "token": "SPLIT_TOKEN"
+      },
+      {
+        "type": "emoji",
+        "placeholder": "",
+        "charmap": [
           [
             1,
             42
