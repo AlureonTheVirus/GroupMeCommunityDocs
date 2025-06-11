@@ -1499,8 +1499,7 @@
 <p>GroupMe messages can contain an <code>event</code> object, which describes system-generated occurrences or specific actions within a group, subgroup (topic), or DM. These events provide structured data about changes like members being added, polls being created, calendar events being updated, messages being pinned, and more. Messages containing events often have <code>system: true</code> or a <code>sender_type</code> of "system" or "service".</p>
 <p>This document lists the different <code>event.type</code> values observed, along with the structure of their corresponding <code>event</code> object.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>API Inconsistency: User ID Data Types</strong>&gt;</p>
+<p class="admonition-title">API Inconsistency: User ID Data Types</p>
 </div>
 <blockquote>
 <p>Developers should be aware that within the <code>event.data</code> objects detailed below, user IDs (such as <code>user.id</code>, <code>member.id</code>, <code>pinned_by</code>, etc.) are sometimes represented as <strong>numbers</strong> and other times as <strong>strings</strong>. This is inconsistent with the general GroupMe API practice where user IDs are typically strings. These types may be patched at any time. <strong>This highlights the critical need to handle both types robustly in your code.</strong></p>
