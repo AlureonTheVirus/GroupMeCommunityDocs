@@ -26,15 +26,16 @@ theme:
   features:
     - content.action.edit
     - content.action.view
+    - content.tabs.link
+    - content.code.copy
     - navigation.instant
     - navigation.instant.progress
     - navigation.top
     - navigation.sections
+    - navigation.footer
     - toc.integrate
     - search.suggest
     - search.share
-    - navigation.footer
-    - content.code.copy
     - header.autohide
     - announce.dismiss
 
