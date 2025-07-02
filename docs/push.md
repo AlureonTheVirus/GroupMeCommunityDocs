@@ -35,12 +35,14 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	```
 
 	Start by initiating a connection with GroupMe's Faye server:
+
 	```js linenums="1"
 	const faye = require('faye');
 	const client = new faye.Client("https://push.groupme.com/faye");
 	```
 
 	Next, we need to tell our Client to add our GroupMe API token to any subsequent subscription requests and subscribe to the main user channel:
+
 	```js linenums="1"
 	// add your API credentials to outgoing WebSocket messages
 	client.addExtension({ 
@@ -108,7 +110,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	Once you’ve received a valid `clientId`, initiate a WebSocket connection to:
 
-	```json linenums="1"
+	```json
 	wss://push.groupme.com/faye
 	```
 
