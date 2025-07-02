@@ -84,6 +84,9 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true

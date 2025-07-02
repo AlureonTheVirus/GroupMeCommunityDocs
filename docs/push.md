@@ -7,24 +7,32 @@ description: "Learn how to interact with GroupMe's Websocket Gateway via the API
 
 GroupMe’s real-time messaging is powered by a [Faye-based Bayeux WebSocket protocol](https://faye.jcoglan.com/browser/subscribing.html). Clients subscribe to various channels and receive structured push messages.
 
-GroupMe's [official documentation](https://dev.groupme.com/tutorials/push) has some outdated and incomplete information, but it may be helpful to read alongside these docs.
-
-WebSocket messages sent downstream to clients are divided into three channels, each with its own respective context and message types.
+WebSocket messages sent downstream to clients are divided into three different channel types, each with their own respective context and message types.
 
 The most useful channel is `/user/:user_id`, which sends messages about new events that any client will send you push notifications about. 
 (e.g., new messages in groups you're a part of or reactions attached to messages you have sent).
 
 The other two less important channel types are `/groups/:group_id`, and `/direct_message/:dm_id`. 
 Both send information about specific channels that a client wouldn't need to send push notifications for but would need to render the channel when it's open correctly and on the screen. 
-(e.g., typing indicators, new reactions attached to other messages in the channel that you have not sent, or even membership and role updates for specific users)
-
-Faye/Bayeux WebSocket clients exist in many languages ([JavaScript](https://www.npmjs.com/package/faye), [Ruby](https://rubygems.org/gems/faye-websocket/versions/0.10.4?locale=en), [Python](https://github.com/dkmadigan/python-bayeux-client), etc.), or you can implement the protocol manually.
-
-For verbosity, we outline how to authenticate and connect using a Faye client library, in pure WebSockets (in case you don't have access to a library), and finally in pure HTTP to do manual long-polling.
+(e.g., typing indicators or  membership/role updates for specific users)
 
 ***
 
+## Connecting to the Gateway
+
+For verbosity, we outline how to authenticate and connect using a Faye client library, in pure WebSockets (in case you don't have access to a library), and finally in pure HTTP to do manual long-polling.
+
 === "Option 1: Using a Faye client (Recommended)"
+
+	## Option 1: Using a Faye client (Recommended)
+
+	Faye/Bayeux WebSocket clients exist in many languages ([JavaScript](https://www.npmjs.com/package/faye), [Ruby](https://rubygems.org/gems/faye-websocket/versions/0.10.4?locale=en), [Python](https://github.com/dkmadigan/python-bayeux-client), etc.), or you can [implement the protocol manually using raw WebSockets][__tabbed_1_2].
+
+	For simplicity, this example will be given in node.js using the [faye](https://www.npmjs.com/package/faye) npm package.
+
+	```bash title="Installation"
+	npm install faye
+	```
 
 	Start by initiating a connection with GroupMe's Faye server:
 	```js linenums="1"
