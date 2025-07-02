@@ -819,24 +819,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#option-2-pure-websockets" class="md-nav__link">
-    <span class="md-ellipsis">
-      Option 2: Pure WebSockets
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#option-3-manual-long-polling-over-http-not-recommended-but-still-possible" class="md-nav__link">
-    <span class="md-ellipsis">
-      Option 3: Manual Long-Polling over HTTP (Not Recommended, but still possible)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#websocket-message-structure" class="md-nav__link">
     <span class="md-ellipsis">
       WebSocket Message Structure
@@ -1093,7 +1075,9 @@ Both send information about specific channels that a client wouldn't need to sen
 <p>Faye/Bayeux WebSocket clients exist in many languages (<a href="https://www.npmjs.com/package/faye">JavaScript</a>, <a href="https://rubygems.org/gems/faye-websocket/versions/0.10.4?locale=en">Ruby</a>, <a href="https://github.com/dkmadigan/python-bayeux-client">Python</a>, etc.), or you can implement the protocol manually.</p>
 <p>For verbosity, we outline how to authenticate and connect using a Faye client library, in pure WebSockets (in case you don't have access to a library), and finally in pure HTTP to do manual long-polling.</p>
 <hr />
-<p>Option 1: Using a Faye client (Recommended)</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Option 1: Using a Faye client (Recommended)</label><label for="__tabbed_1_2">Option 2: Pure WebSockets</label><label for="__tabbed_1_3">Option 3: Manual Long-Polling over HTTP (Not Recommended, but still possible)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>Start by initiating a connection with GroupMe's Faye server:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">faye</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;faye&#39;</span><span class="p">);</span>
@@ -1120,7 +1104,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="nx">msg</span><span class="p">.</span><span class="nx">ext</span><span class="p">.</span><span class="nx">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;YOUR GROUPME API ACCESS TOKEN&gt;&quot;</span><span class="p">;</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="nx">msg</span><span class="p">.</span><span class="nx">ext</span><span class="p">.</span><span class="nx">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="nx">callback</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="p">}</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="p">});</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10"></a>
 <a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="c1">// subscribe to the &#39;/user/:user_id&#39; channel.</span>
@@ -1130,13 +1114,17 @@ Both send information about specific channels that a client wouldn't need to sen
 </code></pre></div></td></tr></table></div></p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>The <code>timestamp</code> parameter is in <em>seconds</em> since the Unix epoch, not milliseconds.</p>
 </div>
+<blockquote>
+<p>The <code>timestamp</code> parameter is in <em>seconds</em> since the Unix epoch, not milliseconds.</p>
+</blockquote>
 <p>Finally, we subscribe to any other channels we need to:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>This step is <em>usually</em> overkill. Almost all important real-time updates will come through the <code>/user/:user_id</code> channel. You will need to subscribe to individual groups or direct message channels if you want to catch read receipts or certain admin events.</p>
 </div>
+<blockquote>
+<p>This step is <em>usually</em> overkill. Almost all important real-time updates will come through the <code>/user/:user_id</code> channel. You will need to subscribe to individual groups or direct message channels if you want to catch read receipts or certain admin events.</p>
+</blockquote>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">2</a></span>
 <span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nx">client</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">&quot;/group/&lt;GROUP ID&gt; OR /direct_message/&lt;DIRECT MESSAGE CHANNEL ID&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
@@ -1145,10 +1133,12 @@ Both send information about specific channels that a client wouldn't need to sen
 </code></pre></div></td></tr></table></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Direct Message channel IDs are reported within the REST API looking something like <code>74938777+93645911</code>, two user IDs separated with a <code>+</code>. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (<code>_</code>). Make sure to find and replace these symbols before attempting to subscribe to those channels.</p>
 </div>
-<hr />
-<h2 id="option-2-pure-websockets">Option 2: Pure WebSockets<a class="headerlink" href="#option-2-pure-websockets" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Direct Message channel IDs are reported within the REST API looking something like <code>74938777+93645911</code>, two user IDs separated with a <code>+</code>. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (<code>_</code>). Make sure to find and replace these symbols before attempting to subscribe to those channels.</p>
+</blockquote>
+</div>
+<div class="tabbed-block">
 <p>If you're not using a Faye client library, you can still connect to GroupMe’s real-time Push Service by directly implementing the Bayeux protocol over WebSockets. This approach is transport-agnostic and works in any language that supports WebSockets and JSON.</p>
 <blockquote>
 <p>For complex steps (like subscription formatting), we’ll show JavaScript snippets to help illustrate what your code might look like.</p>
@@ -1166,12 +1156,12 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-3-8">8</a></span>
 <span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//push.groupme.com/faye</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">[</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="p">{</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/meta/handshake&quot;</span><span class="p">,</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;supportedConnectionTypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;websocket&quot;</span><span class="p">],</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="p">}</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <p>GroupMe will respond with a <code>clientId</code>, which you'll use for all future messages. The response also includes a list of supported transport types (confirm <code>"websocket"</code> is included), and an <code>advice</code> object for reconnection behavior.</p>
@@ -1209,7 +1199,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="nx">clientId</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt;YOUR CLIENT ID&gt;</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="nx">connectionType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;websocket&quot;</span><span class="p">,</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">nextMessageId</span><span class="p">()</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w"> </span><span class="p">}));</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="p">}));</span>
 <a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
 <p>The server will respond with <code>successful: true</code> and may include an <code>advice</code> field specifying a <code>timeout</code> or <code>interval</code> before the next call.</p>
@@ -1233,7 +1223,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="err"> </span><span class="w"> </span><span class="nt">&quot;ext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;YOUR API TOKEN&gt;&quot;</span><span class="p">,</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1715700000</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="p">}</span>
 <a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>In JavaScript, constructing this might look like:</p>
@@ -1259,8 +1249,8 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">    </span><span class="nx">ext</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">      </span><span class="nx">access_token</span><span class="o">:</span><span class="w"> </span><span class="nx">GROUPME_ACCESS_TOKEN</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt;YOUR GROUPME API ACCESS TOKEN&gt;</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">      </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000</span><span class="p">)</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w"> </span><span class="p">}));</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="p">}</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="p">}));</span>
 <a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="p">};</span>
 <a id="__codelineno-8-13" name="__codelineno-8-13"></a>
 <a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="nx">subscribe</span><span class="p">(</span><span class="sb">`/user/</span><span class="si">${</span><span class="nx">GROUPME_USER_ID</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;YOUR GROUPME USER ID&gt;</span>
@@ -1300,7 +1290,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="err"> </span><span class="w"> </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;line.create&quot;</span><span class="p">,</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Andygv&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Andygv&quot;</span><span class="p">,</span>
 <a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w">  </span><span class="nt">&quot;avatar_url&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
 <a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w">  </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;lng&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;foursquare_checkin&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;foursquare_venue_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;lat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">},</span>
 <a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1322557919</span><span class="p">,</span>
@@ -1311,7 +1301,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;15717&quot;</span><span class="p">,</span>
 <a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w">  </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;162&quot;</span><span class="p">,</span>
 <a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w">  </span><span class="nt">&quot;source_guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GUID 13225579210290&quot;</span>
-<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="p">},</span>
 <a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="err"> </span><span class="w"> </span><span class="nt">&quot;alert&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Andygv: hey&quot;</span>
 <a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="p">},</span>
 <a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1lhg38m0sk6b63080mpc71r9d7q1&quot;</span><span class="p">,</span>
@@ -1332,8 +1322,8 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">messages</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">channel</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&quot;/user/&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">      </span><span class="nx">handleUserMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="p">}</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="p">}</span>
 <a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
 <p><strong>Step 6: Maintain the Connection Loop</strong></p>
@@ -1344,10 +1334,12 @@ Both send information about specific channels that a client wouldn't need to sen
 <p>To do this: repeat step 4 as many times as necessary, setting the <code>subscription</code> parameter to whatever channel you're interested in.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Please note that when subscribing to DM channels, you must replace the <code>+</code> in the conversation ID (as it appears in the REST API) with an <code>_</code> instead. We're not entirely sure why this inconsistency exists, but it does.</p>
 </div>
-<hr />
-<h2 id="option-3-manual-long-polling-over-http-not-recommended-but-still-possible">Option 3: Manual Long-Polling over HTTP (Not Recommended, but still possible)<a class="headerlink" href="#option-3-manual-long-polling-over-http-not-recommended-but-still-possible" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Please note that when subscribing to DM channels, you must replace the <code>+</code> in the conversation ID (as it appears in the REST API) with an <code>_</code> instead. We're not entirely sure why this inconsistency exists, but it does.</p>
+</blockquote>
+</div>
+<div class="tabbed-block">
 <p>Start by establishing a connection with GroupMe's Faye server.</p>
 <p>Send a POST request to <code>https://push.groupme.com/faye</code>. It should look like this:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
@@ -1360,12 +1352,12 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-11-8">8</a></span>
 <span class="normal"><a href="#__codelineno-11-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//push.groupme.com/faye</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="p">[</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="p">{</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="s2">&quot;/meta/handshake&quot;</span><span class="p">,</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
 <a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;supportedConnectionTypes&quot;</span><span class="p">:[</span><span class="s2">&quot;long-polling&quot;</span><span class="p">],</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="p">}</span>
 <a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <p>The response should look something like:
@@ -1380,7 +1372,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-12-10">10</a></span>
 <span class="normal"><a href="#__codelineno-12-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="p">[</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="p">{</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/meta/handshake&quot;</span><span class="p">,</span>
 <a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
@@ -1388,7 +1380,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;supportedConnectionTypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;long-polling&quot;</span><span class="p">,</span><span class="s2">&quot;cross-origin-long-polling&quot;</span><span class="p">,</span><span class="s2">&quot;callback-polling&quot;</span><span class="p">,</span><span class="s2">&quot;websocket&quot;</span><span class="p">,</span><span class="s2">&quot;in-process&quot;</span><span class="p">],</span>
 <a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;IMPORTANT</span><span class="w"> </span><span class="err">CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;advice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;reconnect&quot;</span><span class="p">:</span><span class="s2">&quot;retry&quot;</span><span class="p">,</span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="mi">30000</span><span class="p">}</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="p">}</span>
 <a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div></p>
 <p>Note the <code>clientId</code> value we've just received, as we will need it in the next step.</p>
@@ -1408,28 +1400,30 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-13-13">13</a></span>
 <span class="normal"><a href="#__codelineno-13-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//push.groupme.com/faye</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="p">[</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="p">{</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/meta/subscribe&quot;</span><span class="p">,</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;subscription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/user/&lt;YOUR GROUPME USER ID&gt;&quot;</span><span class="p">,</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;ext&quot;</span><span class="p">:</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="p">{</span>
 <a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;YOUR GROUPME API ACCESS TOKEN&gt;&quot;</span><span class="p">,</span>
 <a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CURRENT</span><span class="w"> </span><span class="err">TIMESTAMP&gt;</span>
-<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="p">}</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="p">}</span>
 <a id="__codelineno-13-14" name="__codelineno-13-14"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<ol>
-<li>The <code>id</code> parameter should increment with each successive call to the server. Not doing so may lead to undefined behavior.&gt;</li>
-</ol>
 </div>
 <blockquote>
 <ol>
-<li>The <code>timestamp</code> parameter is in seconds since the Unix epoch. Divide whatever timestamp you have by 1000.</li>
+<li>
+<p>The <code>id</code> parameter should increment with each successive call to the server. Not doing so may lead to undefined behavior.</p>
+</li>
+<li>
+<p>The <code>timestamp</code> parameter is in seconds since the Unix epoch. Divide whatever timestamp you have by 1000.</p>
+</li>
 </ol>
 </blockquote>
 <p>GroupMe's response should look something like this:</p>
@@ -1442,19 +1436,21 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-14-7">7</a></span>
 <span class="normal"><a href="#__codelineno-14-8">8</a></span>
 <span class="normal"><a href="#__codelineno-14-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="p">[</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="p">{</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/meta/subscribe&quot;</span><span class="p">,</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;subscription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/user/&lt;YOUR GROUPME USER ID&gt;&quot;</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="p">}</span>
 <a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>This step is <em>usually</em> overkill. Almost all important real-time updates will come through the <code>/user/:user_id</code> channel. You will need to subscribe to individual groups or direct message channels if you want to catch read receipts or certain admin events.</p>
 </div>
+<blockquote>
+<p>This step is <em>usually</em> overkill. Almost all important real-time updates will come through the <code>/user/:user_id</code> channel. You will need to subscribe to individual groups or direct message channels if you want to catch read receipts or certain admin events.</p>
+</blockquote>
 <p>The POST request for subscribing to a specific channel looks like this (Note that it is basically exactly the same except for a different subscription channel):</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
@@ -1470,7 +1466,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-15-12">12</a></span>
 <span class="normal"><a href="#__codelineno-15-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//push.groupme.com/faye</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="p">[</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="p">{</span>
 <a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/meta/subscribe&quot;</span><span class="p">,</span>
 <a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;subscription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/group/&lt;GROUP ID&gt;&quot;</span><span class="w"> </span><span class="err">OR</span><span class="w"> </span><span class="s2">&quot;/direct_message/&lt;DIRECT MESSAGE CHANNEL ID&gt;&quot;</span><span class="p">,</span>
@@ -1478,14 +1474,16 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;ext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;YOUR GROUPME API ACCESS TOKEN&gt;&quot;</span><span class="p">,</span>
 <a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CURRENT</span><span class="w"> </span><span class="err">TIMESTAMP&gt;</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="p">}</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="p">}</span>
 <a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Direct Message channel IDs are reported within the REST API looking something like <code>74938777+93645911</code>, two user IDs separated with a <code>+</code>. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (<code>_</code>). Make sure to find and replace these symbols before attempting to subscribe to those channels.</p>
 </div>
+<blockquote>
+<p>Direct Message channel IDs are reported within the REST API looking something like <code>74938777+93645911</code>, two user IDs separated with a <code>+</code>. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (<code>_</code>). Make sure to find and replace these symbols before attempting to subscribe to those channels.</p>
+</blockquote>
 <p>This step is already handled for you by most Faye libraries. However, if you're doing this manually via HTTP and not WebSockets, you will need to manually check for updates from the Faye server.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
 <span class="normal"><a href="#__codelineno-16-2">2</a></span>
@@ -1497,12 +1495,12 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-16-8">8</a></span>
 <span class="normal"><a href="#__codelineno-16-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//push.groupme.com/faye</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="p">[</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="p">{</span>
 <a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/meta/connect&quot;</span><span class="p">,</span>
 <a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;connectionType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;long-polling&quot;</span><span class="p">,</span>
 <a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="p">}</span>
 <a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <p>If GroupMe has nothing to report, it will respond with an array of placeholder objects for each of the channels you're subscribed to. That would look something like this:</p>
@@ -1523,21 +1521,21 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-17-15">15</a></span>
 <span class="normal"><a href="#__codelineno-17-16">16</a></span>
 <span class="normal"><a href="#__codelineno-17-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="p">[</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="p">{</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4&quot;</span><span class="p">,</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/meta/connect&quot;</span><span class="p">,</span>
 <a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;advice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;reconnect&quot;</span><span class="p">:</span><span class="s2">&quot;retry&quot;</span><span class="p">,</span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="mi">30000</span><span class="p">}</span>
-<a id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="p">},</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="p">{</span>
 <a id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/user/&lt;YOUR GROUPME USER ID&gt;&quot;</span><span class="p">,</span>
 <a id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;ping&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">},</span>
 <a id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5&quot;</span><span class="p">,</span>
 <a id="__codelineno-17-14" name="__codelineno-17-14"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;ext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;access token&gt;&quot;</span><span class="p">,</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="mi">1322557872</span><span class="p">},</span>
 <a id="__codelineno-17-15" name="__codelineno-17-15"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;authenticated&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-17-16" name="__codelineno-17-16"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16"></a><span class="p">}</span>
 <a id="__codelineno-17-17" name="__codelineno-17-17"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <p>If there is something to report, GroupMe will respond with something that might look like this:</p>
@@ -1573,14 +1571,14 @@ Both send information about specific channels that a client wouldn't need to sen
 <span class="normal"><a href="#__codelineno-18-30">30</a></span>
 <span class="normal"><a href="#__codelineno-18-31">31</a></span>
 <span class="normal"><a href="#__codelineno-18-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="p">[</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="p">{</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5&quot;</span><span class="p">,</span>
 <a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/meta/connect&quot;</span><span class="p">,</span>
 <a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;advice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;reconnect&quot;</span><span class="p">:</span><span class="s2">&quot;retry&quot;</span><span class="p">,</span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="mi">30000</span><span class="p">}</span>
-<a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="p">},</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="p">{</span>
 <a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/user/&lt;YOUR GROUPME USER ID&gt;&quot;</span><span class="p">,</span>
 <a id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;line.create&quot;</span><span class="p">,</span>
@@ -1596,15 +1594,18 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-18-22" name="__codelineno-18-22"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;15717&quot;</span><span class="p">,</span>
 <a id="__codelineno-18-23" name="__codelineno-18-23"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;162&quot;</span><span class="p">,</span>
 <a id="__codelineno-18-24" name="__codelineno-18-24"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;source_guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GUID 13225579210290&quot;</span>
-<a id="__codelineno-18-25" name="__codelineno-18-25"></a><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-18-25" name="__codelineno-18-25"></a><span class="p">},</span>
 <a id="__codelineno-18-26" name="__codelineno-18-26"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;alert&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Andygv: hey&quot;</span>
-<a id="__codelineno-18-27" name="__codelineno-18-27"></a><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-18-27" name="__codelineno-18-27"></a><span class="p">},</span>
 <a id="__codelineno-18-28" name="__codelineno-18-28"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;clientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;CLIENT</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span>
 <a id="__codelineno-18-29" name="__codelineno-18-29"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4uso9uuv78tg4l7csica1kc4c&quot;</span><span class="p">,</span>
 <a id="__codelineno-18-30" name="__codelineno-18-30"></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">&quot;authenticated&quot;</span><span class="p">:</span><span class="kc">true</span>
-<a id="__codelineno-18-31" name="__codelineno-18-31"></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-18-31" name="__codelineno-18-31"></a><span class="p">}</span>
 <a id="__codelineno-18-32" name="__codelineno-18-32"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
 <hr />
 <h2 id="websocket-message-structure">WebSocket Message Structure<a class="headerlink" href="#websocket-message-structure" title="Permanent link">&para;</a></h2>
 <p>When your client is connected to the GroupMe WebSocket server and subscribed to channels, you will receive messages. These messages follow the Bayeux protocol, and the core information is typically found within the data object of the incoming Faye message.</p>
@@ -2442,7 +2443,7 @@ Both send information about specific channels that a client wouldn't need to sen
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2025 00:41:44 UTC">July 2, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2025 18:12:46 UTC">July 2, 2025</span>
   </span>
 
     
@@ -2497,6 +2498,8 @@ Both send information about specific channels that a client wouldn't need to sen
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -2580,7 +2583,7 @@ Both send information about specific channels that a client wouldn't need to sen
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit", "content.action.view", "navigation.instant", "navigation.instant.progress", "navigation.top", "navigation.sections", "toc.integrate", "search.suggest", "search.share", "navigation.footer", "content.code.copy", "header.autohide", "announce.dismiss"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit", "content.action.view", "content.tabs.link", "content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.top", "navigation.sections", "navigation.footer", "toc.integrate", "search.suggest", "search.share", "header.autohide", "announce.dismiss"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
