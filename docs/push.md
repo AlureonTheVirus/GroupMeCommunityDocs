@@ -22,15 +22,15 @@ Both send information about specific channels that a client wouldn't need to sen
 
 For verbosity, we outline how to authenticate and connect using a Faye client library, in pure WebSockets (in case you don't have access to a library), and finally in pure HTTP to do manual long-polling.
 
-=== "Option 1: Using a Faye client (Recommended)"
+=== "Option 1: Using a Faye Client (Recommended)"
 
-	## Option 1: Using a Faye client (Recommended)
+	**Option 1: Using a Faye Client (Recommended)**
 
-	Faye/Bayeux WebSocket clients exist in many languages ([JavaScript](https://www.npmjs.com/package/faye), [Ruby](https://rubygems.org/gems/faye-websocket/versions/0.10.4?locale=en), [Python](https://github.com/dkmadigan/python-bayeux-client), etc.), or you can [implement the protocol manually using raw WebSockets][__tabbed_1_2].
+	Faye/Bayeux WebSocket clients exist in many languages ([JavaScript](https://www.npmjs.com/package/faye), [Ruby](https://rubygems.org/gems/faye-websocket/versions/0.10.4?locale=en), [Python](https://github.com/dkmadigan/python-bayeux-client), etc.), and they're the preferred way of hitting GroupMe's Push Gateway. If your language doesn't have a Bayeux client or you really want a challenge you can [implement the protocol manually using raw WebSockets](#option-2-pure-websockets) or [stick to polling for updates via HTTP](#option-3-manual-long-polling-over-http) (Not recommended, but still possible).
 
 	For simplicity, this example will be given in node.js using the [faye](https://www.npmjs.com/package/faye) npm package.
 
-	```bash title="Installation"
+	```bash
 	npm install faye
 	```
 
@@ -77,8 +77,11 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 === "Option 2: Pure WebSockets"
 
+	**Option 2: Pure WebSockets**
+
 	If you're not using a Faye client library, you can still connect to GroupMe’s real-time Push Service by directly implementing the Bayeux protocol over WebSockets. This approach is transport-agnostic and works in any language that supports WebSockets and JSON.
 
+	> [!INFO]
 	> For complex steps (like subscription formatting), we’ll show JavaScript snippets to help illustrate what your code might look like.
 
 	**Step 1: Perform the Handshake (via HTTP)**
@@ -90,12 +93,12 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	```json linenums="1"
 	POST https://push.groupme.com/faye
 	[
-	{
+	  {
 	    "channel": "/meta/handshake",
 	    "version": "1.0",
 	    "supportedConnectionTypes": ["websocket"],
 	    "id": "1"
-	}
+	  }
 	]
 	```
 
@@ -187,7 +190,6 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	* A `data` payload
 	* and potentially some metadata, like `id` or `clientId`
 
-	  
 	Example incoming message:
 
 	```json linenums="1"
@@ -196,23 +198,23 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	  "data": {
 	    "type": "line.create",
 	    "subject": { 
-	"name": "Andygv",
-	     "avatar_url":null,
-	     "location": { "name": null, "lng": null,"foursquare_checkin": false,"foursquare_venue_id": null,"lat": null},
-	     "created_at": 1322557919,
-	     "picture_url": null,
-	     "system": false,
-	     "text": "hey",
-	     "group_id": "1835",
-	     "id": "15717",
-	     "user_id": "162",
-	     "source_guid": "GUID 13225579210290"
-	},
-	  "alert": "Andygv: hey"
-	},
-	"clientId": "1lhg38m0sk6b63080mpc71r9d7q1",
-	"id": "4uso9uuv78tg4l7csica1kc4c",
-	"authenticated": true
+	      "name": "Andygv",
+	      "avatar_url":null,
+	      "location": { "name": null, "lng": null,"foursquare_checkin": false,"foursquare_venue_id": null,"lat": null},
+	      "created_at": 1322557919,
+	      "picture_url": null,
+	      "system": false,
+	      "text": "hey",
+	      "group_id": "1835",
+	      "id": "15717",
+	      "user_id": "162",
+	      "source_guid": "GUID 13225579210290"
+	    },
+	    "alert": "Andygv: hey"
+	  },
+	  "clientId": "1lhg38m0sk6b63080mpc71r9d7q1",
+	  "id": "4uso9uuv78tg4l7csica1kc4c",
+	  "authenticated": true
 	}
 	```
 
@@ -224,14 +226,12 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	  for (const message of messages) {
 	    if (message.channel.startsWith("/user/")) {
 	      handleUserMessage(message.data);
-	}
-	}
+	    }
+	  }
 	};
 	```
 
 	**Step 6: Maintain the Connection Loop**
-
-	The `/meta/connect` message must be sent repeatedly. This acts as a heartbeat and delivery mechanism for future messages.
 
 	Follow the `advice.interval` and `advice.timeout` values returned in `/meta/connect` responses to avoid premature disconnection.
 
@@ -244,7 +244,9 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	> [!IMPORTANT]
 	> Please note that when subscribing to DM channels, you must replace the `+` in the conversation ID (as it appears in the REST API) with an `_` instead. We're not entirely sure why this inconsistency exists, but it does.
 
-=== "Option 3: Manual Long-Polling over HTTP (Not Recommended, but still possible)"
+=== "Option 3: Manual Long-Polling over HTTP"
+
+	**Option 3: Manual Long-Polling over HTTP (Not Recommended)**
 
 	Start by establishing a connection with GroupMe's Faye server.
 
@@ -253,19 +255,19 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	```json linenums="1"
 	POST https://push.groupme.com/faye
 	[
-	{
+	  {
 	    "channel":"/meta/handshake",
 	    "version":"1.0",
 	    "supportedConnectionTypes":["long-polling"],
 	    "id":"1"
-	}
+	  }
 	]
 	```
 
 	The response should look something like:
 	```json linenums="1"
 	[
-	{
+	  {
 	    "id": "1",
 	    "channel": "/meta/handshake",
 	    "successful": true,
@@ -273,7 +275,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	    "supportedConnectionTypes": ["long-polling","cross-origin-long-polling","callback-polling","websocket","in-process"],
 	    "clientId": <IMPORTANT CLIENT ID>,
 	    "advice": {"reconnect":"retry","interval":0,"timeout":30000}
-	}
+	  }
 	]
 	```
 
@@ -284,17 +286,16 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	```json linenums="1"
 	POST https://push.groupme.com/faye
 	[
-	{
+	  {
 	    "channel": "/meta/subscribe",
 	    "clientId": <CLIENT ID>,
 	    "subscription": "/user/<YOUR GROUPME USER ID>",
 	    "id": "2",
-	    "ext":
-	{
+	    "ext": {
 	        "access_token": "<YOUR GROUPME API ACCESS TOKEN>",
 	        "timestamp": <CURRENT TIMESTAMP>
-	}
-	}
+	    }
+	  }
 	]
 	```
 
@@ -307,13 +308,13 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	```json linenums="1"
 	[
-	{
+	  {
 	    "id": "2",
 	    "clientId": <CLIENT ID>,
 	    "channel": "/meta/subscribe",
 	    "successful": true,
 	    "subscription": "/user/<YOUR GROUPME USER ID>"
-	}
+	  }
 	]
 	```
 
@@ -325,7 +326,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	```json linenums="1"
 	POST https://push.groupme.com/faye
 	[
-	{
+	  {
 	    "channel": "/meta/subscribe",
 	    "clientId": <CLIENT ID>,
 	    "subscription": "/group/<GROUP ID>" OR "/direct_message/<DIRECT MESSAGE CHANNEL ID>",
@@ -333,8 +334,8 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	    "ext": {
 	      "access_token": "<YOUR GROUPME API ACCESS TOKEN>",
 	      "timestamp": <CURRENT TIMESTAMP>
-	}
-	}
+	    }
+	  }
 	]
 	```
 
@@ -346,12 +347,12 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	```json linenums="1"
 	POST https://push.groupme.com/faye
 	[
-	{
+	  {
 	    "channel": "/meta/connect",
 	    "clientId": <CLIENT ID>,
 	    "connectionType": "long-polling",
 	    "id": "3"
-	}
+	  }
 	]
 	```
 
@@ -359,21 +360,21 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	```json linenums="1"
 	[
-	{
+	  {
 	    "id": "4",
 	    "clientId": <CLIENT ID>,
 	    "channel": "/meta/connect",
 	    "successful": true,
 	    "advice": {"reconnect":"retry","interval":0,"timeout":30000}
-	},
-	{
+	  },
+	  {
 	    "channel": "/user/<YOUR GROUPME USER ID>",
 	    "data": {"ping":true},
 	    "clientId": <CLIENT ID>,
 	    "id": "5",
 	    "ext": {"access_token":"<access token>","timestamp":1322557872},
 	    "authenticated": true
-	}
+	  }
 	]
 	```
 
@@ -381,14 +382,14 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	```json linenums="1"
 	[
-	{
+	  {
 	    "id": "5",
 	    "clientId": <CLIENT ID>,
 	    "channel": "/meta/connect",
 	    "successful": true,
 	    "advice": {"reconnect":"retry","interval":0,"timeout":30000}
-	},
-	{
+	  },
+	  {
 	    "channel": "/user/<YOUR GROUPME USER ID>",
 	    "data": {
 	      "type": "line.create",
@@ -404,13 +405,13 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	        "id": "15717",
 	        "user_id": "162",
 	        "source_guid": "GUID 13225579210290"
-	},
+	      },
 	      "alert": "Andygv: hey"
-	},
+	    },
 	    "clientId": <CLIENT ID>,
 	    "id": "4uso9uuv78tg4l7csica1kc4c",
 	    "authenticated":true
-	}
+	  }
 	]
 	```
 
