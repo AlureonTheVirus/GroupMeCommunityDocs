@@ -819,15 +819,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#option-1-using-a-faye-client-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      Option 1: Using a Faye client (Recommended)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#option-2-pure-websockets" class="md-nav__link">
     <span class="md-ellipsis">
       Option 2: Pure WebSockets
@@ -1102,7 +1093,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <p>Faye/Bayeux WebSocket clients exist in many languages (<a href="https://www.npmjs.com/package/faye">JavaScript</a>, <a href="https://rubygems.org/gems/faye-websocket/versions/0.10.4?locale=en">Ruby</a>, <a href="https://github.com/dkmadigan/python-bayeux-client">Python</a>, etc.), or you can implement the protocol manually.</p>
 <p>For verbosity, we outline how to authenticate and connect using a Faye client library, in pure WebSockets (in case you don't have access to a library), and finally in pure HTTP to do manual long-polling.</p>
 <hr />
-<h2 id="option-1-using-a-faye-client-recommended">Option 1: Using a Faye client (Recommended)<a class="headerlink" href="#option-1-using-a-faye-client-recommended" title="Permanent link">&para;</a></h2>
+<p>Option 1: Using a Faye client (Recommended)</p>
 <p>Start by initiating a connection with GroupMe's Faye server:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">faye</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;faye&#39;</span><span class="p">);</span>
@@ -2396,7 +2387,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Data Object Structure</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
 <span class="normal"><a href="#__codelineno-31-2">2</a></span>
 <span class="normal"><a href="#__codelineno-31-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="p">{</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ping&quot;</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ping&quot;</span>
 <a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
@@ -2451,7 +2442,7 @@ Both send information about specific channels that a client wouldn't need to sen
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2025 00:33:13 UTC">July 2, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2025 00:41:44 UTC">July 2, 2025</span>
   </span>
 
     
