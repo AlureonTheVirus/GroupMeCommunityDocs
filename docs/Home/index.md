@@ -1,7 +1,7 @@
 ---
 template: home.html
-title: Material for MkDocs
-description: Documentation that simply works
+title: OpenGM API Documentation
+description: Community-led effort to document the reverse-engineered GroupMe API.
 ---
 
-Welcome to Material for MkDocs.
+Welcome to OpenGM – an open-source project dedicated to fully documenting the GroupMe API through reverse engineering and community collaboration.

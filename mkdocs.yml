@@ -8,8 +8,10 @@ site_description: "The OpenGM Project: Community GroupMe API documentation for a
 
 theme:
   name: material
+
   font:
     text: Mona Sans
+
   icon:
     logo: OpenGM/sprocket
     repo: fontawesome/brands/github
@@ -22,6 +24,9 @@ theme:
   custom_dir: src/overrides
 
   edit_uri: edit/master/docs
+
+  extra_css:
+    - assets/stylesheets/extra.css
 
   features:
     - content.action.edit
