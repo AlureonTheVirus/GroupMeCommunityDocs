@@ -124,138 +124,140 @@ The MFA system is relatively straightforward. When the server requires multi-fac
 
 Your client follows one of a few methods to verify that MFA ID, and then passes it back to the server.
 
-**Option 1: They text you**
+=== "Option 1: They text you"
 
-To tell the server to send a text:
+    **Option 1: They text you**
 
-```json linenums="1" title="HTTP Request"
-POST /verifications/:mfa_id/initiate
-{
-  "verification": {
-    "method": "sms"
-  }
-}
-```
+    To tell the server to send a text:
 
-**Parameters**
+    ```json linenums="1" title="HTTP Request"
+    POST /verifications/:mfa_id/initiate
+    {
+      "verification": {
+        "method": "sms"
+      }
+    }
+    ```
 
-* *mfa_id*
+    **Parameters**
 
-    string - this is the long string given to you whenever the server requires an MFA challenge. It should look something like: `5bdbac1c43224a21d02dc94747ae732e31161ba4-700d069528b2364ebc32b9f721b25d93239279d3`.
+    * *mfa_id*
 
-```json linenums="1" title="HTTP Response"
-Status: 200 OK
-{
-  "hint": "22"
-}
-```
+        string - this is the long string given to you whenever the server requires an MFA challenge. It should look something like: `5bdbac1c43224a21d02dc94747ae732e31161ba4-700d069528b2364ebc32b9f721b25d93239279d3`.
 
-Now you can verify the pin:
+    ```json linenums="1" title="HTTP Response"
+    Status: 200 OK
+    {
+      "hint": "22"
+    }
+    ```
 
-```json linenums="1" title="HTTP Request"
-POST /verifications/:mfa_id/confirm
-{
-  "verification": {
-    "pin": "1234"
-  }
-}
-```
+    Now you can verify the pin:
 
-**Parameters**
+    ```json linenums="1" title="HTTP Request"
+    POST /verifications/:mfa_id/confirm
+    {
+      "verification": {
+        "pin": "1234"
+      }
+    }
+    ```
 
-* *mfa_id*
+    **Parameters**
 
-    string - this is the long string given to you whenever the server requires an MFA challenge.
+    * *mfa_id*
 
-* *pin*
+        string - this is the long string given to you whenever the server requires an MFA challenge.
 
-    string - the pin texted to you when you initiated the MFA challenge. Alternatively, this can be a backup code that was generated when you initially activated MFA for your account.
+    * *pin*
 
-If the pin is correct, you will receive a response that looks like this:
+        string - the pin texted to you when you initiated the MFA challenge. Alternatively, this can be a backup code that was generated when you initially activated MFA for your account.
 
-```json linenums="1" title="HTTP Response"
-Status: 200 OK
-{
-  "status": 20000
-}
-```
+    If the pin is correct, you will receive a response that looks like this:
 
-If the pin was incorrect, you will receive a response indicating how many tries you have left.
+    ```json linenums="1" title="HTTP Response"
+    Status: 200 OK
+    {
+      "status": 20000
+    }
+    ```
 
-```json linenums="1" title="HTTP Response"
-Status: 400 Bad Request
-{
-  "remaining_attempts": 2
-}
-```
+    If the pin was incorrect, you will receive a response indicating how many tries you have left.
 
-At this point, the MFA code you've been given should be verified and you can pass it along to whatever call initiated the MFA interaction.
+    ```json linenums="1" title="HTTP Response"
+    Status: 400 Bad Request
+    {
+      "remaining_attempts": 2
+    }
+    ```
 
-***
+    At this point, the MFA code you've been given should be verified and you can pass it along to whatever call initiated the MFA interaction.
 
-**Option 2: You text them**
+=== "Option 2: You text them"
 
-This doesn't require an initiation step, instead, you send a text containing the `long_pin` to the `system_number` provided when the server issues an MFA challenge. 
+    **Option 2: You text them**
 
-Official clients use a text that looks like this:
+    This doesn't require an initiation step, instead, you send a text containing the `long_pin` to the `system_number` provided when the server issues an MFA challenge. 
 
-```linenums="1" title="Text"
-Send this text to verify this phone number: (c9b6acf22f61)
-```
+    Official clients use a text that looks like this:
 
-Where `c9b6acf22f61` is the `long_pin` you received from the server.
+    ```linenums="1" title="Text"
+    Send this text to verify this phone number: (c9b6acf22f61)
+    ```
 
-Because sending a text is asynchronous, you need to wait and validate that the server has received your SMS before attempting to use the MFA ID. You can do this via polling the ID to see if it's validated yet.
+    Where `c9b6acf22f61` is the `long_pin` you received from the server.
 
-You can use this call to check if any MFA ID is valid, not just ones where you're sending the text. It's most relevant here, so thats why we include it.
+    Because sending a text is asynchronous, you need to wait and validate that the server has received your SMS before attempting to use the MFA ID. You can do this via polling the ID to see if it's validated yet.
 
-```json linenums="1" title="HTTP Request"
-GET /verifications/:mfa_id
-```
+    You can use this call to check if any MFA ID is valid, not just ones where you're sending the text. It's most relevant here, so thats why we include it.
 
-**Parameters**
+    ```json linenums="1" title="HTTP Request"
+    GET /verifications/:mfa_id
+    ```
 
-* *mfa_id*
+    **Parameters**
 
-    string - this is the long string given to you whenever the server requires an MFA challenge. It should look something like: `5bdbac1c43224a21d02dc94747ae732e31161ba4-700d069528b2364ebc32b9f721b25d93239279d3`.
+    * *mfa_id*
 
-```json linenums="1" title="HTTP Response if Verified"
-Status: 200 OK
-{
-  "verification": {
-    "code": "5bdbac1c43224a21d02dc94747ae732e31161ba4-700d069528b2364ebc32b9f721b25d93239279d3",
-    "methods": {
-      "call": "43",
-      "sms": "43",
-      "email": "em***********@example.com"
-    },
-    "status": "verified",
-    "type": "force",
-    "long_pin": "c9b6acf22f61",
-    "system_number": "+1 5095931886"
-  }
-}
-```
+        string - this is the long string given to you whenever the server requires an MFA challenge. It should look something like: `5bdbac1c43224a21d02dc94747ae732e31161ba4-700d069528b2364ebc32b9f721b25d93239279d3`.
 
-```json linenums="1" title="HTTP Response if not yet Verified"
-Status: 200 OK
-{
-  "verification": {
-    "code": "5bdbac1c43224a21d02dc94747ae732e31161ba4-700d069528b2364ebc32b9f721b25d93239279d3",
-    "methods": {
-      "call": "43",
-      "sms": "43",
-      "email": "em***********@example.com"
-    },
-    "status": "unverified",
-    "type": "force",
-    "long_pin": "c9b6acf22f61",
-    "system_number": "+1 5095931886"
-  }
-}
-```
+    ```json linenums="1" title="HTTP Response if Verified"
+    Status: 200 OK
+    {
+      "verification": {
+        "code": "5bdbac1c43224a21d02dc94747ae732e31161ba4-700d069528b2364ebc32b9f721b25d93239279d3",
+        "methods": {
+          "call": "43",
+          "sms": "43",
+          "email": "em***********@example.com"
+        },
+        "status": "verified",
+        "type": "force",
+        "long_pin": "c9b6acf22f61",
+        "system_number": "+1 5095931886"
+      }
+    }
+    ```
 
-At this point, the MFA code you've been given should be verified and you can pass it along to whatever call initiated the MFA interaction.
+    ```json linenums="1" title="HTTP Response if not yet Verified"
+    Status: 200 OK
+    {
+      "verification": {
+        "code": "5bdbac1c43224a21d02dc94747ae732e31161ba4-700d069528b2364ebc32b9f721b25d93239279d3",
+        "methods": {
+          "call": "43",
+          "sms": "43",
+          "email": "em***********@example.com"
+        },
+        "status": "unverified",
+        "type": "force",
+        "long_pin": "c9b6acf22f61",
+        "system_number": "+1 5095931886"
+      }
+    }
+    ```
+
+    At this point, the MFA code you've been given should be verified and you can pass it along to whatever call initiated the MFA interaction.
 
 ***
 
