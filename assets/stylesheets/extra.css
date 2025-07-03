@@ -1,38 +1,9 @@
-.hero {
-    background-color: #f8f9fa; /* Light background color */
-    color: #343a40; /* Darker text color */
-    padding: 4rem 0;
-    margin-bottom: 2rem;
+/* Hide left sidebar when 'hide-sidebar' is applied to body */
+body.hide-sidebar .md-sidebar--primary {
+  display: none;
 }
 
-.title {
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-.subtitle {
-    margin-bottom: 2rem;
-}
-
-.buttons .button {
-    margin-right: 1rem; /* Space between buttons */
-}
-
-.image img {
-    border-radius: 8px; /* Rounded corners on the image */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-/* Styling for lists to keep them clean and readable */
-.section .content ul {
-  list-style-type: none; /* Remove bullets */
-  padding: 0;
-}
-
-.section .content li {
-  margin-bottom: 0.5em;
-}
-
-.section .content li strong {
-  font-weight: bold; /* Make the attribute names bold */
+/* Expand main content to full width when sidebar is hidden */
+body.hide-sidebar .md-content {
+  margin-left: 0;
 }
