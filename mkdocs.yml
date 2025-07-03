@@ -106,3 +106,11 @@ markdown_extensions:
       options:
         custom_icons:
           - overrides/.icons
+
+nav:
+  - Home: index.md
+  - API Reference:
+      - Overview: api/index.md
+  - Examples:
+      - DinoBot: examples/dinobot.md
+
