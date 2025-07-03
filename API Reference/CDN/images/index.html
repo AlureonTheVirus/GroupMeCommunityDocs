@@ -350,7 +350,9 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="OpenGM API Documentation" class="md-nav__button md-logo" aria-label="OpenGM API Documentation" data-md-component="logo">
       
@@ -613,7 +615,7 @@
   
   
   <span class="md-ellipsis">
-    Account Management
+    Profile Information
     
   </span>
   
@@ -692,7 +694,7 @@
   
   
   <span class="md-ellipsis">
-    File Management
+    File Service
     
   </span>
   
@@ -913,7 +915,7 @@
   
   
   <span class="md-ellipsis">
-    Attachments
+    Message Attachments
     
   </span>
   
@@ -1440,6 +1442,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../WebSocket%20Gateway/messageTypes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    WebSocket Message Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../WebSocket%20Gateway/websocket/" class="md-nav__link">
         
   
@@ -1550,90 +1575,6 @@
                 </div>
               </div>
             
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#image-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      Image Service
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to-try-this-out-via-curl" class="md-nav__link">
-    <span class="md-ellipsis">
-      To try this out via cURL:
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#thumbnails" class="md-nav__link">
-    <span class="md-ellipsis">
-      Thumbnails
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#images" class="md-nav__link">
-    <span class="md-ellipsis">
-      Images
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Images">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uploading-local-images" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uploading local images
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#uploading-remote-images" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uploading remote images
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
             
           
           
@@ -1812,7 +1753,7 @@ Status: 200 OK
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../files/" class="md-footer__link md-footer__link--prev" aria-label="Previous: File Management">
+          <a href="../files/" class="md-footer__link md-footer__link--prev" aria-label="Previous: File Service">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1822,7 +1763,7 @@ Status: 200 OK
                 Previous
               </span>
               <div class="md-ellipsis">
-                File Management
+                File Service
               </div>
             </div>
           </a>
@@ -1877,7 +1818,7 @@ Status: 200 OK
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.action.view", "content.tabs.link", "content.code.copy", "content.tooltips", "navigation.instant", "navigation.instant.progress", "navigation.top", "navigation.tabs", "navigation.sections", "navigation.footer", "search.suggest", "search.share", "header.autohide", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.action.view", "content.tabs.link", "content.code.copy", "content.tooltips", "navigation.instant", "navigation.instant.progress", "navigation.top", "navigation.tabs", "navigation.sections", "navigation.footer", "toc.integrate", "search.suggest", "search.share", "header.autohide", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
