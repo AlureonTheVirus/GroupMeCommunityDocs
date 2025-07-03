@@ -25,9 +25,11 @@ theme:
 
   edit_uri: edit/master/docs
 
+  extra_javascript:
+    - assets/javascripts/hide-sidebar.js
+
   extra_css:
-    - https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css
-    - assets/stylesheets/custom.css
+    - assets/stylesheets/extra.css
 
   features:
     - content.action.edit
