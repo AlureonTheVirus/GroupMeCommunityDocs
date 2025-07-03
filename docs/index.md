@@ -14,4 +14,4 @@ This is the community-driven, open-source documentation for the GroupMe Public A
 - **Rich Examples:** These docs are here to provide practical code samples and way more detail than the official docs ever did make development easier.
 - **High Coverage:** These docs cover nearly all endpoints, including those not documented by GroupMe.
   
-Ready to dive in? Check out the [**API Reference**]() guide or browse the provided [**Examples**]().
+Ready to dive in? Check out the [**API Reference**](/api) guide or browse the provided [**Examples**](/examples).

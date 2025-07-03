@@ -41,7 +41,7 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.footer
-    - toc.integrate
+    - navigation.indexes
     - search.suggest
     - search.share
     - header.autohide
@@ -110,7 +110,38 @@ markdown_extensions:
 nav:
   - Home: index.md
   - API Reference:
-      - Overview: api/index.md
+    - api/index.md
+    - Webhook Bots: api/bots.md
+    - WebSocket Gateway:
+      - api/ws/websocket.md
+      - Message Types: api/ws/messageTypes.md
+    - Account Management: 
+      - api/account/self.md
+      - Contacts: api/account/contacts.md
+      - Oauth/MFA: api/account/oauth.md
+    - Groups:
+      - api/groups/groups.md
+      - Subgroups: api/groups/subgroups.md
+      - Members: api/groups/members.md
+      - Messages: api/groups/messages.md
+      - Polls: api/groups/polls.md
+      - Discovery: api/groups/directories.md
+    - Direct Messages:
+      - api/dms/dms.md
+    - CDN:
+      - Image Uploads: api/cdn/images.md
+      - Video Uploads: api/cdn/video.md
+      - File Uploads: api/cdn/files.md
+    - Common Structures:
+      - Message Attachments: api/common/attachments.md
+      - Emoji Powerups: api/common/emoji.md
+      - Message Events: api/common/events.md
+    - Misc:
+      - Emoji Reactions: api/misc/reactions.md
+      - Calandar Events: api/misc/calendar.md
+      - Image Galleries: api/misc/gallery.md
+      - Pinning Messages: api/misc/pins.md
   - Examples:
-      - DinoBot: examples/dinobot.md
-
+    - examples/index.md
+    - DinoBot: examples/dinobot.md
+  - Contributing: contributing/index.md
