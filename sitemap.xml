@@ -1,103 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/bots/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Account%20Management/contacts/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/bots/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Account%20Management/oauth/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Account%20Management/contacts/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Account%20Management/self/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Account%20Management/oauth/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/CDN/files/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Account%20Management/self/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/CDN/images/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/files/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/CDN/video/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/images/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Common%20Structures/attachments/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/video/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Common%20Structures/emoji/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Common%20Structures/attachments/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Common%20Structures/events/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Common%20Structures/emoji/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/calendar/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Common%20Structures/events/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/gallery/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/calendar/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/pins/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/gallery/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/reactions/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/pins/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/Direct%20Messages/dms/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/reactions/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/Group%20Management/directories/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/Direct%20Messages/dms/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/Group%20Management/groups/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/Group%20Management/directories/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/Group%20Management/members/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/Group%20Management/groups/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/Group%20Management/messages/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/Group%20Management/members/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/Group%20Management/polls/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/Group%20Management/messages/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/Message%20Channels/Group%20Management/subgroups/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/Group%20Management/polls/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/WebSocket%20Gateway/messageTypes/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/Message%20Channels/Group%20Management/subgroups/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/API%20Reference/WebSocket%20Gateway/websocket/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/WebSocket%20Gateway/messageTypes/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/Home/</loc>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/WebSocket%20Gateway/websocket/</loc>
          <lastmod>2025-07-03</lastmod>
     </url>
     <url>
