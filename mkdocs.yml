@@ -26,7 +26,8 @@ theme:
   edit_uri: edit/master/docs
 
   extra_css:
-    - assets/stylesheets/extra.css
+    - https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css
+    - assets/stylesheets/custom.css
 
   features:
     - content.action.edit
@@ -105,32 +106,3 @@ markdown_extensions:
       options:
         custom_icons:
           - overrides/.icons
-
-extra:
-  homepage:
-    hero_image: assets/sprocket.svg # Using your existing icon as the hero image
-    tagline: "Community-driven documentation for GroupMe's Public API."
-    buttons:
-      - text: "Get Started"
-        link: "/getting-started/" # Update with your actual link
-        type: "brand" # 'brand' is the primary button style
-      - text: "API Endpoints"
-        link: "/api/endpoints/" # Update with your actual link
-        type: "alt"
-    features:
-      - icon: "📚"
-        title: "Comprehensive Endpoints"
-        details: "Detailed documentation for every known GroupMe API endpoint, from messages to multimedia."
-        link: "/api/endpoints/"
-      - icon: "💻"
-        title: "Code Samples"
-        details: "Practical code examples in various languages to get you started quickly."
-        link: "/examples/"
-      - icon: "👥"
-        title: "Community Driven"
-        details: "Maintained and updated by the community. Contributions are always welcome!"
-        link: "https://github.com/groupme-js/GroupMeCommunityDocs"
-      - icon: "🛡️"
-        title: "Type-Safe Models"
-        details: "Clear data models and schemas for every API object, ensuring you know what to expect."
-        link: "/api/models/"

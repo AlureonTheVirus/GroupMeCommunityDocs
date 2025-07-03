@@ -1,130 +1,46 @@
 {% extends "main.html" %}
 
-{# Add custom CSS just for this page #}
-{% block styles %}
-  {{ super() }}
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/extra.css' | url }}">
-{% endblock %}
-
-{# Completely override the header for the homepage #}
-{% block header %}
-  <header class="VPNav" data-v-ae24b3ad>
-    <div class="VPNavBar" data-v-6aa21345>
-      <div class="wrapper" data-v-6aa21345>
-        <div class="container" data-v-6aa21345>
-          <div class="title" data-v-6aa21345>
-            <a class="VPNavBarTitle" href="{{ page.url | url }}" data-v-1168a8e4>
-              {% if config.theme.icon.logo %}
-                <span class="logo md-icon">{% include ".icons/" ~ config.theme.icon.logo ~ ".svg" %}</span>
-              {% endif %}
-              <span>{{ config.site_name }}</span>
-            </a>
-          </div>
-          <div class="content" data-v-6aa21345>
-            <div class="content-body" data-v-6aa21345>
-              {# The search bar will be automatically injected by Material for MkDocs here #}
-              {% if "search" in config.plugins %}
-                <div class="VPNavBarSearch search" data-v-6aa21345>
-                  {% include "partials/search.html" %}
-                </div>
-              {% endif %}
-
-              <nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-dc692963>
-                <span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span>
-                {% for nav_item in nav %}
-                  {% if not nav_item.children and nav_item.title != "Home" %}
-                  <a class="VPLink link VPNavBarMenuLink" href="{{ nav_item.url | url }}">
-                    <span>{{ nav_item.title }}</span>
-                  </a>
-                  {% endif %}
-                {% endfor %}
-              </nav>
-
-              {% if config.extra.social %}
-                <div class="VPSocialLinks VPNavBarSocialLinks social-links">
-                  {% for social_item in config.extra.social %}
-                  <a class="VPSocialLink" href="{{ social_item.link }}" target="_blank" rel="noopener" title="{{ social_item.name | d(social_item.icon) }}">
-                    <span class="vpi-social-icon">{% include ".icons/" ~ social_item.icon ~ ".svg" %}</span>
-                  </a>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-{% endblock %}
-
-{# Override the main content block for the homepage #}
 {% block content %}
-  <div class="VPContent is-home" id="VPContent">
-    <div class="VPHome">
-      <div class="VPHero has-image VPHomeHero">
-        <div class="container">
-          <div class="main">
-            <h1 class="heading">
-              <span class="name clip">{{ config.site_name }}</span>
-              <span class="text">{{ config.site_description }}</span>
-            </h1>
-            {% if config.extra.homepage.tagline %}
-              <p class="tagline">{{ config.extra.homepage.tagline }}</p>
-            {% endif %}
-
-            {% if config.extra.homepage.buttons %}
-              <div class="actions">
-                {% for button in config.extra.homepage.buttons %}
-                  <div class="action">
-                    <a class="VPButton medium {{ button.type }}" href="{{ button.link | url }}">
-                      {{ button.text }}
-                    </a>
-                  </div>
-                {% endfor %}
-              </div>
-            {% endif %}
-          </div>
-          <div class="image">
-            <div class="image-container">
-              <div class="image-bg"></div>
-              {% if config.extra.homepage.hero_image %}
-                <img class="VPImage image-src" src="{{ config.extra.homepage.hero_image | url }}" alt="{{ config.site_name }} Logo">
-              {% endif %}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-half">
+                        <h1 class="title is-1">
+                            OpenGM Project
+                        </h1>
+                        <p class="subtitle is-3">
+                            Community-led documentation for the reverse-engineered GroupMe API.
+                        </p>
+                        <div class="buttons">
+                            <a href="/get-started/" class="button is-primary is-large">Get Started</a>
+                            <a href="/api-endpoints/" class="button is-light is-large">API Endpoints</a>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <figure class="image is-4by3">
+                            <img src="img/groupme_hero_illustration.svg" alt="GroupMe API Illustration">
+                        </figure>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      {% if config.extra.homepage.features %}
-      <div class="VPFeatures VPHomeFeatures">
-        <div class="container">
-          <div class="items">
-            {% for feature in config.extra.homepage.features %}
-            <div class="grid-4 item">
-              <a class="VPLink link no-icon VPFeature" href="{{ feature.link | url }}">
-                <article class="box">
-                  <div class="icon">{{ feature.icon | safe }}</div>
-                  <h2 class="title">{{ feature.title }}</h2>
-                  <p class="details">{{ feature.details }}</p>
-                  <div class="link-text">
-                    <p class="link-text-value">
-                      Learn more <span class="vpi-arrow-right link-text-icon"></span>
-                    </p>
-                  </div>
-                </article>
-              </a>
+    <div class="container">
+        <section class="section">
+            <div class="content">
+                <h2>Why this project?</h2>
+                <ul>
+                    <li><strong>Up-to-Date:</strong> The official documentation is often outdated. We strive to keep our docs current with the latest API changes.</li>
+                    <li><strong>Community-Powered:</strong> Anyone can contribute! If you find an error or a missing endpoint, you can help improve the docs for everyone.</li>
+                    <li><strong>Rich Examples:</strong> We provide practical code samples and detailed model schemas to make development easier.</li>
+                </ul>
             </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-      {% endif %}
-
-      <div class="vp-doc container">
-        {{ page.content }}
-      </div>
+        </section>
     </div>
-  </div>
 {% endblock %}
 
-{% block footer %}{{ super() }}{% endblock %}
+{% block extrahead %}
+    <link rel="stylesheet" href="css/custom.css">
+{% endblock %}
