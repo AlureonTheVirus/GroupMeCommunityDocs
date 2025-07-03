@@ -3,7 +3,7 @@ title: "Calandar Events"
 description: "Learn how to interact with GroupMe's Calandar Events via the API."
 ---
 
-# Calendar Events
+# :material-calendar: Calendar Events
 
 Unless otherwise stated, endpoints are relative to https://api.groupme.com/v3/ and must include the token of the user making the call - so, for example, if an endpoint is `GET /groups`, the request you make should be using the URL `https://api.groupme.com/v3/groups?token=aSDFghJkl`, where `aSDFghJkl` is replaced with the user's token.
 

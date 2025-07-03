@@ -28,6 +28,7 @@ theme:
     - content.action.view
     - content.tabs.link
     - content.code.copy
+    - content.tooltips
     - navigation.instant
     - navigation.instant.progress
     - navigation.top
@@ -70,6 +71,8 @@ plugins:
         - web-flow
 
 markdown_extensions:
+  - abbr
+  - pymdownx.snippets
   - attr_list
   - md_in_html
   - admonition

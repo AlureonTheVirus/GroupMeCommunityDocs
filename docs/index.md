@@ -18,6 +18,7 @@ If you have any questions or would like to get in touch, please join the [GroupM
 <div class="grid cards" markdown>
 
 - :material-robot-excited: __[Bots]__ – How to create, index, and use bots
+- :octicons-arrow-switch-16: __[Websocket Gateway]__ – How to connect to the Push service to get real-time interaction with your program
 - :material-account-group: __[Group Management]__ – How to create, join, list, update, etc. groups
 - :material-account-group: __[Subgroup Management]__ – How to work with subgroups within a parent group
 - :fontawesome-solid-users-gear: __[Member management]__ – How to add, remove, and update members in a group
@@ -36,7 +37,7 @@ If you have any questions or would like to get in touch, please join the [GroupM
 - :material-image: __[Image Service]__ – How to upload Images to GroupMe's CDN
 - :material-account-cog: __[Account Management]__ – How to access/update information about your account, turning on/off SMS mode, and configuring profile details
 - :material-cellphone-key: __[Oauth/MFA]__ – How to manage API tokens and handle multi-factor authentication with GroupMe
-- :octicons-arrow-switch-16: __[Websocket Gateway]__ – How to connect to the Push service to get real-time interaction with your program
+
 
 </div>
 
