@@ -25,9 +25,6 @@ theme:
 
   edit_uri: edit/master/docs
 
-  extra_javascript:
-    - assets/javascripts/hide-sidebar.js
-
   extra_css:
     - assets/stylesheets/extra.css
 

@@ -1,9 +1,1 @@
-/* Hide left sidebar when 'hide-sidebar' is applied to body */
-body.hide-sidebar .md-sidebar--primary {
-  display: none;
-}
 
-/* Expand main content to full width when sidebar is hidden */
-body.hide-sidebar .md-content {
-  margin-left: 0;
-}
