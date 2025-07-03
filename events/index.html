@@ -1491,8 +1491,9 @@
 <p>This document lists the different <code>event.type</code> values observed, along with the structure of their corresponding <code>event</code> object.</p>
 <div class="admonition warning">
 <p class="admonition-title">API Inconsistency: User ID Data Types</p>
-<p>Developers should be aware that within the <code>event.data</code> objects detailed below, user IDs (such as <code>user.id</code>, <code>member.id</code>, <code>pinned_by</code>, etc.) are sometimes represented as <strong>numbers</strong> and other times as <strong>strings</strong>. This is inconsistent with the general GroupMe API practice where user IDs are typically strings. These types may be patched at any time. <strong>This highlights the critical need to handle both types robustly in your code.</strong></p>
 </div>
+<p>Developers should be aware that within the <code>event.data</code> objects detailed below, user IDs (such as <code>user.id</code>, <code>member.id</code>, <code>pinned_by</code>, etc.) are sometimes represented as <strong>numbers</strong> and other times as <strong>strings</strong>. This is inconsistent with the general GroupMe API practice where user IDs are typically strings. These types may be patched at any time. </p>
+<p><strong>This highlights the critical need to handle both types robustly in your code.</strong></p>
 <hr />
 <h2 id="membership-events">Membership Events<a class="headerlink" href="#membership-events" title="Permanent link">&para;</a></h2>
 <p>Events related to group membership changes (users joining, leaving, etc.). These apply to main groups.</p>
@@ -1570,8 +1571,8 @@
 <p>Indicates that a user has joined the group (e.g., via a share link or if the group is open).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This event typically fires in groups that either have "Request to Join" enabled or in smaller groups (generally with fewer than ~200 members). In very large, open groups, individual join events might not always be generated.</p>
 </div>
+<p>This event typically fires in groups that either have "Request to Join" enabled or in smaller groups (generally with fewer than ~200 members). In very large, open groups, individual join events might not always be generated.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Object Structure</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
 <span class="normal"><a href="#__codelineno-1-2">2</a></span>
 <span class="normal"><a href="#__codelineno-1-3">3</a></span>
@@ -4148,7 +4149,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 11, 2025 15:14:01 UTC">June 11, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 3, 2025 03:09:42 UTC">July 3, 2025</span>
   </span>
 
     
