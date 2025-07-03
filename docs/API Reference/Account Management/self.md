@@ -1,9 +1,9 @@
 ---
-title: "Account Management"
-description: "Learn how to interact with GroupMe's account management system via the API."
+title: "Profile Information"
+description: "Learn how to interact with GroupMe's account profiles via the API."
 ---
 
-# Account Management
+# Profile Information
 
 Unless otherwise stated, endpoints are relative to https://api.groupme.com/v3/ and must include the token of the user making the call - so, for example, if an endpoint is `GET /groups`, the request you make should be using the URL `https://api.groupme.com/v3/groups?token=aSDFghJkl`, where `aSDFghJkl` is replaced with the user's token.
 

@@ -35,6 +35,7 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.footer
+    - toc.integrate
     - search.suggest
     - search.share
     - header.autohide
