@@ -209,8 +209,7 @@ Your client follows one of a few methods to verify that MFA ID, and then passes 
 
   Because sending a text is asynchronous, you need to wait and validate that the server has received your SMS before attempting to use the MFA ID. You can do this via polling the ID to see if it's validated yet.
 
-  > [!tip]
-  > You can use this call to check if any MFA ID is valid, not just ones where you're sending the text. It's most relevant here, so thats why we include it.
+  You can use this call to check if any MFA ID is valid, not just ones where you're sending the text. It's most relevant here, so thats why we include it.
 
   ```json linenums="1" title="HTTP Request"
   GET /verifications/:mfa_id
