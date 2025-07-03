@@ -4,7 +4,7 @@ site_url: https://groupme-js.github.io/GroupMeCommunityDocs/
 repo_url: https://github.com/groupme-js/GroupMeCommunityDocs
 copyright: Copyright &copy; 2025 - OpenGM Project
 
-site_description: "The OpenGM Project: Community GroupMe API documentation for all."
+site_description: The OpenGM Project: Community GroupMe API documentation for all.
 
 theme:
   name: material
@@ -27,6 +27,11 @@ theme:
 
   extra_css:
     - assets/stylesheets/extra.css
+
+  nav:
+    - Home: Home/index.md
+    - API Reference: API Reference/index.md
+    - Examples: examples/dinobot.md
 
   features:
     - content.action.edit
