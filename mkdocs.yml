@@ -34,7 +34,6 @@ theme:
     - navigation.top
     - navigation.sections
     - navigation.footer
-    - toc.integrate
     - search.suggest
     - search.share
     - header.autohide
