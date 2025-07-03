@@ -32,12 +32,71 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.top
+    - navigation.tabs
     - navigation.sections
     - navigation.footer
     - search.suggest
     - search.share
     - header.autohide
     - announce.dismiss
+
+  nav:
+    - Home: index.md
+
+    - Examples:
+      - Webhook Bots:
+        - DinoBot: examples/dinobot.md
+      
+      WebSocket Bots:
+        - Basic User-Bot: examples/userbot.md
+
+    - API Reference:
+      - Webhook Bots: api/bots.md
+
+      - WebSocket Gateway: websocket/websocket.md
+
+      - Message Channels:
+        - Group Management: 
+          - Groups: api/channels/groups/groups.md
+          - Subgroups: api/channels/groups/subgroups.md
+          - Members: api/channels/groups/members.md
+          - Messages: api/channels/groups/messages.md
+          - Polls: api/channels/groups/polls.md
+          - Group Directories: api/channels/groups/directories.md
+
+        - Direct Messages:
+          - Direct Messages: api/channels/dms/dms.md
+
+        - Image Gallery: api/channels/gallery.md
+        - Calendar Events: api/channels/calendar.md
+        - Pinning Messages: api/channels/pins.md
+        - Emoji Reactions: api/channels/reactions.md
+
+      - Account Management:
+        - Account: api/account/self.md
+        - Oauth/MFA: api/account/oauth.md
+        - Contacts: api/account/contacts.md
+
+      - CDN:
+        - Image Service: api/cdn/image-service.md
+        - Video Service: api/cdn/video-service.md
+        - File Service: api/cdn/file-service.md
+
+      - Common Structures:
+        - Emoji Powerups: api/common/emojis.md
+        - Message Attachments: api/common/attachments.md
+        - System Events: api/common/events.md
+
+
+
+
+      
+
+
+
+
+
+
 
   palette:
     - media: "(prefers-color-scheme: light)"
