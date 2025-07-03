@@ -9,9 +9,11 @@ GroupMe messages can contain an `event` object, which describes system-generated
 
 This document lists the different `event.type` values observed, along with the structure of their corresponding `event` object.
 
-> [!WARNING]
-> **API Inconsistency: User ID Data Types**
-> Developers should be aware that within the `event.data` objects detailed below, user IDs (such as `user.id`, `member.id`, `pinned_by`, etc.) are sometimes represented as **numbers** and other times as **strings**. This is inconsistent with the general GroupMe API practice where user IDs are typically strings. These types may be patched at any time. **This highlights the critical need to handle both types robustly in your code.**
+!!! warning "API Inconsistency: User ID Data Types"
+
+  Developers should be aware that within the `event.data` objects detailed below, user IDs (such as `user.id`, `member.id`, `pinned_by`, etc.) are sometimes represented as **numbers** and other times as **strings**. This is inconsistent with the general GroupMe API practice where user IDs are typically strings. These types may be patched at any time. 
+  
+  **This highlights the critical need to handle both types robustly in your code.**
 
 ***
 
@@ -73,8 +75,9 @@ Indicates that one or more users have been added to the group by an existing mem
 
 Indicates that a user has joined the group (e.g., via a share link or if the group is open).
 
-> [!NOTE]
-> This event typically fires in groups that either have "Request to Join" enabled or in smaller groups (generally with fewer than ~200 members). In very large, open groups, individual join events might not always be generated.
+!!! note
+
+  This event typically fires in groups that either have "Request to Join" enabled or in smaller groups (generally with fewer than ~200 members). In very large, open groups, individual join events might not always be generated.
 
 ```json linenums="1" title="Object Structure"
 {

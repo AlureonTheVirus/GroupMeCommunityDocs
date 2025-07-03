@@ -283,7 +283,7 @@ Status: 200 OK
 
 This call activates an MFA channel for your account, it works just like logging in. 
 
-You make this call once without an MFA verification object, receive an MFA ID for the interaction, validate it using the steps detailed in the [Handling MFA Challenges](#Handling-MFA-Challenges) section, then make this call a second time including the now verified MFA ID.
+You make this call once without an MFA verification object, receive an MFA ID for the interaction, validate it using the steps detailed in the [Handling MFA Challenges](#handling-mfa-challenges) section, then make this call a second time including the now verified MFA ID.
 
 After establishing the MFA channel you must enable it with a seperate call.
 
@@ -467,7 +467,7 @@ Status: 200 OK
 ## Changing your Account Password
 
 > [!important]
-> This call will log you out *everywhere* and will revoke the token you're currently using. In order to get a new API token, you will need to [log back in](#Logging-In) with your new password
+> This call will log you out *everywhere* and will revoke the token you're currently using. In order to get a new API token, you will need to [log back in](#logging-in) with your new password
 
 ```json linenums="1" title="HTTP Request"
 POST /users/password
