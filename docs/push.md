@@ -34,16 +34,12 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	npm install faye
 	```
 
-	Start by initiating a connection with GroupMe's Faye server:
+	Start by initiating a connection with GroupMe's Faye server and configuring it to add your API token and a timestamp (in seconds since the Unix epoch) to any outgoing messages:
 
 	```js linenums="1"
 	const faye = require('faye');
 	const client = new faye.Client("https://push.groupme.com/faye");
-	```
 
-	Next, we need to tell our Client to add our GroupMe API token to any subsequent subscription requests and subscribe to the main user channel:
-
-	```js linenums="1"
 	// add your API credentials to outgoing WebSocket messages
 	client.addExtension({ 
 	  outgoing: (msg, callback) => {
@@ -51,31 +47,24 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	    msg.ext.access_token = "<YOUR GROUPME API ACCESS TOKEN>";
 	    msg.ext.timestamp = Math.round(Date.now() / 1000);
 	    callback(msg);
-	}
-	});
-
-	// subscribe to the '/user/:user_id' channel.
-	client.subscribe("/user/<YOUR GROUPME USER ID>", msg => { 
-	  /* Callback to run when a message is received */
+	  }
 	});
 	```
 
-	> [!IMPORTANT]
-	> The `timestamp` parameter is in *seconds* since the Unix epoch, not milliseconds.
+	**Subscribing to Channels**
 
-	Finally, we subscribe to any other channels we need to:
-
-	> [!TIP]
-	> This step is *usually* overkill. Almost all important real-time updates will come through the `/user/:user_id` channel. You will need to subscribe to individual groups or direct message channels if you want to catch read receipts or certain admin events.
+	In order to actually start receiving messages, you must subscribe to a channel. The main channel you will always want to subscribe to is `/user/:user_id` (where `:user_id` is your GroupMe account's ID) as it is where most general updates will be sent. Any notification that will buzz your phone is sent over this channel. 
 
 	```js linenums="1"
-	client.subscribe("/group/<GROUP ID> OR /direct_message/<DIRECT MESSAGE CHANNEL ID>", (msg) => { 
-	  /* Callback to run when a message is received */
+	client.subscribe("/user/:user_id", msg => { 
+	  /* Callback to run when an incoming message is received */
 	});
 	```
 
+	In some circumstances, in order to catch certain events (like typing indicators) you will also need to subscribe to specific message channels. This differs slightly between groups and direct messages, where groups use `/group/:group_id`, and DMs use `/direct_message/:chat_id`. Note that subgroup channels in a group are considered their own channels, so in order to catch their updates you must subscribe to `/groups/:subgroup_id`.
+
 	> [!IMPORTANT]
-	> Direct Message channel IDs are reported within the REST API looking something like `74938777+93645911`, two user IDs separated with a `+`. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (`_`). Make sure to find and replace these symbols before attempting to subscribe to those channels.
+	> Direct Message channel IDs are reported within the REST API looking something like `74938777+93645911`, two user IDs separated with a `+`. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (e.g. `74938777_93645911`). Make sure to find and replace these symbols before attempting to subscribe to those channels.
 
 === "Option 2: Pure WebSockets"
 
@@ -92,7 +81,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	Send a JSON array with a channel of `/meta/handshake`, the Bayeux version, and the supported connection types. You must include `"websocket"` in `supportedConnectionTypes`.
 
-	```json linenums="1"
+	```json linenums="1" title="HTTP Request"
 	POST https://push.groupme.com/faye
 	[
 	  {
@@ -120,7 +109,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	Immediately after connecting, send a `/meta/connect` message to initiate the message delivery loop. This step essentially "registers" your client as ready to receive pushes.
 
-	```json linenums="1"
+	```json linenums="1" title="Data"
 	{
 	  "channel": "/meta/connect",
 	  "clientId": "<YOUR CLIENT ID>",
@@ -152,7 +141,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	Subscriptions require authentication: you must include your GroupMe API access token and a Unix timestamp (in seconds) in the `ext` field.
 
-	```json linenums="1"
+	```json linenums="1" title="Data"
 	{
 	  "channel": "/meta/subscribe",
 	  "clientId": "<YOUR CLIENT ID>",
@@ -161,7 +150,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	  "ext": {
 	    "access_token": "<YOUR API TOKEN>",
 	    "timestamp": 1715700000
-	}
+	  }
 	}
 	```
 
@@ -194,7 +183,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	Example incoming message:
 
-	```json linenums="1"
+	```json linenums="1" title="Incoming Data"
 	{
 	  "channel": "/user/185",
 	  "data": {
@@ -233,10 +222,6 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	};
 	```
 
-	**Step 6: Maintain the Connection Loop**
-
-	Follow the `advice.interval` and `advice.timeout` values returned in `/meta/connect` responses to avoid premature disconnection.
-
 	**Optional: Subscribing to Group or DM Channels**
 
 	You can also subscribe to `/group/:group_id` and `/direct_message/:direct_message_id` channels to get additional channel-specific messages that wouldn't usually buzz your phone, like typing indicators.
@@ -254,7 +239,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	Send a POST request to `https://push.groupme.com/faye`. It should look like this:
 
-	```json linenums="1"
+	```json linenums="1" title="HTTP Request"
 	POST https://push.groupme.com/faye
 	[
 	  {
@@ -267,7 +252,8 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	```
 
 	The response should look something like:
-	```json linenums="1"
+
+	```json linenums="1" title="HTTP Response"
 	[
 	  {
 	    "id": "1",
@@ -285,7 +271,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	In order to subscribe to channels we need to send another POST request with the following body, inserting the `ClientId` value we got from the last request in step one.
 
-	```json linenums="1"
+	```json linenums="1" title="HTTP Request"
 	POST https://push.groupme.com/faye
 	[
 	  {
@@ -308,7 +294,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	GroupMe's response should look something like this:
 
-	```json linenums="1"
+	```json linenums="1" title="HTTP Response"
 	[
 	  {
 	    "id": "2",
@@ -325,7 +311,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	The POST request for subscribing to a specific channel looks like this (Note that it is basically exactly the same except for a different subscription channel):
 
-	```json linenums="1"
+	```json linenums="1" title="HTTP Request"
 	POST https://push.groupme.com/faye
 	[
 	  {
@@ -346,7 +332,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	This step is already handled for you by most Faye libraries. However, if you're doing this manually via HTTP and not WebSockets, you will need to manually check for updates from the Faye server.
 
-	```json linenums="1"
+	```json linenums="1" title="HTTP Request"
 	POST https://push.groupme.com/faye
 	[
 	  {
@@ -360,7 +346,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	If GroupMe has nothing to report, it will respond with an array of placeholder objects for each of the channels you're subscribed to. That would look something like this:
 
-	```json linenums="1"
+	```json linenums="1" title="HTTP Response"
 	[
 	  {
 	    "id": "4",
@@ -374,7 +360,10 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	    "data": {"ping":true},
 	    "clientId": <CLIENT ID>,
 	    "id": "5",
-	    "ext": {"access_token":"<access token>","timestamp":1322557872},
+	    "ext": {
+		  "access_token":"<access token>",
+		  "timestamp":1322557872
+		},
 	    "authenticated": true
 	  }
 	]
@@ -382,7 +371,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	If there is something to report, GroupMe will respond with something that might look like this:
 
-	```json linenums="1"
+	```json linenums="1" title="HTTP Response"
 	[
 	  {
 	    "id": "5",
@@ -419,7 +408,7 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 ***
 
-## WebSocket Message Structure
+## WebSocket Object Types
 
 When your client is connected to the GroupMe WebSocket server and subscribed to channels, you will receive messages. These messages follow the Bayeux protocol, and the core information is typically found within the data object of the incoming Faye message.
 
@@ -432,21 +421,21 @@ The most important field within data is data.type, which indicates the kind of e
   "clientId": "Faye client ID", // this was documented in the steps for connecting to the websocket above
   "id": "Incrementing Faye message ID",
   "data": {
-  "type": "ping" || "line.create" || "like.create" etc...,
-  // The rest of the data object. These properties depend on the `type` parameter
+  	"type": "ping" || "line.create" || "like.create" etc...,
+  	// The rest of the data object. These properties depend on the `type` parameter
   }
 }
 ```
 
-***
-
-## Incoming WebSocket Object Types
+Schemas for most WebSocket messages are documented below.
 
 ***
 
 ## `ping`
   
-A keep-alive message. This message is sent down every 30 seconds in order to ensure your client is still listening. You can generally ignore these messages but they can be useful to measure timing and API responsiveness.
+A keep-alive heartbeat message. This message is sent down every 30 seconds in order to ensure your client is still listening. You can generally ignore these messages if you dont plan on sending them, as the server will keep the connection alive on its own. Sending a `ping` type message causes the server to echo one back and then supresses the server from sending pings for the next 30 seconds. By timing how long it takes to send this message and then receive an echoed ping from the server you can effectively calculate roundtrip ping latancy for the WebSocket gateway.
+
+This and [`typing`](#typing) are the only two message types clients are permitted by the API to send.
 
 ```json linenums="1" title="Data Object Structure"
 {
@@ -923,6 +912,8 @@ A message was edited. This type is limited to group or direct message channels w
 
 Someone started typing. This type is limited to group or direct message channels where the typing indicator was observed. GroupMe will send these indicators every 5 seconds while typing. Clients assume typing has stopped if there is no new typing message after 5 seconds, or the user who is typing sends a message before the 5 seconds is up.
 
+This and [`ping`](#ping) are the only two messages clients are allowed to send.
+
 ```json linenums="1" title="Data Object Structure"
 {
   "type": "typing",
@@ -968,51 +959,9 @@ client.subscribe("/user/<YOUR GROUPME USER ID>", msg => {
   /* Callback to run when a message is received */
 });
 
-client.publish("/user/<YOUR GROUPME USER ID>", data) // data should be the outgoing message data object you're trying to send
+client.publish("/user/<YOUR GROUPME USER ID>", data); // `data` should be the outgoing message object you're trying to send
 ```
 
-As far as we're aware, clients only send two types of message objects upstream besides subscriptions.
-
-***
-
-## `ping`
-
-A keep-alive or presence message. Sending a `ping` type message causes the server to echo one back and then supresses the server from sending `ping` type messages for the next 30 seconds. By timing how long it takes to send this message and then receive an echoed ping from the server you can effectively calculate roundtrip ping latancy for the WebSocket gateway.
-
-```json linenums="1" title="Data Object Structure"
-{
-  "type": "ping"
-}
-```
-
-*  *type*
-  
-  string - Must be `ping`.
-
-***
-
-## `typing`
-
-Used to initiate a typing indicator in a channel, these are good for 5 seconds and then must be resent to keep the indicator alive. Clients assume typing has stopped if there is no new typing message after 5 seconds, or the user who is typing sends a message before the 5 seconds is up.
-
-```json linenums="1" title="Data Object Structure"
-{
-  "type": "typing",
-  "user_id": "93645911",
-  "started": 1751404765673
-}
-```
-
-*  *type*
-
-  string - Must be `typing`.
-
-*  *user_id*
-
-  string - your user ID
-
-*  *started*
-
-  number - A timestamp in millisconds since the Unix epoch. This value should virtually always be the current time.
+As far as we're aware, clients are only allowed to send [`ping`](#ping) and [`typing`](#typing) messages. Any other message type will be ignored by the server.
 
 ***
