@@ -63,8 +63,9 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	In some circumstances, in order to catch certain events (like typing indicators) you will also need to subscribe to specific message channels. This differs slightly between groups and direct messages, where groups use `/group/:group_id`, and DMs use `/direct_message/:chat_id`. Note that subgroup channels in a group are considered their own channels, so in order to catch their updates you must subscribe to `/groups/:subgroup_id`.
 
-	> [!IMPORTANT]
-	> Direct Message channel IDs are reported within the REST API looking something like `74938777+93645911`, two user IDs separated with a `+`. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (e.g. `74938777_93645911`). Make sure to find and replace these symbols before attempting to subscribe to those channels.
+	!!! important
+	
+		Direct Message channel IDs are reported within the REST API looking something like `74938777+93645911`, two user IDs separated with a `+`. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (e.g. `74938777_93645911`). Make sure to find and replace these symbols before attempting to subscribe to those channels.
 
 === "Option 2: Pure WebSockets"
 
@@ -72,8 +73,9 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	If you're not using a Faye client library, you can still connect to GroupMe’s real-time Push Service by directly implementing the Bayeux protocol over WebSockets. This approach is transport-agnostic and works in any language that supports WebSockets and JSON.
 
-	> [!INFO]
-	> For complex steps (like subscription formatting), we’ll show JavaScript snippets to help illustrate what your code might look like.
+	!!! info
+	
+		For complex steps (like subscription formatting), we’ll show JavaScript snippets to help illustrate what your code might look like.
 
 	**Step 1: Perform the Handshake (via HTTP)**
 
@@ -166,8 +168,8 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	    ext: {
 	      access_token: GROUPME_ACCESS_TOKEN, // <YOUR GROUPME API ACCESS TOKEN>
 	      timestamp: Math.floor(Date.now() / 1000)
-	}
-	}));
+	    }
+	  }));
 	};
 
 	subscribe(`/user/${GROUPME_USER_ID}`); // <YOUR GROUPME USER ID>
@@ -228,8 +230,9 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 
 	To do this: repeat step 4 as many times as necessary, setting the `subscription` parameter to whatever channel you're interested in.
 
-	> [!IMPORTANT]
-	> Please note that when subscribing to DM channels, you must replace the `+` in the conversation ID (as it appears in the REST API) with an `_` instead. We're not entirely sure why this inconsistency exists, but it does.
+	!!! important
+
+		Please note that when subscribing to DM channels, you must replace the `+` in the conversation ID (as it appears in the REST API) with an `_` instead. We're not entirely sure why this inconsistency exists, but it does.
 
 === "Option 3: Manual Long-Polling over HTTP"
 
@@ -287,10 +290,11 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	]
 	```
 
-	> [!IMPORTANT]
-	> 1. The `id` parameter should increment with each successive call to the server. Not doing so may lead to undefined behavior.
-	>
-	> 2. The `timestamp` parameter is in seconds since the Unix epoch. Divide whatever timestamp you have by 1000.
+	!!! important
+
+    	1. The `id` parameter should increment with each successive call to the server. Not doing so may lead to undefined behavior.
+
+    	2. The `timestamp` parameter is in seconds since the Unix epoch. Divide whatever timestamp you have by 1000.
 
 	GroupMe's response should look something like this:
 
@@ -306,8 +310,9 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	]
 	```
 
-	> [!TIP]
-	> This step is *usually* overkill. Almost all important real-time updates will come through the `/user/:user_id` channel. You will need to subscribe to individual groups or direct message channels if you want to catch read receipts or certain admin events.
+	!!! tip
+
+		This step is *usually* overkill. Almost all important real-time updates will come through the `/user/:user_id` channel. You will need to subscribe to individual groups or direct message channels if you want to catch read receipts or certain admin events.
 
 	The POST request for subscribing to a specific channel looks like this (Note that it is basically exactly the same except for a different subscription channel):
 
@@ -327,8 +332,9 @@ For verbosity, we outline how to authenticate and connect using a Faye client li
 	]
 	```
 
-	> [!IMPORTANT]
-	> Direct Message channel IDs are reported within the REST API looking something like `74938777+93645911`, two user IDs separated with a `+`. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (`_`). Make sure to find and replace these symbols before attempting to subscribe to those channels.
+	!!! important
+
+  		Direct Message channel IDs are reported within the REST API looking something like `74938777+93645911`, two user IDs separated with a `+`. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (`_`). Make sure to find and replace these symbols before attempting to subscribe to those channels.
 
 	This step is already handled for you by most Faye libraries. However, if you're doing this manually via HTTP and not WebSockets, you will need to manually check for updates from the Faye server.
 
@@ -427,7 +433,7 @@ The most important field within data is data.type, which indicates the kind of e
 }
 ```
 
-Schemas for most WebSocket messages are documented below.
+**Schemas for most WebSocket messages are documented below.**
 
 ***
 
