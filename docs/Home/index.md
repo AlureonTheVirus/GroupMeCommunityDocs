@@ -1,7 +1,17 @@
 ---
 template: home.html
-title: OpenGM API Documentation
+title: Home
 description: Community-led effort to document the reverse-engineered GroupMe API.
 ---
 
-Welcome to OpenGM – an open-source project dedicated to fully documenting the GroupMe API through reverse engineering and community collaboration.
+## Welcome to the OpenGM Project
+
+This is the community-driven, open-source documentation for the GroupMe Public API. Our goal is to provide a comprehensive, up-to-date resource for developers looking to build on the GroupMe platform.
+
+### Why this project?
+
+- **Up-to-Date:** The official documentation is often outdated. We strive to keep our docs current with the latest API changes.
+- **Community-Powered:** Anyone can contribute! If you find an error or a missing endpoint, you can help improve the docs for everyone.
+- **Rich Examples:** We provide practical code samples and detailed model schemas to make development easier.
+
+Ready to dive in? Check out the **Get Started** guide or browse the **API Endpoints**.
