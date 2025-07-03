@@ -1,6 +1,6 @@
 ---
-title: "Image Service"
-description: "Learn how to interact with GroupMe's Image Service via the API."
+title: Image Service
+description: Learn how to interact with GroupMe's Image Service via the API.
 ---
 
 ## Image Service

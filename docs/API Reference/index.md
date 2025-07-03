@@ -3,7 +3,7 @@ title: "API Overview"
 description: "Learn how to interact with GroupMe via the API."
 ---
 
-# Overview
+# API Overview
 
 GroupMe has a thriving developer community which has created a variety of applications, bots, and tools. However, while the platform has constantly matured, the public documentation has not. In an effort to help other developers understand and utilize the platform better, this is a community-led effort to document everything possible. If you discover something not listed here, or you find an error in what is listed, please bring it up on the discussion page or submit a pull request.
 
@@ -13,11 +13,11 @@ If you have any questions or would like to get in touch, please join the [GroupM
 
 **This documentation is not associated with GroupMe or Microsoft**
 
-## Contents:
+## Quick Links:
 
 <div class="grid cards" markdown>
 
-- :material-robot-excited: __[Bots]__ – How to create, index, and use bots
+- :material-robot-excited: __[Webhook Bots]__ – How to create, index, and use bots
 - :octicons-arrow-switch-16: __[Websocket Gateway]__ – How to connect to the Push service to get real-time interaction with your program
 - :material-account-group: __[Group Management]__ – How to create, join, list, update, etc. groups
 - :material-account-group: __[Subgroup Management]__ – How to work with subgroups within a parent group
@@ -38,24 +38,23 @@ If you have any questions or would like to get in touch, please join the [GroupM
 - :material-account-cog: __[Account Management]__ – How to access/update information about your account, turning on/off SMS mode, and configuring profile details
 - :material-cellphone-key: __[Oauth/MFA]__ – How to manage API tokens and handle multi-factor authentication with GroupMe
 
-
 </div>
 
   [Group Management]: groups.md
-  [Subgroup Management]: subtopics.md
+  [Subgroup Management]: subgroups.md
   [Member management]: members.md
   [Group Messages]: messages.md
   [Direct Messages]: dms.md
-  [Reactions]: likes.md
+  [Reactions]: reactions.md
   [Calendar Events]: calendar.md
   [Directory Management]: directories.md
-  [Users/Contact Management]: users.md
-  [Bots]: bots.md
+  [Users/Contact Management]: contacts.md
+  [Webhook Bots]: bots.md
   [Account Management]: self.md
   [Attachments]: attachments.md
   [Videos]: video.md
   [Polls]: polls.md
-  [Websocket Gateway]: push.md
+  [Websocket Gateway]: websocket.md
   [Emoji]: emoji.md
   [Pins]: pins.md
   [Oauth/MFA]: oauth.md
