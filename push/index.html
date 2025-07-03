@@ -1100,20 +1100,16 @@ Both send information about specific channels that a client wouldn't need to sen
 <p>In some circumstances, in order to catch certain events (like typing indicators) you will also need to subscribe to specific message channels. This differs slightly between groups and direct messages, where groups use <code>/group/:group_id</code>, and DMs use <code>/direct_message/:chat_id</code>. Note that subgroup channels in a group are considered their own channels, so in order to catch their updates you must subscribe to <code>/groups/:subgroup_id</code>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-</div>
-<blockquote>
 <p>Direct Message channel IDs are reported within the REST API looking something like <code>74938777+93645911</code>, two user IDs separated with a <code>+</code>. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (e.g. <code>74938777_93645911</code>). Make sure to find and replace these symbols before attempting to subscribe to those channels.</p>
-</blockquote>
+</div>
 </div>
 <div class="tabbed-block">
 <p><strong>Option 2: Pure WebSockets</strong></p>
 <p>If you're not using a Faye client library, you can still connect to GroupMe’s real-time Push Service by directly implementing the Bayeux protocol over WebSockets. This approach is transport-agnostic and works in any language that supports WebSockets and JSON.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-</div>
-<blockquote>
 <p>For complex steps (like subscription formatting), we’ll show JavaScript snippets to help illustrate what your code might look like.</p>
-</blockquote>
+</div>
 <p><strong>Step 1: Perform the Handshake (via HTTP)</strong></p>
 <p>Before opening a WebSocket, you must perform an initial handshake via HTTP to receive a <code>clientId</code>. This is a one-time HTTP POST request to the Bayeux endpoint.</p>
 <p>Send a JSON array with a channel of <code>/meta/handshake</code>, the Bayeux version, and the supported connection types. You must include <code>"websocket"</code> in <code>supportedConnectionTypes</code>.</p>
@@ -1220,8 +1216,8 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">    </span><span class="nx">ext</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">      </span><span class="nx">access_token</span><span class="o">:</span><span class="w"> </span><span class="nx">GROUPME_ACCESS_TOKEN</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt;YOUR GROUPME API ACCESS TOKEN&gt;</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">      </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000</span><span class="p">)</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="p">}</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="p">}));</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">  </span><span class="p">}));</span>
 <a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="p">};</span>
 <a id="__codelineno-8-13" name="__codelineno-8-13"></a>
 <a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="nx">subscribe</span><span class="p">(</span><span class="sb">`/user/</span><span class="si">${</span><span class="nx">GROUPME_USER_ID</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;YOUR GROUPME USER ID&gt;</span>
@@ -1302,10 +1298,8 @@ Both send information about specific channels that a client wouldn't need to sen
 <p>To do this: repeat step 4 as many times as necessary, setting the <code>subscription</code> parameter to whatever channel you're interested in.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-</div>
-<blockquote>
 <p>Please note that when subscribing to DM channels, you must replace the <code>+</code> in the conversation ID (as it appears in the REST API) with an <code>_</code> instead. We're not entirely sure why this inconsistency exists, but it does.</p>
-</blockquote>
+</div>
 </div>
 <div class="tabbed-block">
 <p><strong>Option 3: Manual Long-Polling over HTTP (Not Recommended)</strong></p>
@@ -1382,8 +1376,6 @@ Both send information about specific channels that a client wouldn't need to sen
 </code></pre></div></td></tr></table></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-</div>
-<blockquote>
 <ol>
 <li>
 <p>The <code>id</code> parameter should increment with each successive call to the server. Not doing so may lead to undefined behavior.</p>
@@ -1392,7 +1384,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <p>The <code>timestamp</code> parameter is in seconds since the Unix epoch. Divide whatever timestamp you have by 1000.</p>
 </li>
 </ol>
-</blockquote>
+</div>
 <p>GroupMe's response should look something like this:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Response</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
 <span class="normal"><a href="#__codelineno-14-2">2</a></span>
@@ -1414,10 +1406,8 @@ Both send information about specific channels that a client wouldn't need to sen
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-</div>
-<blockquote>
 <p>This step is <em>usually</em> overkill. Almost all important real-time updates will come through the <code>/user/:user_id</code> channel. You will need to subscribe to individual groups or direct message channels if you want to catch read receipts or certain admin events.</p>
-</blockquote>
+</div>
 <p>The POST request for subscribing to a specific channel looks like this (Note that it is basically exactly the same except for a different subscription channel):</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Request</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
@@ -1447,10 +1437,8 @@ Both send information about specific channels that a client wouldn't need to sen
 </code></pre></div></td></tr></table></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-</div>
-<blockquote>
 <p>Direct Message channel IDs are reported within the REST API looking something like <code>74938777+93645911</code>, two user IDs separated with a <code>+</code>. However, for whatever reason, the WebSocket server only accepts DM channel IDs when they are separated using an underscore (<code>_</code>). Make sure to find and replace these symbols before attempting to subscribe to those channels.</p>
-</blockquote>
+</div>
 <p>This step is already handled for you by most Faye libraries. However, if you're doing this manually via HTTP and not WebSockets, you will need to manually check for updates from the Faye server.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Request</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
 <span class="normal"><a href="#__codelineno-16-2">2</a></span>
@@ -1603,7 +1591,7 @@ Both send information about specific channels that a client wouldn't need to sen
 <a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Schemas for most WebSocket messages are documented below.</p>
+<p><strong>Schemas for most WebSocket messages are documented below.</strong></p>
 <hr />
 <h2 id="ping"><code>ping</code><a class="headerlink" href="#ping" title="Permanent link">&para;</a></h2>
 <p>A keep-alive heartbeat message. This message is sent down every 30 seconds in order to ensure your client is still listening. You can generally ignore these messages if you dont plan on sending them, as the server will keep the connection alive on its own. Sending a <code>ping</code> type message causes the server to echo one back and then supresses the server from sending pings for the next 30 seconds. By timing how long it takes to send this message and then receive an echoed ping from the server you can effectively calculate roundtrip ping latancy for the WebSocket gateway.</p>
@@ -2379,7 +2367,7 @@ Both send information about specific channels that a client wouldn't need to sen
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 3, 2025 02:49:03 UTC">July 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 3, 2025 02:59:22 UTC">July 3, 2025</span>
   </span>
 
     
