@@ -52,6 +52,11 @@
       margin-left: 2.5rem; /* Give some space on the left */
     }
 
+    /*
+      ==================================================================
+      FIX: Re-adding the button styles that were accidentally removed.
+      ==================================================================
+    */
     .tx-hero .md-button {
       margin-top: 0.5rem;
       margin-right: 0.5rem;
@@ -60,6 +65,7 @@
 
     .tx-hero .md-button--primary {
       background-color: var(--md-primary-bg-color);
+      /* This color can be customized to match your theme */
       color: hsla(280deg, 37%, 48%, 1);
       border-color: var(--md-primary-bg-color);
     }
@@ -67,9 +73,14 @@
     .tx-hero .md-button:focus,
     .tx-hero .md-button:hover {
       background-color: var(--md-accent-fg-color);
-      color: var(--md-default-bg-color);
+      color: var(--md-primary-bg-color);
       border-color: var(--md-accent-fg-color);
     }
+    /*
+      ==================================================================
+      End of fix
+      ==================================================================
+    */
 
     @media screen and (min-width: 60em) {
       .tx-hero {
@@ -110,8 +121,3 @@
     </div>
   </section>
 {% endblock %}
-
-<!--
-  By NOT overriding the 'content' block, we let the theme render
-  the regular Markdown content as it normally would.
--->
