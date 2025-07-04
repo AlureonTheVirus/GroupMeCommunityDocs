@@ -33,21 +33,46 @@
     /* ------------------------------------------------------------------ */
     /*  4. REFINED BUTTON STYLES                                        */
     /* ------------------------------------------------------------------ */
-    .tx-hero .md-button { margin-top: 0.8rem; margin-right: 0 shift the logo to the right by half its own width.
-              This perfectly centers the logo on the container's right edge. */
-        transform: translate(50%, -50%);
-        
+    .tx-hero .md-button { margin-top: 0.8rem; margin-right: 0.8rem; border-width: 2px; }
+    .tx-hero .md-button:not(.md-button--primary) { background-color: transparent; border-color: var(--md-primary-bg-color); color: var(--md-primary-bg-color) !important; }
+    .tx-hero .md-button--primary { background-color: var(--md-primary-bg-color); border-color: var(--md-primary-bg-color); color: #212121 !important; }
+    .tx-hero .md-button:hover { background-color: var(--md-primary-fg-color); border-color: var(--md-primary-fg-color); color: var(--md-primary-bg-color) !important; }
+    
+    /* ------------------------------------------------------------------ */
+    /*  5. Desktop Layout with Auto Margin                              */
+    /* ------------------------------------------------------------------ */
+    @media screen and (min-width: 60em) {
+      .tx-hero {
+        display: flex;
+        align-items: center;
+        text-align: left;
+      }
+      .tx-hero__content {
+        /* This element stays aligned to the left by default */
+        max-width: 32rem;
+      }
+      .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
+      
+      .tx-hero__image {
+        /* THE MAGIC: `margin-left: auto` consumes all available space
+           to its left, pushing the logo to the far right. */
+        margin-left: auto;
+
+        /* Reset mobile margins */
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 0;
+
+        /* Ensure the image doesn't shrink if space gets tight */
+        flex-shrink: 0;
         width: 17rem;
         height: 17rem;
-        margin: 0;
       }
     }
   </style>
 
   <section class="tx-container">
-    <!-- The .md-grid provides the base padding for alignment. -->
     <div class="md-grid">
-      <!-- The .tx-hero is now the positioning container. -->
       <div class="tx-hero">
         <div class="tx-hero__content">
           <h1>{{ config.home_tagline }}</h1>
