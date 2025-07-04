@@ -406,7 +406,7 @@
 
   <style>
     /* ------------------------------------------------------------------ */
-    /*  1. General Layout Tweaks for the Homepage                       */
+    /*  1. General Layout                                               */
     /* ------------------------------------------------------------------ */
     .md-sidebar--secondary { display: none; }
     @media screen and (min-width: 76.25em) { .md-sidebar--primary { display: none; } }
@@ -440,16 +440,15 @@
       width: 14rem;
       height: 14rem;
       margin: 0 auto 1.5rem;
+      
+      /* Step 1: CORRECT METHOD - Apply the SVG filter to the BACKDROP */
+      -webkit-backdrop-filter: url(#liquid-warp-filter);
+      backdrop-filter: url(#liquid-warp-filter);
 
-      /* Step 1: We must give the element the same background as the scene
-         so the filter has content to warp. */
-      background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg,47%,55%,1));
-      background-attachment: fixed; /* Makes the gradient static behind the effect */
+      /* Step 2: Give the 'liquid' a very subtle tint to help it catch light */
+      background: rgba(255, 255, 255, 0.05);
 
-      /* Step 2: Apply the SVG filter we defined in the HTML below. */
-      filter: url(#liquid-warp-filter);
-
-      /* Step 3: Use the logo's SVG shape to mask the warped element. */
+      /* Step 3: Use the SVG logo to mask the effect, creating the shape */
       -webkit-mask-image: url(assets/sprocket.svg);
       mask-image: url(assets/sprocket.svg);
       -webkit-mask-size: contain;
@@ -460,7 +459,7 @@
       mask-position: center;
     }
 
-    /* The original <img> is no longer needed for display. */
+    /* The original <img> tag is not needed for display */
     .tx-hero__image img {
       display: none;
     }
@@ -479,25 +478,22 @@
   <section class="tx-container">
   
     <!--
-      ==================================================================
       SVG FILTER DEFINITION
-      This block of code is not visible. It defines the 'liquid-warp-filter'
-      that we apply with CSS. It must be present in the HTML.
-      ==================================================================
+      This invisible block defines the 'liquid-warp-filter' we apply with CSS.
     -->
-    <svg style="display: none;">
+    <svg style="position: absolute; width: 0; height: 0;">
       <filter id="liquid-warp-filter">
-        <!-- Create a 'turbulence' or noise pattern. This is the source of the distortion. -->
+        <!-- Creates a turbulence/noise pattern -->
         <feTurbulence 
           type="fractalNoise" 
           baseFrequency="0.01 0.04" 
           numOctaves="1" 
           result="warp" />
-        <!-- Use the noise from `warp` to displace the image content. `scale` controls the intensity. -->
+        <!-- Uses the noise to displace the content behind the element -->
         <feDisplacementMap 
           xChannelSelector="R" 
           yChannelSelector="G" 
-          scale="40" 
+          scale="30" 
           in="SourceGraphic" 
           in2="warp" />
       </filter>
@@ -514,7 +510,7 @@
               Example Projects
             </a></div>
         </div>
-        <!-- This div is now the visual element; the <img> inside is hidden -->
+        <!-- This div IS the visual effect; the <img> inside is hidden. -->
         <div class="tx-hero__image">
           <img src="assets/sprocket.svg" draggable="false">
         </div>
