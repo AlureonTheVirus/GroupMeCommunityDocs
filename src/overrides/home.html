@@ -6,9 +6,9 @@
 
   <style>
     /* ------------------------------------------------------------------ */
-    /*  1. General Layout Tweaks for the Homepage
+    /*  1. General Layout Tweaks for the Homepage                       */
     /* ------------------------------------------------------------------ */
-    
+
     /* Hide the table of contents and right sidebar */
     .md-sidebar--secondary {
       display: none;
@@ -22,7 +22,7 @@
     }
 
     /* ------------------------------------------------------------------ */
-    /*  2. Hero Section Container
+    /*  2. Hero Section Container                                       */
     /* ------------------------------------------------------------------ */
     .tx-container {
       background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
@@ -30,7 +30,7 @@
     }
 
     /* ------------------------------------------------------------------ */
-    /*  3. Hero Content (Mobile-First)
+    /*  3. Hero Content (Mobile-First)                                  */
     /* ------------------------------------------------------------------ */
     .tx-hero {
       /* By removing all margins, the hero content will align perfectly
@@ -67,9 +67,9 @@
     }
 
     /* ------------------------------------------------------------------ */
-    /*  4. Hero Button Styling
+    /*  4. Hero Button Styling                                          */
     /* ------------------------------------------------------------------ */
-    
+
     /* These rules are needed to make the buttons visible on the dark gradient. */
     .tx-hero .md-button {
       margin-top: 0.8rem;
@@ -90,9 +90,9 @@
       color: var(--md-primary-bg-color) !important; /* Keep text light on hover */
       border-color: var(--md-accent-fg-color);
     }
-    
+
     /* ------------------------------------------------------------------ */
-    /*  5. Desktop Layout Override
+    /*  5. Desktop Layout Override                                      */
     /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
       .tx-hero {
@@ -101,7 +101,7 @@
         justify-content: space-between;
         text-align: left; /* Switch to left-align on desktop */
       }
-      
+
       .tx-hero__content {
         max-width: 32rem; /* Give text more space */
       }
@@ -122,24 +122,31 @@
   </style>
 
   <section class="tx-container">
-    <!-- The .md-grid class is essential for proper alignment and padding -->
     <div class="md-grid">
       <div class="tx-hero">
         <div class="tx-hero__content">
           <h1>{{ config.home_tagline }}</h1>
           <p>{{ config.home_description }}</p>
 
-          <!-- Buttons -->
-          {%- if config.home_button1_name -%}
-          <a href="{{ config.home_button1_url }}" title="{{ config.home_button1_name }}" class="{{ config.home_button1_theme }}">
-            {{ config.home_button1_name }}
-          </a>
-          {%- endif -%}
-          {%- if config.home_button2_name -%}
-          <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
-            {{ config.home_button2_name }}
-          </a>
-          {%- endif -%}
+          <!--
+            ==================================================================
+            THE FIX: Wrap the buttons in a div with the "md-typeset" class.
+            This makes the theme's default button styles apply correctly.
+            ==================================================================
+          -->
+          <div class="md-typeset">
+            {%- if config.home_button1_name -%}
+            <a href="{{ config.home_button1_url }}" title="{{ config.home_button1_name }}" class="{{ config.home_button1_theme }}">
+              {{ config.home_button1_name }}
+            </a>
+            {%- endif -%}
+            {%- if config.home_button2_name -%}
+            <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
+              {{ config.home_button2_name }}
+            </a>
+            {%- endif -%}
+          </div>
+
         </div>
         <div class="tx-hero__image">
           <img src="{{ config.home_cover_image }}" draggable="false">
