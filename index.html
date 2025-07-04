@@ -408,17 +408,8 @@
     /* ------------------------------------------------------------------ */
     /*  1. General Layout Tweaks for the Homepage                       */
     /* ------------------------------------------------------------------ */
-    /* Hide the table of contents on the right */
-    .md-sidebar--secondary {
-      display: none;
-    }
-
-    /* On large screens, hide the left navigation for a landing page feel */
-    @media screen and (min-width: 76.25em) {
-      .md-sidebar--primary {
-        display: none;
-      }
-    }
+    .md-sidebar--secondary { display: none; }
+    @media screen and (min-width: 76.25em) { .md-sidebar--primary { display: none; } }
 
     /* ------------------------------------------------------------------ */
     /*  2. Hero Section Container                                       */
@@ -431,88 +422,39 @@
     /* ------------------------------------------------------------------ */
     /*  3. Hero Content (Mobile-First)                                  */
     /* ------------------------------------------------------------------ */
-    .tx-hero {
-      margin: 0;
+    .tx-hero { margin: 0; color: var(--md-primary-bg-color); text-align: center; }
+    .tx-hero__image { width: 14rem; height: 14rem; margin: 0 auto 1.5rem; }
+    .tx-hero__image img { width: 100%; height: 100%; object-fit: contain; }
+    .tx-hero h1 { margin-bottom: 1rem; color: currentColor; font-weight: 700; font-size: 2.4rem; }
+    .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
+
+    /* ------------------------------------------------------------------ */
+    /*  4. CORRECTED Hero Button Styling                              */
+    /* ------------------------------------------------------------------ */
+    
+    /* The .md-button--primary already has the correct theme colors.
+       We only need to adjust the regular button to be visible. */
+    .tx-hero .md-button:not(.md-button--primary) {
+      /* Set the text and outline to be white, overriding the default dark color */
       color: var(--md-primary-bg-color);
-      text-align: center;
+      border-color: currentColor; /* Makes the border match the text color */
     }
 
-    .tx-hero__image {
-      width: 14rem;
-      height: 14rem;
-      margin: 0 auto 1.5rem; /* Center image on mobile */
-    }
-
-    .tx-hero__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .tx-hero h1 {
-      margin-bottom: 1rem;
-      color: currentColor;
-      font-weight: 700;
-      font-size: 2.4rem;
-    }
-
-    .tx-hero p {
-      font-size: 1.1rem;
-      max-width: 35rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ------------------------------------------------------------------ */
-    /*  4. Hero Button Styling (Color Overrides)                        */
-    /* ------------------------------------------------------------------ */
-    .tx-hero .md-button {
-      margin-top: 0.8rem;
-      margin-right: 0.5rem;
-      color: var(--md-primary-bg-color) !important;
-      border-color: var(--md-primary-bg-color);
-    }
-
-    .tx-hero .md-button--primary {
+    /* Ensure the hover/focus on the regular button is also visible */
+    .tx-hero .md-button:not(.md-button--primary):is(:focus, :hover) {
       background-color: var(--md-primary-bg-color);
-      color: var(--md-primary-fg-color) !important;
+      color: var(--md-primary-fg-color);
       border-color: var(--md-primary-bg-color);
     }
-
-    .tx-hero .md-button:focus,
-    .tx-hero .md-button:hover {
-      background-color: var(--md-accent-fg-color);
-      color: var(--md-primary-bg-color) !important;
-      border-color: var(--md-accent-fg-color);
-    }
-
+    
     /* ------------------------------------------------------------------ */
     /*  5. Desktop Layout Override                                      */
     /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
-      .tx-hero {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        text-align: left;
-      }
-
-      .tx-hero__content {
-        max-width: 32rem;
-      }
-
-      .tx-hero p,
-      .tx-hero h1 {
-        margin-left: 0;
-        margin-right: 0;
-      }
-
-      .tx-hero__image {
-        order: 1; /* Move image to the right */
-        width: 18rem;
-        height: 18rem;
-        margin: 0 0 0 2rem;
-      }
+      .tx-hero { display: flex; align-items: center; justify-content: space-between; text-align: left; }
+      .tx-hero__content { max-width: 32rem; }
+      .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
+      .tx-hero__image { order: 1; width: 18rem; height: 18rem; margin: 0 0 0 2rem; }
     }
   </style>
 
@@ -522,8 +464,6 @@
         <div class="tx-hero__content">
           <h1>GroupMe Community Docs</h1>
           <p>Community GroupMe API documentation for all.</p>
-
-          <!-- This wrapper is crucial for button styling -->
           <div class="md-typeset"><a href="api/" title="API Reference" class="md-button md-button--primary">
               API Reference
             </a><a href="examples/" title="Example Projects" class="Example Projects">
