@@ -112,6 +112,26 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+            
+            
+  For updates join the <strong>API Development Group</strong> on <strong>GroupMe</strong>:
+  <a rel="me" href="https://groupme.com/join_group/27317261/ibNNhx">
+    <strong>https://groupme.com/join_group/27317261/ibNNhx</strong>
+  </a>
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -388,17 +408,10 @@
     /* ------------------------------------------------------------------ */
     /*  1. General Layout Tweaks for the Homepage                       */
     /* ------------------------------------------------------------------ */
+    .md-sidebar--secondary { display: none; }
 
-    /* Hide the table of contents and right sidebar */
-    .md-sidebar--secondary {
-      display: none;
-    }
-
-    /* On large screens, hide the left navigation sidebar for a true landing page feel */
     @media screen and (min-width: 76.25em) {
-      .md-sidebar--primary {
-        display: none;
-      }
+      .md-sidebar--primary { display: none; }
     }
 
     /* ------------------------------------------------------------------ */
@@ -406,97 +419,81 @@
     /* ------------------------------------------------------------------ */
     .tx-container {
       background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg,47%,55%,1));
-      padding: 2rem 0; /* Use padding on container, not margin on content */
+      padding: 2rem 0;
     }
 
     /* ------------------------------------------------------------------ */
     /*  3. Hero Content (Mobile-First)                                  */
     /* ------------------------------------------------------------------ */
     .tx-hero {
-      /* By removing all margins, the hero content will align perfectly
-         with the main page content, because both are children of .md-grid */
       margin: 0;
       color: var(--md-primary-bg-color);
-      text-align: center; /* Center-align text on mobile */
+      text-align: center;
     }
 
     .tx-hero__image {
+      position: relative; /* Needed for the glow effect's pseudo-element */
       width: 14rem;
       height: 14rem;
-      margin: 0 auto 1.5rem; /* Center the image and add space below it */
+      margin: 0 auto 1.5rem;
     }
 
     .tx-hero__image img {
+      position: relative; /* Ensure image is on top of the glow */
+      z-index: 1;
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Ensure the image scales nicely */
+      object-fit: contain;
     }
 
-    .tx-hero h1 {
-      margin-bottom: 1rem;
-      color: currentColor;
-      font-weight: 700;
-      font-size: 2.4rem;
-    }
-
-    .tx-hero p {
-      font-size: 1.1rem;
-      max-width: 35rem; /* Prevent text from becoming too wide */
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .tx-hero h1 { margin-bottom: 1rem; color: currentColor; font-weight: 700; font-size: 2.4rem; }
+    .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
 
     /* ------------------------------------------------------------------ */
     /*  4. Hero Button Styling                                          */
     /* ------------------------------------------------------------------ */
+    .tx-hero .md-button { margin-top: 0.8rem; margin-right: 0.5rem; color: var(--md-primary-bg-color) !important; border-color: var(--md-primary-bg-color); }
+    .tx-hero .md-button--primary { background-color: var(--md-primary-bg-color); color: var(--md-primary-fg-color) !important; border-color: var(--md-primary-bg-color); }
+    .tx-hero .md-button:focus, .tx-hero .md-button:hover { background-color: var(--md-accent-fg-color); color: var(--md-primary-bg-color) !important; border-color: var(--md-accent-fg-color); }
 
-    /* These rules are needed to make the buttons visible on the dark gradient. */
-    .tx-hero .md-button {
-      margin-top: 0.8rem;
-      margin-right: 0.5rem;
-      color: var(--md-primary-bg-color) !important; /* Force text color to be light */
-      border-color: var(--md-primary-bg-color);
-    }
-
-    .tx-hero .md-button--primary {
-      background-color: var(--md-primary-bg-color);
-      color: var(--md-primary-fg-color) !important; /* Force text color to be dark */
-      border-color: var(--md-primary-bg-color);
-    }
-
-    .tx-hero .md-button:focus,
-    .tx-hero .md-button:hover {
-      background-color: var(--md-accent-fg-color);
-      color: var(--md-primary-bg-color) !important; /* Keep text light on hover */
-      border-color: var(--md-accent-fg-color);
+    /* ------------------------------------------------------------------ */
+    /*  NEW: 5. Hero Image Glow Effect                                  */
+    /* ------------------------------------------------------------------ */
+    .tx-hero__image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0; /* Place behind the image */
+      border-radius: 50%; /* Make it circular */
+      background: radial-gradient(
+        circle,
+        var(--md-accent-fg-color) 0%,
+        rgba(0, 0, 0, 0) 70%
+      );
+      opacity: 0.3; /* Adjust for subtlety */
+      filter: blur(40px); /* Adjust for softness */
     }
 
     /* ------------------------------------------------------------------ */
-    /*  5. Desktop Layout Override                                      */
+    /*  6. Desktop Layout Override                                      */
     /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
       .tx-hero {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        text-align: left; /* Switch to left-align on desktop */
+        justify-content: center; /* Center the whole block first */
+        text-align: left;
+        gap: 2rem; /* Add space between text and image */
       }
+      .tx-hero__content { max-width: 32rem; }
+      .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
 
-      .tx-hero__content {
-        max-width: 32rem; /* Give text more space */
-      }
-
-      .tx-hero p,
-      .tx-hero h1 {
-        margin-left: 0;
-        margin-right: 0;
-      }
-
+      /* --- ADJUSTMENT: Alignment & Sizing --- */
       .tx-hero__image {
-        order: 1; /* Move image to the right */
-        width: 17rem;
-        height: 17rem;
-        margin: 0 0 0 2rem; /* Reset margin and add space to its left */
+        width: 18rem; /* Slightly larger on desktop */
+        height: 18rem;
+        /* The key for alignment: pull the image rightwards */
+        margin: 0 -5rem 0 0;
       }
     }
   </style>
@@ -507,19 +504,11 @@
         <div class="tx-hero__content">
           <h1>GroupMe Community Docs</h1>
           <p>Community GroupMe API documentation for all.</p>
-
-          <!--
-            ==================================================================
-            THE FIX: Wrap the buttons in a div with the "md-typeset" class.
-            This makes the theme's default button styles apply correctly.
-            ==================================================================
-          -->
           <div class="md-typeset"><a href="api/" title="API Reference" class="md-button md-button--primary">
               API Reference
             </a><a href="examples/" title="Example Projects" class="md-button">
               Example Projects
             </a></div>
-
         </div>
         <div class="tx-hero__image">
           <img src="assets/sprocket.svg" draggable="false">
