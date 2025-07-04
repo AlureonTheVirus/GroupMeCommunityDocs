@@ -4,6 +4,10 @@
   fade effect when switching between light and dark mode.
 */
 
-body, body * {
-  transition: color .25s ease, background-color .25s ease;
+[data-md-color-scheme] {
+  transition: background-color .25s ease;
+}
+[data-md-color-scheme] > *,
+[data-md-color-scheme] > .md-container > * {
+  transition: color .25s ease;
 }
