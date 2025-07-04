@@ -17,7 +17,6 @@
     /*  2. Hero Section Container                                       */
     /* ------------------------------------------------------------------ */
     .tx-container {
-      /* This is the background we want to see through the text */
       background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
       padding: 2rem 0;
     }
@@ -32,19 +31,17 @@
     .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
 
     /* ------------------------------------------------------------------ */
-    /*  4. THE KNOCKOUT BUTTON EFFECT                                   */
+    /*  4. REVERTED & REFINED BUTTON STYLES                             */
     /* ------------------------------------------------------------------ */
 
-    /* == Wrapper for the knockout effect == */
-    /* This element creates the blending context.
-       `isolation: isolate` is crucial. It tells the browser that the blending
-       (mix-blend-mode) inside this div should not affect anything outside of it. */
-    .hero-buttons-wrapper {
-      isolation: isolate;
+    /* == Base styles for ALL buttons in the hero == */
+    .tx-hero .md-button {
+      margin-top: 0.8rem;
+      margin-right: 0.8rem; /* Increased spacing */
+      border-width: 2px;
     }
 
     /* == Secondary Button ("Ghost" style) == */
-    /* Untouched, as it is perfect. */
     .tx-hero .md-button:not(.md-button--primary) {
       background-color: transparent;
       border-color: var(--md-primary-bg-color);
@@ -53,28 +50,23 @@
     .tx-hero .md-button:not(.md-button--primary):hover {
       background-color: var(--md-accent-fg-color);
       border-color: var(--md-accent-fg-color);
+      color: var(--md-primary-bg-color) !important;
+    }
+
+    /* == Primary Button (Solid White) == */
+    .tx-hero .md-button--primary {
+      /* Set solid white background and border */
+      background-color: var(--md-primary-bg-color);
+      border-color: var(--md-primary-bg-color);
+
+      /* Set a neutral, dark text color. !important is needed to override theme defaults. */
+      color: #212121 !important;
+    }
+    .tx-hero .md-button--primary:hover {
+      /* A subtle effect for a clean look */
+      filter: brightness(0.95);
     }
     
-    /* == Primary Button (The Knockout) == */
-    /* This rule applies to the button when it's INSIDE the wrapper. */
-    .hero-buttons-wrapper .md-button--primary {
-      /* 1. The button itself becomes solid white with BLACK text. */
-      background: var(--md-primary-bg-color);
-      color: #000 !important;
-
-      /* 2. THE MAGIC: `mix-blend-mode: screen`
-         - The WHITE button background "screens" the parent, making it appear white.
-         - The BLACK text "screens" the parent, making it transparent (a hole). */
-      mix-blend-mode: screen;
-    }
-
-    /* Subtle hover effect for the knockout button */
-    .hero-buttons-wrapper .md-button--primary:hover {
-      transform: scale(1.03);
-      filter: brightness(1.1);
-      transition: transform 0.2s ease, filter 0.2s ease;
-    }
-
     /* ------------------------------------------------------------------ */
     /*  5. Desktop Layout                                               */
     /* ------------------------------------------------------------------ */
@@ -93,28 +85,18 @@
           <h1>{{ config.home_tagline }}</h1>
           <p>{{ config.home_description }}</p>
 
-          <!-- The .md-typeset div enables the theme's base styles -->
           <div class="md-typeset">
-            <!--
-              ==============================================================
-              THE FIX: We wrap the buttons in a new div that will act
-              as the parent for the blending effect.
-              ==============================================================
-            -->
-            <div class="hero-buttons-wrapper">
-              {%- if config.home_button1_name -%}
-              <a href="{{ config.home_button1_url }}" title="{{ config.home_button1_name }}" class="{{ config.home_button1_theme }}">
-                {{ config.home_button1_name }}
-              </a>
-              {%- endif -%}
-              {%- if config.home_button2_name -%}
-              <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
-                {{ config.home_button2_name }}
-              </a>
-              {%- endif -%}
-            </div>
+            {%- if config.home_button1_name -%}
+            <a href="{{ config.home_button1_url }}" title="{{ config.home_button1_name }}" class="{{ config.home_button1_theme }}">
+              {{ config.home_button1_name }}
+            </a>
+            {%- endif -%}
+            {%- if config.home_button2_name -%}
+            <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
+              {{ config.home_button2_name }}
+            </a>
+            {%- endif -%}
           </div>
-
         </div>
         <div class="tx-hero__image">
           <img src="{{ config.home_cover_image }}" draggable="false">
