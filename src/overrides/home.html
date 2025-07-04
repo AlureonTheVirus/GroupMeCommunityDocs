@@ -8,12 +8,13 @@
     /* ------------------------------------------------------------------ */
     /*  1. General Layout Tweaks for the Homepage                       */
     /* ------------------------------------------------------------------ */
-    /* Hide the table of contents on the right */
+
+    /* Hide the table of contents and right sidebar */
     .md-sidebar--secondary {
       display: none;
     }
 
-    /* On large screens, hide the left navigation for a landing page feel */
+    /* On large screens, hide the left navigation sidebar for a true landing page feel */
     @media screen and (min-width: 76.25em) {
       .md-sidebar--primary {
         display: none;
@@ -25,28 +26,30 @@
     /* ------------------------------------------------------------------ */
     .tx-container {
       background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
-      padding: 2rem 0;
+      padding: 2rem 0; /* Use padding on container, not margin on content */
     }
 
     /* ------------------------------------------------------------------ */
     /*  3. Hero Content (Mobile-First)                                  */
     /* ------------------------------------------------------------------ */
     .tx-hero {
+      /* By removing all margins, the hero content will align perfectly
+         with the main page content, because both are children of .md-grid */
       margin: 0;
       color: var(--md-primary-bg-color);
-      text-align: center;
+      text-align: center; /* Center-align text on mobile */
     }
 
     .tx-hero__image {
       width: 14rem;
       height: 14rem;
-      margin: 0 auto 1.5rem; /* Center image on mobile */
+      margin: 0 auto 1.5rem; /* Center the image and add space below it */
     }
 
     .tx-hero__image img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: contain; /* Ensure the image scales nicely */
     }
 
     .tx-hero h1 {
@@ -58,31 +61,33 @@
 
     .tx-hero p {
       font-size: 1.1rem;
-      max-width: 35rem;
+      max-width: 35rem; /* Prevent text from becoming too wide */
       margin-left: auto;
       margin-right: auto;
     }
 
     /* ------------------------------------------------------------------ */
-    /*  4. Hero Button Styling (Color Overrides)                        */
+    /*  4. Hero Button Styling                                          */
     /* ------------------------------------------------------------------ */
+
+    /* These rules are needed to make the buttons visible on the dark gradient. */
     .tx-hero .md-button {
       margin-top: 0.8rem;
       margin-right: 0.5rem;
-      color: var(--md-primary-bg-color) !important;
+      color: var(--md-primary-bg-color) !important; /* Force text color to be light */
       border-color: var(--md-primary-bg-color);
     }
 
     .tx-hero .md-button--primary {
       background-color: var(--md-primary-bg-color);
-      color: var(--md-primary-fg-color) !important;
+      color: var(--md-primary-fg-color) !important; /* Force text color to be dark */
       border-color: var(--md-primary-bg-color);
     }
 
     .tx-hero .md-button:focus,
     .tx-hero .md-button:hover {
       background-color: var(--md-accent-fg-color);
-      color: var(--md-primary-bg-color) !important;
+      color: var(--md-primary-bg-color) !important; /* Keep text light on hover */
       border-color: var(--md-accent-fg-color);
     }
 
@@ -94,11 +99,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        text-align: left;
+        text-align: left; /* Switch to left-align on desktop */
       }
 
       .tx-hero__content {
-        max-width: 32rem;
+        max-width: 32rem; /* Give text more space */
       }
 
       .tx-hero p,
@@ -109,9 +114,9 @@
 
       .tx-hero__image {
         order: 1; /* Move image to the right */
-        width: 18rem;
-        height: 18rem;
-        margin: 0 0 0 2rem;
+        width: 17rem;
+        height: 17rem;
+        margin: 0 0 0 2rem; /* Reset margin and add space to its left */
       }
     }
   </style>
@@ -123,7 +128,12 @@
           <h1>{{ config.home_tagline }}</h1>
           <p>{{ config.home_description }}</p>
 
-          <!-- This wrapper is crucial for button styling -->
+          <!--
+            ==================================================================
+            THE FIX: Wrap the buttons in a div with the "md-typeset" class.
+            This makes the theme's default button styles apply correctly.
+            ==================================================================
+          -->
           <div class="md-typeset">
             {%- if config.home_button1_name -%}
             <a href="{{ config.home_button1_url }}" title="{{ config.home_button1_name }}" class="{{ config.home_button1_theme }}">
@@ -131,11 +141,12 @@
             </a>
             {%- endif -%}
             {%- if config.home_button2_name -%}
-            <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_name }}">
+            <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
               {{ config.home_button2_name }}
             </a>
             {%- endif -%}
           </div>
+
         </div>
         <div class="tx-hero__image">
           <img src="{{ config.home_cover_image }}" draggable="false">
