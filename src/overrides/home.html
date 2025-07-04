@@ -4,52 +4,58 @@
   <!-- Render the regular navigation tabs -->
   {{ super() }}
 
+  <!--
+    ==================================================================
+    1. DEFINE THE SVG FILTER
+    This SVG is hidden but defines the "liquid-glass" effect. It
+    must be present in the DOM before the CSS tries to use it.
+    ==================================================================
+  -->
+  <svg width="0" height="0" style="position:absolute;">
+    <filter id="liquid-glass">
+      <!-- Create a turbulent noise pattern to use as a distortion map -->
+      <feTurbulence 
+        type="fractalNoise" 
+        baseFrequency="0.01 0.04" 
+        numOctaves="3" 
+        result="turbulence" />
+      
+      <!-- Use the turbulence to displace the pixels of the background.
+           The 'scale' attribute controls the intensity of the warp. -->
+      <feDisplacementMap 
+        in="SourceGraphic" 
+        in2="turbulence" 
+        scale="15" />
+    </filter>
+  </svg>
+
   <style>
     /* ------------------------------------------------------------------ */
-    /*  1. General Layout Tweaks for the Homepage                       */
+    /*  2. General Layout and Hero Styles (Unchanged)                   */
     /* ------------------------------------------------------------------ */
     .md-sidebar--secondary { display: none; }
-
-    @media screen and (min-width: 76.25em) {
-      .md-sidebar--primary { display: none; }
-    }
-
-    /* ------------------------------------------------------------------ */
-    /*  2. Hero Section Container                                       */
-    /* ------------------------------------------------------------------ */
-    .tx-container {
-      background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
-      padding: 2rem 0;
-    }
-
-    /* ------------------------------------------------------------------ */
-    /*  3. Hero Content (Mobile-First)                                  */
-    /* ------------------------------------------------------------------ */
+    @media screen and (min-width: 76.25em) { .md-sidebar--primary { display: none; } }
+    .tx-container { background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }}); padding: 2rem 0; }
     .tx-hero { margin: 0; color: var(--md-primary-bg-color); text-align: center; }
     .tx-hero h1 { margin-bottom: 1rem; color: currentColor; font-weight: 700; font-size: 2.4rem; }
     .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
-
-    /* ------------------------------------------------------------------ */
-    /*  4. Hero Button Styling                                          */
-    /* ------------------------------------------------------------------ */
     .tx-hero .md-button { margin-top: 0.8rem; margin-right: 0.5rem; color: var(--md-primary-bg-color) !important; border-color: var(--md-primary-bg-color); }
     .tx-hero .md-button--primary { background-color: var(--md-primary-bg-color); color: var(--md-primary-fg-color) !important; border-color: var(--md-primary-bg-color); }
     .tx-hero .md-button:focus, .tx-hero .md-button:hover { background-color: var(--md-accent-fg-color); color: var(--md-primary-bg-color) !important; border-color: var(--md-accent-fg-color); }
 
     /* ------------------------------------------------------------------ */
-    /*  5. Logo Refraction Effect (via CSS Masking)                     */
+    /*  3. "Liquid Glass" Logo Effect Implementation                    */
     /* ------------------------------------------------------------------ */
     .tx-hero__image {
       width: 14rem;
       height: 14rem;
       margin: 0 auto 1.5rem;
 
-      /* Step 1: Create the 'sheet of glass' effect on the container */
-      background: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      /* Step 1: Apply our custom SVG filter to the background */
+      backdrop-filter: url(#liquid-glass);
+      -webkit-backdrop-filter: url(#liquid-glass);
 
-      /* Step 2: Use the SVG logo to 'cut out' the glass sheet */
+      /* Step 2: Use the logo's shape to mask the warped background */
       -webkit-mask-image: url({{ config.home_cover_image }});
       mask-image: url({{ config.home_cover_image }});
       -webkit-mask-size: contain;
@@ -60,30 +66,19 @@
       mask-position: center;
     }
 
-    /* The original <img> is no longer needed, as the div IS the effect */
+    /* The original <img> tag is not needed, the div IS the effect */
     .tx-hero__image img {
       display: none;
     }
 
     /* ------------------------------------------------------------------ */
-    /*  6. Desktop Layout Override                                      */
+    /*  4. Desktop Layout Override (Unchanged)                          */
     /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
-      .tx-hero {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        text-align: left;
-      }
+      .tx-hero { display: flex; align-items: center; justify-content: space-between; text-align: left; }
       .tx-hero__content { max-width: 32rem; }
       .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
-      
-      .tx-hero__image {
-        order: 1;
-        width: 18rem;
-        height: 18rem;
-        margin: 0 0 0 2rem;
-      }
+      .tx-hero__image { order: 1; width: 18rem; height: 18rem; margin: 0 0 0 2rem; }
     }
   </style>
 
@@ -106,7 +101,7 @@
             {%- endif -%}
           </div>
         </div>
-        <!-- This div is now the visual element; the <img> inside is hidden -->
+        <!-- This div now becomes the visual element, shaped by the mask -->
         <div class="tx-hero__image">
           <img src="{{ config.home_cover_image }}" draggable="false">
         </div>
