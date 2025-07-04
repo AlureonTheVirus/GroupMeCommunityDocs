@@ -7,24 +7,17 @@
 {% block tabs %}
     {{ super() }}
 
-    <!-- .tx-container Original Green Gradient: hsla(160deg,47%,55%,1) -->
     <style>
-        /* REMOVED: This rule was collapsing the main content area to zero height.
-        .md-main {
-            flex-grow: 0
-        } */
-
-        .md-main__inner {
-            /* This might also be unnecessary, but can be kept if needed.
-               For a standard layout, it's better to let the theme handle it. */
-            /* display: flex; */
-            /* height: 100%; */
-        }
+        /*
+          KEY FIX: We have removed the styles for `.md-main` and `.md-main__inner`.
+          This allows the theme's default content rendering to work correctly.
+        */
 
         .tx-container {
             padding-top: .0rem;
-            /* The gradient now stops at the bottom of the hero section. */
+            /* The gradient is now just the background for the hero section */
             background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
+            border-bottom: 1px solid var(--md-default-fg-color--lightest);
         }
 
         .tx-hero {
@@ -69,8 +62,6 @@
             color: var(--md-default-bg-color);
             border-color: var(--md-accent-fg-color)
         }
-
-        /* REMOVED: All styles for .feature-item, .top-hr, .hr, etc. are no longer needed */
 
         @media screen and (max-width:30em) {
             .tx-hero h1 {
@@ -144,17 +135,8 @@
         </div>
     </section>
 
-    <!--
-      REMOVED: All the HTML for the feature boxes and other custom content
-      has been deleted from here.
-    -->
-
 {% endblock %}
 
-<!--
-  By NOT defining the content and footer blocks, we are telling the template
-  engine to use the default blocks from "main.html". This is exactly what
-  we want, as the default content block will render your Markdown.
--->
+<!-- By not defining 'content' and 'footer', we use the default from main.html -->
 <!-- {% block content %}{% endblock %} -->
 <!-- {% block footer %}{% endblock %} -->
