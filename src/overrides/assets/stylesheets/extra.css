@@ -1,0 +1,9 @@
+/*
+  Apply a smooth transition to color and background-color changes
+  for the body and all descendant elements (*). This creates the
+  fade effect when switching between light and dark mode.
+*/
+
+body, body * {
+  transition: color .25s ease, background-color .25s ease;
+}
