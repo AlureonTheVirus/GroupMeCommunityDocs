@@ -406,19 +406,11 @@
 
   <style>
     /* ------------------------------------------------------------------ */
-    /*  1. General Layout Tweaks for the Homepage                       */
+    /*  1. General Layout Tweaks                                        */
     /* ------------------------------------------------------------------ */
-
-    /* Hide the table of contents and right sidebar */
-    .md-sidebar--secondary {
-      display: none;
-    }
-
-    /* On large screens, hide the left navigation sidebar for a true landing page feel */
+    .md-sidebar--secondary { display: none; }
     @media screen and (min-width: 76.25em) {
-      .md-sidebar--primary {
-        display: none;
-      }
+      .md-sidebar--primary { display: none; }
     }
 
     /* ------------------------------------------------------------------ */
@@ -426,98 +418,81 @@
     /* ------------------------------------------------------------------ */
     .tx-container {
       background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg,47%,55%,1));
-      padding: 2rem 0; /* Use padding on container, not margin on content */
+      padding: 2rem 0;
     }
 
     /* ------------------------------------------------------------------ */
-    /*  3. Hero Content (Mobile-First)                                  */
+    /*  3. Hero Content & Layout                                        */
     /* ------------------------------------------------------------------ */
     .tx-hero {
-      /* By removing all margins, the hero content will align perfectly
-         with the main page content, because both are children of .md-grid */
       margin: 0;
       color: var(--md-primary-bg-color);
-      text-align: center; /* Center-align text on mobile */
+      text-align: center;
     }
-
-    .tx-hero__image {
-      width: 14rem;
-      height: 14rem;
-      margin: 0 auto 1.5rem; /* Center the image and add space below it */
-    }
-
-    .tx-hero__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* Ensure the image scales nicely */
-    }
-
-    .tx-hero h1 {
-      margin-bottom: 1rem;
-      color: currentColor;
-      font-weight: 700;
-      font-size: 2.4rem;
-    }
-
-    .tx-hero p {
-      font-size: 1.1rem;
-      max-width: 35rem; /* Prevent text from becoming too wide */
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .tx-hero__image { width: 14rem; height: 14rem; margin: 0 auto 1.5rem; }
+    .tx-hero__image img { width: 100%; height: 100%; object-fit: contain; }
+    .tx-hero h1 { margin-bottom: 1rem; color: currentColor; font-weight: 700; font-size: 2.4rem; }
+    .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
 
     /* ------------------------------------------------------------------ */
-    /*  4. Hero Button Styling                                          */
+    /*  4. THE DEFINITIVE BUTTON STYLES                                 */
     /* ------------------------------------------------------------------ */
 
-    /* These rules are needed to make the buttons visible on the dark gradient. */
+    /* == Base styles for ALL buttons in the hero == */
     .tx-hero .md-button {
       margin-top: 0.8rem;
       margin-right: 0.5rem;
-      color: var(--md-primary-bg-color) !important; /* Force text color to be light */
-      border-color: var(--md-primary-bg-color);
     }
 
-    .tx-hero .md-button--primary {
-      background-color: var(--md-primary-bg-color);
-      color: var(--md-primary-fg-color) !important; /* Force text color to be dark */
+    /* == Secondary Button ("Ghost" style) == */
+    /* This applies to any button that is NOT primary */
+    .tx-hero .md-button:not(.md-button--primary) {
+      background-color: transparent;
       border-color: var(--md-primary-bg-color);
+      color: var(--md-primary-bg-color) !important; /* White text */
     }
-
-    .tx-hero .md-button:focus,
-    .tx-hero .md-button:hover {
+    .tx-hero .md-button:not(.md-button--primary):hover {
       background-color: var(--md-accent-fg-color);
-      color: var(--md-primary-bg-color) !important; /* Keep text light on hover */
+      border-color: var(--md-accent-fg-color);
+      color: var(--md-primary-bg-color) !important;
+    }
+
+    /* == Primary Button ("Knockout Text" style) == */
+    .tx-hero .md-button--primary {
+      /* 1. Set the solid background color of the button */
+      background-color: var(--md-primary-bg-color); /* This makes the button solid white */
+
+      /* 2. Define the gradient as a background *image* */
+      background-image: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg,47%,55%,1));
+
+      /* 3. Clip the background image to the shape of the text */
+      -webkit-background-clip: text;
+      background-clip: text;
+      
+      /* 4. Make the text's actual color transparent to reveal the clipped background image */
+      color: transparent !important;
+
+      /* 5. Ensure the border is white */
+      border-color: var(--md-primary-bg-color);
+    }
+    .tx-hero .md-button--primary:hover {
+      /* On hover, we fill the button with the accent color for a clear effect */
+      background-image: none; /* Remove the gradient image */
+      -webkit-background-clip: initial; /* Reset the clipping */
+      background-clip: initial;
+      background-color: var(--md-accent-fg-color); /* Fill with accent color */
+      color: var(--md-primary-bg-color) !important; /* Set text to solid white */
       border-color: var(--md-accent-fg-color);
     }
-
+    
     /* ------------------------------------------------------------------ */
-    /*  5. Desktop Layout Override                                      */
+    /*  5. Desktop Layout                                               */
     /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
-      .tx-hero {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        text-align: left; /* Switch to left-align on desktop */
-      }
-
-      .tx-hero__content {
-        max-width: 32rem; /* Give text more space */
-      }
-
-      .tx-hero p,
-      .tx-hero h1 {
-        margin-left: 0;
-        margin-right: 0;
-      }
-
-      .tx-hero__image {
-        order: 1; /* Move image to the right */
-        width: 17rem;
-        height: 17rem;
-        margin: 0 0 0 2rem; /* Reset margin and add space to its left */
-      }
+      .tx-hero { display: flex; align-items: center; justify-content: space-between; text-align: left; }
+      .tx-hero__content { max-width: 32rem; }
+      .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
+      .tx-hero__image { order: 1; width: 17rem; height: 17rem; margin: 0 0 0 2rem; }
     }
   </style>
 
@@ -528,18 +503,11 @@
           <h1>GroupMe Community Docs</h1>
           <p>Community GroupMe API documentation for all.</p>
 
-          <!--
-            ==================================================================
-            THE FIX: Wrap the buttons in a div with the "md-typeset" class.
-            This makes the theme's default button styles apply correctly.
-            ==================================================================
-          -->
           <div class="md-typeset"><a href="api/" title="API Reference" class="md-button md-button--primary">
               API Reference
             </a><a href="examples/" title="Example Projects" class="md-button">
               Example Projects
             </a></div>
-
         </div>
         <div class="tx-hero__image">
           <img src="assets/sprocket.svg" draggable="false">
