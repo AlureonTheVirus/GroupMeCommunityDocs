@@ -22,7 +22,6 @@ home_button2_name: Example Projects
 home_button2_url: examples/
 home_button2_theme: md-button
 home_button2_blurb: This goober navigates to some important thingies located in "/Folder2/index.md"
-  
 
 # Homepage Code Execution
 home_execute_js: | # Javascript to execute when accessing the homepage
