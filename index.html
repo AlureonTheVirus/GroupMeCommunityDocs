@@ -406,9 +406,9 @@
 
   <style>
     /* ------------------------------------------------------------------ */
-    /*  1. General Layout Tweaks for the Homepage
+    /*  1. General Layout Tweaks for the Homepage                       */
     /* ------------------------------------------------------------------ */
-    
+
     /* Hide the table of contents and right sidebar */
     .md-sidebar--secondary {
       display: none;
@@ -422,7 +422,7 @@
     }
 
     /* ------------------------------------------------------------------ */
-    /*  2. Hero Section Container
+    /*  2. Hero Section Container                                       */
     /* ------------------------------------------------------------------ */
     .tx-container {
       background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg,47%,55%,1));
@@ -430,7 +430,7 @@
     }
 
     /* ------------------------------------------------------------------ */
-    /*  3. Hero Content (Mobile-First)
+    /*  3. Hero Content (Mobile-First)                                  */
     /* ------------------------------------------------------------------ */
     .tx-hero {
       /* By removing all margins, the hero content will align perfectly
@@ -467,9 +467,9 @@
     }
 
     /* ------------------------------------------------------------------ */
-    /*  4. Hero Button Styling
+    /*  4. Hero Button Styling                                          */
     /* ------------------------------------------------------------------ */
-    
+
     /* These rules are needed to make the buttons visible on the dark gradient. */
     .tx-hero .md-button {
       margin-top: 0.8rem;
@@ -490,9 +490,9 @@
       color: var(--md-primary-bg-color) !important; /* Keep text light on hover */
       border-color: var(--md-accent-fg-color);
     }
-    
+
     /* ------------------------------------------------------------------ */
-    /*  5. Desktop Layout Override
+    /*  5. Desktop Layout Override                                      */
     /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
       .tx-hero {
@@ -501,7 +501,7 @@
         justify-content: space-between;
         text-align: left; /* Switch to left-align on desktop */
       }
-      
+
       .tx-hero__content {
         max-width: 32rem; /* Give text more space */
       }
@@ -522,18 +522,25 @@
   </style>
 
   <section class="tx-container">
-    <!-- The .md-grid class is essential for proper alignment and padding -->
     <div class="md-grid">
       <div class="tx-hero">
         <div class="tx-hero__content">
           <h1>GroupMe Community Docs</h1>
           <p>Community GroupMe API documentation for all.</p>
 
-          <!-- Buttons --><a href="api/" title="API Reference" class="md-button md-button--primary">
-            API Reference
-          </a><a href="examples/" title="Example Projects" class="md-button">
-            Example Projects
-          </a></div>
+          <!--
+            ==================================================================
+            THE FIX: Wrap the buttons in a div with the "md-typeset" class.
+            This makes the theme's default button styles apply correctly.
+            ==================================================================
+          -->
+          <div class="md-typeset"><a href="api/" title="API Reference" class="md-button md-button--primary">
+              API Reference
+            </a><a href="examples/" title="Example Projects" class="md-button">
+              Example Projects
+            </a></div>
+
+        </div>
         <div class="tx-hero__image">
           <img src="assets/sprocket.svg" draggable="false">
         </div>
