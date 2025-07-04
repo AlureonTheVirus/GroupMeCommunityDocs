@@ -425,12 +425,7 @@
     /* ------------------------------------------------------------------ */
     /*  3. Hero Content (Mobile-First)                                  */
     /* ------------------------------------------------------------------ */
-    .tx-hero {
-      margin: 0;
-      color: var(--md-primary-bg-color);
-      text-align: center;
-    }
-
+    .tx-hero { margin: 0; color: var(--md-primary-bg-color); text-align: center; }
     .tx-hero h1 { margin-bottom: 1rem; color: currentColor; font-weight: 700; font-size: 2.4rem; }
     .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
 
@@ -442,32 +437,32 @@
     .tx-hero .md-button:focus, .tx-hero .md-button:hover { background-color: var(--md-accent-fg-color); color: var(--md-primary-bg-color) !important; border-color: var(--md-accent-fg-color); }
 
     /* ------------------------------------------------------------------ */
-    /*  5. Glassmorphism Image Effect                                   */
+    /*  5. Logo Refraction Effect (via CSS Masking)                     */
     /* ------------------------------------------------------------------ */
     .tx-hero__image {
-      /* This container becomes the "glass pane" */
       width: 14rem;
       height: 14rem;
       margin: 0 auto 1.5rem;
-      border-radius: 50%; /* Make the glass pane circular */
-      
-      /* The core glass effect */
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px); /* For Safari compatibility */
-      border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge highlight */
-      
-      /* Use flexbox to perfectly center the logo inside the glass */
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+      /* Step 1: Create the 'sheet of glass' effect on the container */
+      background: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      /* Step 2: Use the SVG logo to 'cut out' the glass sheet */
+      -webkit-mask-image: url(assets/sprocket.svg);
+      mask-image: url(assets/sprocket.svg);
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
     }
 
+    /* The original <img> is no longer needed, as the div IS the effect */
     .tx-hero__image img {
-      /* The logo is now smaller than its container to create a "framed" look */
-      width: 75%;
-      height: 75%;
-      object-fit: contain;
+      display: none;
     }
 
     /* ------------------------------------------------------------------ */
@@ -477,17 +472,17 @@
       .tx-hero {
         display: flex;
         align-items: center;
-        justify-content: space-between; /* This correctly handles alignment */
+        justify-content: space-between;
         text-align: left;
       }
       .tx-hero__content { max-width: 32rem; }
       .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
-
+      
       .tx-hero__image {
-        order: 1; /* Move image to the right */
+        order: 1;
         width: 18rem;
         height: 18rem;
-        margin: 0 0 0 2rem; /* Reset mobile margin */
+        margin: 0 0 0 2rem;
       }
     }
   </style>
@@ -504,6 +499,7 @@
               Example Projects
             </a></div>
         </div>
+        <!-- This div is now the visual element; the <img> inside is hidden -->
         <div class="tx-hero__image">
           <img src="assets/sprocket.svg" draggable="false">
         </div>
