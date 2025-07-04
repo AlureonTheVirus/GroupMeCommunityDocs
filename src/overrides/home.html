@@ -22,7 +22,7 @@
     }
 
     /* ------------------------------------------------------------------ */
-    /*  3. Hero Content & Layout                                        */
+    /*  3. Hero Content & Layout (Mobile-First)                         */
     /* ------------------------------------------------------------------ */
     .tx-hero { margin: 0; color: var(--md-primary-bg-color); text-align: center; }
     .tx-hero__image { width: 14rem; height: 14rem; margin: 0 auto 1.5rem; }
@@ -33,47 +33,21 @@
     /* ------------------------------------------------------------------ */
     /*  4. REFINED BUTTON STYLES                                        */
     /* ------------------------------------------------------------------ */
-    .tx-hero .md-button { margin-top: 0.8rem; margin-right: 0.8rem; border-width: 2px; }
-    .tx-hero .md-button:not(.md-button--primary) { background-color: transparent; border-color: var(--md-primary-bg-color); color: var(--md-primary-bg-color) !important; }
-    .tx-hero .md-button--primary { background-color: var(--md-primary-bg-color); border-color: var(--md-primary-bg-color); color: #212121 !important; }
-    .tx-hero .md-button:hover { background-color: var(--md-primary-fg-color); border-color: var(--md-primary-fg-color); color: var(--md-primary-bg-color) !important; }
-    
-    /* ------------------------------------------------------------------ */
-    /*  5. Desktop Layout                                               */
-    /* ------------------------------------------------------------------ */
-    @media screen and (min-width: 60em) {
-      .tx-hero {
-        display: flex;
-        align-items: center;
-        /* THE FIX: Remove justify-content and instead set a max-width
-           and center the container with margin: auto. This will keep the
-           text aligned left within the container, but bring the whole
-           group (including the logo) in from the edges. */
-        max-width: 65rem; /* Adjust this value to bring the logo in more or less */
-        margin: 0 auto;
-        text-align: left;
-      }
-      .tx-hero__content {
-        /* Let the text content take up the available space */
-        flex-grow: 1;
-        max-width: 32rem;
-      }
-      .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
-      .tx-hero__image {
-        order: 1;
+    .tx-hero .md-button { margin-top: 0.8rem; margin-right: 0 shift the logo to the right by half its own width.
+              This perfectly centers the logo on the container's right edge. */
+        transform: translate(50%, -50%);
+        
         width: 17rem;
         height: 17rem;
-        margin: 0 0 0 2rem;
-        /* Ensure the image doesn't shrink */
-        flex-shrink: 0;
+        margin: 0;
       }
     }
   </style>
 
   <section class="tx-container">
-    <!-- .md-grid provides the base padding for alignment. -->
+    <!-- The .md-grid provides the base padding for alignment. -->
     <div class="md-grid">
-      <!-- .tx-hero is now the constrained, centered container on desktop. -->
+      <!-- The .tx-hero is now the positioning container. -->
       <div class="tx-hero">
         <div class="tx-hero__content">
           <h1>{{ config.home_tagline }}</h1>
