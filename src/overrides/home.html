@@ -31,21 +31,6 @@
       text-align: center;
     }
 
-    .tx-hero__image {
-      position: relative; /* Needed for the glow effect's pseudo-element */
-      width: 14rem;
-      height: 14rem;
-      margin: 0 auto 1.5rem;
-    }
-
-    .tx-hero__image img {
-      position: relative; /* Ensure image is on top of the glow */
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
     .tx-hero h1 { margin-bottom: 1rem; color: currentColor; font-weight: 700; font-size: 2.4rem; }
     .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
 
@@ -57,21 +42,32 @@
     .tx-hero .md-button:focus, .tx-hero .md-button:hover { background-color: var(--md-accent-fg-color); color: var(--md-primary-bg-color) !important; border-color: var(--md-accent-fg-color); }
 
     /* ------------------------------------------------------------------ */
-    /*  NEW: 5. Hero Image Glow Effect                                  */
+    /*  5. Glassmorphism Image Effect                                   */
     /* ------------------------------------------------------------------ */
-    .tx-hero__image::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0; /* Place behind the image */
-      border-radius: 50%; /* Make it circular */
-      background: radial-gradient(
-        circle,
-        var(--md-accent-fg-color) 0%,
-        rgba(0, 0, 0, 0) 70%
-      );
-      opacity: 0.3; /* Adjust for subtlety */
-      filter: blur(40px); /* Adjust for softness */
+    .tx-hero__image {
+      /* This container becomes the "glass pane" */
+      width: 14rem;
+      height: 14rem;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%; /* Make the glass pane circular */
+      
+      /* The core glass effect */
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); /* For Safari compatibility */
+      border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge highlight */
+      
+      /* Use flexbox to perfectly center the logo inside the glass */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tx-hero__image img {
+      /* The logo is now smaller than its container to create a "framed" look */
+      width: 75%;
+      height: 75%;
+      object-fit: contain;
     }
 
     /* ------------------------------------------------------------------ */
@@ -81,19 +77,17 @@
       .tx-hero {
         display: flex;
         align-items: center;
-        justify-content: center; /* Center the whole block first */
+        justify-content: space-between; /* This correctly handles alignment */
         text-align: left;
-        gap: 2rem; /* Add space between text and image */
       }
       .tx-hero__content { max-width: 32rem; }
       .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
 
-      /* --- ADJUSTMENT: Alignment & Sizing --- */
       .tx-hero__image {
-        width: 18rem; /* Slightly larger on desktop */
+        order: 1; /* Move image to the right */
+        width: 18rem;
         height: 18rem;
-        /* The key for alignment: pull the image rightwards */
-        margin: 0 -5rem 0 0;
+        margin: 0 0 0 2rem; /* Reset mobile margin */
       }
     }
   </style>
@@ -111,7 +105,7 @@
             </a>
             {%- endif -%}
             {%- if config.home_button2_name -%}
-            <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
+            <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_name }}">
               {{ config.home_button2_name }}
             </a>
             {%- endif -%}
