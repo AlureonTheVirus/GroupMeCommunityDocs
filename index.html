@@ -304,7 +304,7 @@
     <div class="md-container" data-md-component="container">
       
       
-  <!-- First, render the regular navigation tabs -->
+  <!-- Render the regular navigation tabs -->
   
         
           
@@ -404,94 +404,125 @@
         
       
 
-  <!-- Define our styles. These are scoped to the home page only. -->
   <style>
-    /* Hide the table of contents on the home page */
+    /* ------------------------------------------------------------------ */
+    /*  1. General Layout Tweaks for the Homepage
+    /* ------------------------------------------------------------------ */
+    
+    /* Hide the table of contents and right sidebar */
     .md-sidebar--secondary {
       display: none;
     }
 
-    /* On wider screens, hide the left sidebar as well for a true landing page feel */
+    /* On large screens, hide the left navigation sidebar for a true landing page feel */
     @media screen and (min-width: 76.25em) {
       .md-sidebar--primary {
         display: none;
       }
     }
 
-    /* Now, style our hero section */
+    /* ------------------------------------------------------------------ */
+    /*  2. Hero Section Container
+    /* ------------------------------------------------------------------ */
     .tx-container {
       background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg,47%,55%,1));
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding: 2rem 0; /* Use padding on container, not margin on content */
     }
 
+    /* ------------------------------------------------------------------ */
+    /*  3. Hero Content (Mobile-First)
+    /* ------------------------------------------------------------------ */
     .tx-hero {
-      margin: 0 1.2rem;
+      /* By removing all margins, the hero content will align perfectly
+         with the main page content, because both are children of .md-grid */
+      margin: 0;
       color: var(--md-primary-bg-color);
+      text-align: center; /* Center-align text on mobile */
+    }
+
+    .tx-hero__image {
+      width: 14rem;
+      height: 14rem;
+      margin: 0 auto 1.5rem; /* Center the image and add space below it */
+    }
+
+    .tx-hero__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Ensure the image scales nicely */
     }
 
     .tx-hero h1 {
       margin-bottom: 1rem;
       color: currentColor;
       font-weight: 700;
-      font-size: 3rem;
+      font-size: 2.4rem;
     }
 
     .tx-hero p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      max-width: 35rem; /* Prevent text from becoming too wide */
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .tx-hero__image{
-      width: 17rem;
-      height: 17rem;
-      order: 1;
-      margin-left: 2.5rem; /* Give some space on the left */
-    }
-
-    /*
-      ==================================================================
-      FIX: Re-adding the button styles that were accidentally removed.
-      ==================================================================
-    */
+    /* ------------------------------------------------------------------ */
+    /*  4. Hero Button Styling
+    /* ------------------------------------------------------------------ */
+    
+    /* These rules are needed to make the buttons visible on the dark gradient. */
     .tx-hero .md-button {
-      margin-top: 0.5rem;
+      margin-top: 0.8rem;
       margin-right: 0.5rem;
-      color: var(--md-primary-bg-color);
+      color: var(--md-primary-bg-color) !important; /* Force text color to be light */
+      border-color: var(--md-primary-bg-color);
     }
 
     .tx-hero .md-button--primary {
       background-color: var(--md-primary-bg-color);
-      /* This color can be customized to match your theme */
-      color: hsla(280deg, 37%, 48%, 1);
+      color: var(--md-primary-fg-color) !important; /* Force text color to be dark */
       border-color: var(--md-primary-bg-color);
     }
 
     .tx-hero .md-button:focus,
     .tx-hero .md-button:hover {
       background-color: var(--md-accent-fg-color);
-      color: var(--md-primary-bg-color);
+      color: var(--md-primary-bg-color) !important; /* Keep text light on hover */
       border-color: var(--md-accent-fg-color);
     }
-    /*
-      ==================================================================
-      End of fix
-      ==================================================================
-    */
-
+    
+    /* ------------------------------------------------------------------ */
+    /*  5. Desktop Layout Override
+    /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
       .tx-hero {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        text-align: left; /* Switch to left-align on desktop */
       }
+      
       .tx-hero__content {
-        max-width: 28rem;
+        max-width: 32rem; /* Give text more space */
+      }
+
+      .tx-hero p,
+      .tx-hero h1 {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .tx-hero__image {
+        order: 1; /* Move image to the right */
+        width: 17rem;
+        height: 17rem;
+        margin: 0 0 0 2rem; /* Reset margin and add space to its left */
       }
     }
   </style>
 
-  <!-- And finally, add the hero's HTML structure -->
   <section class="tx-container">
+    <!-- The .md-grid class is essential for proper alignment and padding -->
     <div class="md-grid">
       <div class="tx-hero">
         <div class="tx-hero__content">
