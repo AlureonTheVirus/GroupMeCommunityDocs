@@ -1,142 +1,117 @@
 {% extends "main.html" %}
 
-<!-- Hide the tabs on the home page -->
-{% block tabs %}{% endblock %}
+<!--
+  This block is structurally located *after* the header but *before* the main content area.
+  This is the perfect place for a full-width hero.
+-->
+{% block tabs %}
+  <!-- First, render the regular navigation tabs -->
+  {{ super() }}
+
+  <!-- Define our styles. These are scoped to the home page only. -->
+  <style>
+    /* Hide the table of contents on the home page */
+    .md-sidebar--secondary {
+      display: none;
+    }
+
+    /* On wider screens, hide the left sidebar as well for a true landing page feel */
+    @media screen and (min-width: 76.25em) {
+      .md-sidebar--primary {
+        display: none;
+      }
+    }
+
+    /* Now, style our hero section */
+    .tx-container {
+      background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .tx-hero {
+      margin: 0 1.2rem;
+      color: var(--md-primary-bg-color);
+    }
+
+    .tx-hero h1 {
+      margin-bottom: 1rem;
+      color: currentColor;
+      font-weight: 700;
+      font-size: 3rem;
+    }
+
+    .tx-hero p {
+      font-size: 1.2rem;
+    }
+
+    .tx-hero__image{
+      width: 17rem;
+      height: 17rem;
+      order: 1;
+      margin-left: 2.5rem; /* Give some space on the left */
+    }
+
+    .tx-hero .md-button {
+      margin-top: 0.5rem;
+      margin-right: 0.5rem;
+      color: var(--md-primary-bg-color);
+    }
+
+    .tx-hero .md-button--primary {
+      background-color: var(--md-primary-bg-color);
+      color: hsla(280deg, 37%, 48%, 1);
+      border-color: var(--md-primary-bg-color);
+    }
+
+    .tx-hero .md-button:focus,
+    .tx-hero .md-button:hover {
+      background-color: var(--md-accent-fg-color);
+      color: var(--md-default-bg-color);
+      border-color: var(--md-accent-fg-color);
+    }
+
+    @media screen and (min-width: 60em) {
+      .tx-hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .tx-hero__content {
+        max-width: 28rem;
+      }
+    }
+  </style>
+
+  <!-- And finally, add the hero's HTML structure -->
+  <section class="tx-container">
+    <div class="md-grid">
+      <div class="tx-hero">
+        <div class="tx-hero__content">
+          <h1>{{ config.home_tagline }}</h1>
+          <p>{{ config.home_description }}</p>
+
+          <!-- Buttons -->
+          {%- if config.home_button1_name -%}
+          <a href="{{ config.home_button1_url }}" title="{{ config.home_button1_name }}" class="{{ config.home_button1_theme }}">
+            {{ config.home_button1_name }}
+          </a>
+          {%- endif -%}
+          {%- if config.home_button2_name -%}
+          <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
+            {{ config.home_button2_name }}
+          </a>
+          {%- endif -%}
+        </div>
+        <div class="tx-hero__image">
+          <img src="{{ config.home_cover_image }}" draggable="false">
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
 
 <!--
-  This is the key: we override the 'content' block.
-  First, we insert our custom hero HTML.
-  Then, we call 'super()' to render the original content
-  of this block, which is your Markdown from index.md.
+  By NOT overriding the 'content' block, we let the theme render
+  the regular Markdown content as it normally would.
 -->
-{% block content %}
-    <style>
-        /*
-          We need to remove the top margin from the main content area
-          so it sits flush against our hero.
-        */
-        .md-main .md-content {
-            margin-top: 0;
-        }
-
-        .tx-container {
-            /* The gradient is now the background for the hero section */
-            background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
-            padding: 0.2rem 0 2rem; /* Add some padding */
-        }
-
-        .tx-hero {
-            margin: 0 2.8rem;
-            color: var(--md-primary-bg-color);
-            justify-content: center;
-        }
-
-        .tx-hero h1 {
-            margin-bottom: 1rem;
-            color: currentColor;
-            font-weight: 700
-        }
-
-        .tx-hero__content {
-            padding-bottom: 1rem;
-            margin: 0 auto;
-        }
-
-        .tx-hero__image{
-            width:17rem;
-            height:17rem;
-            order:1;
-            padding-right: 2.5rem;
-        }
-
-        .tx-hero .md-button {
-            margin-top: .5rem;
-            margin-right: .5rem;
-            color: var(--md-primary-bg-color)
-        }
-
-        .tx-hero .md-button--primary {
-            background-color: var(--md-primary-bg-color);
-            color: hsla(280deg, 37%, 48%, 1);
-            border-color: var(--md-primary-bg-color)
-        }
-
-        .tx-hero .md-button:focus,
-        .tx-hero .md-button:hover {
-            background-color: var(--md-accent-fg-color);
-            color: var(--md-default-bg-color);
-            border-color: var(--md-accent-fg-color)
-        }
-
-        @media screen and (max-width:30em) {
-            .tx-hero h1 {
-                font-size: 1.4rem
-            }
-        }
-
-        @media screen and (min-width:60em) {
-            .tx-hero {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .tx-hero__content {
-                max-width: 22rem;
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-                margin-left: 1.0rem;
-                margin-right: 4.0rem;
-                align-items: center;
-            }
-        }
-
-        /* On the homepage, hide the sidebars to give full width */
-        @media screen and (min-width:76.25em) {
-            .md-sidebar--primary,
-            .md-sidebar--secondary {
-                display: none;
-            }
-        }
-    </style>
-
-    <!-- This is the Hero section, now inside the 'content' block -->
-    <section class="tx-container">
-        <div class="md-grid">
-            <div class="tx-hero">
-
-                <!-- Custom Image -->
-                <div class="tx-hero__image">
-                    <img src="{{ config.home_cover_image }}" draggable="false">
-                </div>
-
-                <!-- Main Tagline -->
-                <div class="tx-hero__content">
-                    <h1>{{ config.home_tagline }}</h1>
-                    <p>{{ config.home_description }}</p>
-
-                    <!-- Added Buttons -->
-                    {%- if config.home_button1_name -%}
-                    <a href="{{ config.home_button1_url }}" title="{{ config.home_button1_name }}" class="{{ config.home_button1_theme }}">
-                        {{ config.home_button1_name }}
-                    </a>
-                    {%- endif -%}
-                    {%- if config.home_button2_name -%}
-                    <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
-                        {{ config.home_button2_name }}
-                    </a>
-                    {%- endif -%}
-                    {%- if config.home_button3_name -%}
-                    <a href="{{ config.home_button3_url }}" title="{{ config.home_button3_name }}" class="{{ config.home_button3_name }}">
-                        {{ config.home_button3_name }}
-                    </a>
-                    {%- endif -%}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Render the default content (your Markdown) AFTER the hero -->
-    {{ super() }}
-
-{% endblock %}
