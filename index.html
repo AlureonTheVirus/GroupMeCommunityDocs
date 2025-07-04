@@ -304,6 +304,202 @@
     <div class="md-container" data-md-component="container">
       
       
+  <!-- First, render the regular navigation tabs -->
+  
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+
+  <!-- Define our styles. These are scoped to the home page only. -->
+  <style>
+    /* Hide the table of contents on the home page */
+    .md-sidebar--secondary {
+      display: none;
+    }
+
+    /* On wider screens, hide the left sidebar as well for a true landing page feel */
+    @media screen and (min-width: 76.25em) {
+      .md-sidebar--primary {
+        display: none;
+      }
+    }
+
+    /* Now, style our hero section */
+    .tx-container {
+      background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(0deg,47%,55%,1));
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .tx-hero {
+      margin: 0 1.2rem;
+      color: var(--md-primary-bg-color);
+    }
+
+    .tx-hero h1 {
+      margin-bottom: 1rem;
+      color: currentColor;
+      font-weight: 700;
+      font-size: 3rem;
+    }
+
+    .tx-hero p {
+      font-size: 1.2rem;
+    }
+
+    .tx-hero__image{
+      width: 17rem;
+      height: 17rem;
+      order: 1;
+      margin-left: 2.5rem; /* Give some space on the left */
+    }
+
+    .tx-hero .md-button {
+      margin-top: 0.5rem;
+      margin-right: 0.5rem;
+      color: var(--md-primary-bg-color);
+    }
+
+    .tx-hero .md-button--primary {
+      background-color: var(--md-primary-bg-color);
+      color: hsla(280deg, 37%, 48%, 1);
+      border-color: var(--md-primary-bg-color);
+    }
+
+    .tx-hero .md-button:focus,
+    .tx-hero .md-button:hover {
+      background-color: var(--md-accent-fg-color);
+      color: var(--md-default-bg-color);
+      border-color: var(--md-accent-fg-color);
+    }
+
+    @media screen and (min-width: 60em) {
+      .tx-hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .tx-hero__content {
+        max-width: 28rem;
+      }
+    }
+  </style>
+
+  <!-- And finally, add the hero's HTML structure -->
+  <section class="tx-container">
+    <div class="md-grid">
+      <div class="tx-hero">
+        <div class="tx-hero__content">
+          <h1>Shadow Wizards Only</h1>
+          <p>This site is an example showcase for my "mkdocs-coverpage" repository.
+</p>
+
+          <!-- Buttons --><a href="Folder1/" title="Main Clicky" class="md-button md-button--primary">
+            Main Clicky
+          </a><a href="Folder2/" title="Clicky 2" class="md-button">
+            Clicky 2
+          </a></div>
+        <div class="tx-hero__image">
+          <img src="assets/sprocket_hero.jpg" draggable="false">
+        </div>
+      </div>
+    </div>
+  </section>
+
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
@@ -1640,123 +1836,6 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-    <style>
-        /*
-          We need to remove the top margin from the main content area
-          so it sits flush against our hero.
-        */
-        .md-main .md-content {
-            margin-top: 0;
-        }
-
-        .tx-container {
-            /* The gradient is now the background for the hero section */
-            background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(0deg,47%,55%,1));
-            padding: 0.2rem 0 2rem; /* Add some padding */
-        }
-
-        .tx-hero {
-            margin: 0 2.8rem;
-            color: var(--md-primary-bg-color);
-            justify-content: center;
-        }
-
-        .tx-hero h1 {
-            margin-bottom: 1rem;
-            color: currentColor;
-            font-weight: 700
-        }
-
-        .tx-hero__content {
-            padding-bottom: 1rem;
-            margin: 0 auto;
-        }
-
-        .tx-hero__image{
-            width:17rem;
-            height:17rem;
-            order:1;
-            padding-right: 2.5rem;
-        }
-
-        .tx-hero .md-button {
-            margin-top: .5rem;
-            margin-right: .5rem;
-            color: var(--md-primary-bg-color)
-        }
-
-        .tx-hero .md-button--primary {
-            background-color: var(--md-primary-bg-color);
-            color: hsla(280deg, 37%, 48%, 1);
-            border-color: var(--md-primary-bg-color)
-        }
-
-        .tx-hero .md-button:focus,
-        .tx-hero .md-button:hover {
-            background-color: var(--md-accent-fg-color);
-            color: var(--md-default-bg-color);
-            border-color: var(--md-accent-fg-color)
-        }
-
-        @media screen and (max-width:30em) {
-            .tx-hero h1 {
-                font-size: 1.4rem
-            }
-        }
-
-        @media screen and (min-width:60em) {
-            .tx-hero {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .tx-hero__content {
-                max-width: 22rem;
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-                margin-left: 1.0rem;
-                margin-right: 4.0rem;
-                align-items: center;
-            }
-        }
-
-        /* On the homepage, hide the sidebars to give full width */
-        @media screen and (min-width:76.25em) {
-            .md-sidebar--primary,
-            .md-sidebar--secondary {
-                display: none;
-            }
-        }
-    </style>
-
-    <!-- This is the Hero section, now inside the 'content' block -->
-    <section class="tx-container">
-        <div class="md-grid">
-            <div class="tx-hero">
-
-                <!-- Custom Image -->
-                <div class="tx-hero__image">
-                    <img src="assets/sprocket_hero.jpg" draggable="false">
-                </div>
-
-                <!-- Main Tagline -->
-                <div class="tx-hero__content">
-                    <h1>Shadow Wizards Only</h1>
-                    <p>This site is an example showcase for my "mkdocs-coverpage" repository.
-</p>
-
-                    <!-- Added Buttons --><a href="Folder1/" title="Main Clicky" class="md-button md-button--primary">
-                        Main Clicky
-                    </a><a href="Folder2/" title="Clicky 2" class="md-button">
-                        Clicky 2
-                    </a></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Render the default content (your Markdown) AFTER the hero -->
-    
                   
 
 
@@ -1860,8 +1939,6 @@
 
 
                 
-
-
               </article>
             </div>
           
