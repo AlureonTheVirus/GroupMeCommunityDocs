@@ -1,27 +1,32 @@
-<!-- Elements added to "home.html" will only be displayed on the home page -->
-
 {% extends "main.html" %}
 
-{% block announce %}{% endblock %}
+<!-- Hide the tabs on the home page -->
+{% block tabs %}{% endblock %}
 
-{% block tabs %}
-    {{ super() }}
-
+<!--
+  This is the key: we override the 'content' block.
+  First, we insert our custom hero HTML.
+  Then, we call 'super()' to render the original content
+  of this block, which is your Markdown from index.md.
+-->
+{% block content %}
     <style>
         /*
-          KEY FIX: We have removed the styles for `.md-main` and `.md-main__inner`.
-          This allows the theme's default content rendering to work correctly.
+          We need to remove the top margin from the main content area
+          so it sits flush against our hero.
         */
+        .md-main .md-content {
+            margin-top: 0;
+        }
 
         .tx-container {
-            padding-top: .0rem;
-            /* The gradient is now just the background for the hero section */
+            /* The gradient is now the background for the hero section */
             background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
-            border-bottom: 1px solid var(--md-default-fg-color--lightest);
+            padding: 0.2rem 0 2rem; /* Add some padding */
         }
 
         .tx-hero {
-            margin: 32px 2.8rem;
+            margin: 0 2.8rem;
             color: var(--md-primary-bg-color);
             justify-content: center;
         }
@@ -70,10 +75,6 @@
         }
 
         @media screen and (min-width:60em) {
-            .md-sidebar--secondary {
-                display: none
-            }
-
             .tx-hero {
                 display: flex;
                 align-items: center;
@@ -82,24 +83,26 @@
 
             .tx-hero__content {
                 max-width: 22rem;
-                margin-top: 3.5rem;
-                margin-bottom: 3.5rem;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
                 margin-left: 1.0rem;
                 margin-right: 4.0rem;
                 align-items: center;
             }
         }
 
+        /* On the homepage, hide the sidebars to give full width */
         @media screen and (min-width:76.25em) {
-            .md-sidebar--primary {
-                display: none
+            .md-sidebar--primary,
+            .md-sidebar--secondary {
+                display: none;
             }
         }
     </style>
 
-    <!-- This is the Hero section. We keep this. -->
+    <!-- This is the Hero section, now inside the 'content' block -->
     <section class="tx-container">
-        <div class="md-grid md-typeset">
+        <div class="md-grid">
             <div class="tx-hero">
 
                 <!-- Custom Image -->
@@ -112,21 +115,19 @@
                     <h1>{{ config.home_tagline }}</h1>
                     <p>{{ config.home_description }}</p>
 
-                    <!-- Added Buttons (up to 3) -->
+                    <!-- Added Buttons -->
                     {%- if config.home_button1_name -%}
-                    <a href="{{ config.home_button1_url }}" title="Material | MkDocs" class="{{ config.home_button1_theme }}">
+                    <a href="{{ config.home_button1_url }}" title="{{ config.home_button1_name }}" class="{{ config.home_button1_theme }}">
                         {{ config.home_button1_name }}
                     </a>
                     {%- endif -%}
-
                     {%- if config.home_button2_name -%}
-                    <a href="{{ config.home_button2_url }}" title="Material | MkDocs" class="{{ config.home_button2_theme }}">
+                    <a href="{{ config.home_button2_url }}" title="{{ config.home_button2_name }}" class="{{ config.home_button2_theme }}">
                         {{ config.home_button2_name }}
                     </a>
                     {%- endif -%}
-
                     {%- if config.home_button3_name -%}
-                    <a href="{{ config.home_button3_url }}" title="Material | MkDocs" class="{{ config.home_button3_name }}">
+                    <a href="{{ config.home_button3_url }}" title="{{ config.home_button3_name }}" class="{{ config.home_button3_name }}">
                         {{ config.home_button3_name }}
                     </a>
                     {%- endif -%}
@@ -135,8 +136,7 @@
         </div>
     </section>
 
-{% endblock %}
+    <!-- Render the default content (your Markdown) AFTER the hero -->
+    {{ super() }}
 
-<!-- By not defining 'content' and 'footer', we use the default from main.html -->
-<!-- {% block content %}{% endblock %} -->
-<!-- {% block footer %}{% endblock %} -->
+{% endblock %}
