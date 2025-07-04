@@ -431,13 +431,13 @@
     .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
 
     /* ------------------------------------------------------------------ */
-    /*  4. REVERTED & REFINED BUTTON STYLES                             */
+    /*  4. REFINED BUTTON STYLES                                        */
     /* ------------------------------------------------------------------ */
 
     /* == Base styles for ALL buttons in the hero == */
     .tx-hero .md-button {
       margin-top: 0.8rem;
-      margin-right: 0.8rem; /* Increased spacing */
+      margin-right: 0.8rem;
       border-width: 2px;
     }
 
@@ -447,31 +447,36 @@
       border-color: var(--md-primary-bg-color);
       color: var(--md-primary-bg-color) !important;
     }
-    .tx-hero .md-button:not(.md-button--primary):hover {
-      background-color: var(--md-accent-fg-color);
-      border-color: var(--md-accent-fg-color);
-      color: var(--md-primary-bg-color) !important;
-    }
 
     /* == Primary Button (Solid White) == */
     .tx-hero .md-button--primary {
-      /* Set solid white background and border */
       background-color: var(--md-primary-bg-color);
       border-color: var(--md-primary-bg-color);
-
-      /* Set a neutral, dark text color. !important is needed to override theme defaults. */
       color: #212121 !important;
     }
-    .tx-hero .md-button--primary:hover {
-      /* A subtle effect for a clean look */
-      filter: brightness(0.95);
+
+    /*
+      ==================================================================
+      THE FIX #2: Unified hover state for ALL buttons in the hero.
+      ==================================================================
+    */
+    .tx-hero .md-button:hover {
+      background-color: var(--md-primary-fg-color);
+      border-color: var(--md-primary-fg-color);
+      color: var(--md-primary-bg-color) !important;
     }
     
     /* ------------------------------------------------------------------ */
     /*  5. Desktop Layout                                               */
     /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
-      .tx-hero { display: flex; align-items: center; justify-content: space-between; text-align: left; }
+      .tx-hero {
+        display: flex;
+        align-items: center;
+        /* THE FIX #1: Center the hero content instead of stretching it. */
+        justify-content: center;
+        text-align: left;
+      }
       .tx-hero__content { max-width: 32rem; }
       .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
       .tx-hero__image { order: 1; width: 17rem; height: 17rem; margin: 0 0 0 2rem; }
