@@ -1,5 +1,5 @@
 ---
-template: oner.html
+template: home.html
 title: Home
 description: Community-led effort to document the reverse-engineered GroupMe API.
 ---

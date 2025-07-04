@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
+<!-- Elements added to "main.html" will be displayed on all pages -->
+
+{% extends "base.html" %}
+
+{% block extrahead %}
+    <!-- main.html | Added "navigation.instant" support -->
+    <link rel="canonical" href=".">
+{% endblock %}
+
 <!-- Announcement bar -->
 {% block announce %}
   For updates join the <strong>API Development Group</strong> on <strong>GroupMe</strong>:
