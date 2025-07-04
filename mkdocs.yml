@@ -7,13 +7,13 @@ copyright: Copyright &copy; 2025 - OpenGM Project
 site_description: "The OpenGM Project: Community GroupMe API documentation for all."
 
 # Custom Homepage Elements
-home_cover_image: assets/sprocket_hero.jpg # This path starts at your root mkdocs directory.
-home_tagline: Shadow Wizards Only
+home_cover_image: assets/sprocket_colorized.svg # This path starts at your root mkdocs directory.
+home_tagline: GroupMe Community Docs
 home_description: |
-  This site is an example showcase for my "mkdocs-coverpage" repository.
+  Community GroupMe API documentation for all.
 
 # Gradient Color
-home_gradient_hsla: hsla(0deg,47%,55%,1) # Default Green: hsla(160deg,47%,55%,1)
+home_gradient_hsla: hsla(160deg,47%,55%,1) # Default Green: hsla(160deg,47%,55%,1)
 
 # Custom Homepage Button(s)
 home_button1_name: Main Clicky                   # Comment this parameter out to remove the button.
