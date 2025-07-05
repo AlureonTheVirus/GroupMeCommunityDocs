@@ -40,4 +40,4 @@ Status: 201 Created
 }
 ```
 
-The completed video upload is ready to send as an [attachment](attachments.md)
+The completed video upload is ready to send as an [attachment](../common/attachments.md)

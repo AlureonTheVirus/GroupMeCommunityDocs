@@ -48,7 +48,7 @@ Status: 200 OK
 
 React to a message with either a unicode or GroupMe emoji.
 
-GroupMe restricts reactions to [GroupMe powerups](emoji.md) and the 15 unicode options displayed in the client (❤️ 👍 🤣 🎉 🔥 😮 👀 😭 🥺 🙏 💀 🫶 🤬 💅 🫠). Any other unicode emojis will be rejected by the server.
+GroupMe restricts reactions to [GroupMe powerups](../common/emoji.md) and the 15 unicode options displayed in the client (❤️ 👍 🤣 🎉 🔥 😮 👀 😭 🥺 🙏 💀 🫶 🤬 💅 🫠). Any other unicode emojis will be rejected by the server.
 
 There is no way to apply more than one reaction at a time to any given message, attempting to do so will overwrite the original reaction with the new one.
 
@@ -78,7 +78,7 @@ POST /messages/:conversation_id/:message_id/like
 **Parameters**
 
 * *like_icon* (optional)
-	object — can contain reaction objects of type `unicode` (for standard unicode characters/emojis) or `emoji` for GroupMe emoji/powerups. `unicode` type reacions have a `code` parameter that specifies what text should be displayed. `emoji` type reactions have parameters `pack_id` and `pack_index`. See the [emoji documentation](emoji.md) for more information on what these values mean.
+	object — can contain reaction objects of type `unicode` (for standard unicode characters/emojis) or `emoji` for GroupMe emoji/powerups. `unicode` type reacions have a `code` parameter that specifies what text should be displayed. `emoji` type reactions have parameters `pack_id` and `pack_index`. See the [emoji documentation](../common/emoji.md) for more information on what these values mean.
 
 ```json linenums="1" title="HTTP Response"
 Status: 200 OK

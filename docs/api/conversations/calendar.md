@@ -191,7 +191,7 @@ POST /conversations/:id/events/create
 	
 * *image_url*
 
-	string - An image URL which will be attached to the event if provided. This image MUST be uploaded to GroupMe's [Image Service](images.md) first.
+	string - An image URL which will be attached to the event if provided. This image MUST be uploaded to GroupMe's [Image Service](../uploads/images.md) first.
 
 * *location*
 
@@ -325,7 +325,7 @@ POST /conversations/:group_id/events/update?event_id=1123123
 	
 * *image_url*
 
-	string - An image URL which will be attached to the event if provided. This image MUST be processed by GroupMe's [Image Service](images.md) before it can be used.
+	string - An image URL which will be attached to the event if provided. This image MUST be processed by GroupMe's [Image Service](../uploads/images.md) before it can be used.
 
 * *location*
 

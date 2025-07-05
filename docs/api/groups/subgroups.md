@@ -258,7 +258,7 @@ PUT /groups/:group_id/subgroups/:subgroup_id
 
 * *like icon*
 
-  object - The GroupMe powerup emoji to set as the group's like icon. See the [emoji documentation](emoji.md) for more information on what these values mean.
+  object - The GroupMe powerup emoji to set as the group's like icon. See the [emoji documentation](../common/emoji.md) for more information on what these values mean.
 
 ```json linenums="1" title="HTTP Response"
 {

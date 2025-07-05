@@ -5,7 +5,7 @@ description: "Learn how to interact with GroupMe's message attachments via the A
 
 # Attachments
 
-When sending messages in groups or DM channels, users (or bots) can add any number of attachments, as noted in the relevant sections of [Group Messages](messages.md), [Direct Messages](dms.md), and [Bots](bots.md). In each of these instances, you add an attachment by including a corresponding object in the "attachments" array. This section will list all the different types of attachments possible (That we know of and can find documentation for) and how to send them.
+When sending messages in groups or DM channels, users (or bots) can add any number of attachments, as noted in the relevant sections of [Group Messages](../groups/messages.md), [Direct Messages](../dms/index.md), and [Bots](../bots/index.md). In each of these instances, you add an attachment by including a corresponding object in the "attachments" array. This section will list all the different types of attachments possible (That we know of and can find documentation for) and how to send them.
 
 All parameters are required unless otherwise specified.
 
@@ -28,7 +28,7 @@ All parameters are required unless otherwise specified.
 
 * *url*
 
-	string - the URL of the image to send. This image must first be processed by GroupMe's [Image Service](images.md)
+	string - the URL of the image to send. This image must first be processed by GroupMe's [Image Service](../uploads/images.md)
 
 ***
 
@@ -73,7 +73,7 @@ All parameters are required unless otherwise specified.
 	 
  - *url*
  
-	 file_id - valid file id from the [file service](files.md)
+	 file_id - valid file id from the [file service](../uploads/files.md)
 	 
 ***
 
@@ -227,7 +227,7 @@ Interestingly, because of this system, you don't have to actually type someone's
 
 This is a read-only attachment type, as it is not sent in one of your messages. Rather, when you create a poll, a message with this attachment is sent for you. 
 
-Read more about polls [here](polls.md)
+Read more about polls [here](../groups/polls.md)
 
 ```json linenums="1" title="Object Structure"
 {
@@ -252,7 +252,7 @@ Read more about polls [here](polls.md)
 
 This is a read-only attachment type, as it is not sent in one of your messages. Rather, when you create an event, a message with this attachment is sent for you. 
 
-Read more about calendar events [here](calendar.md)
+Read more about calendar events [here](../conversations/calendar.md)
 
 ```json linenums="1" title="Object Structure"
 {

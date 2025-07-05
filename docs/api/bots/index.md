@@ -81,7 +81,7 @@ POST /bots
 		
 	* *avatar_url*
 	
-		string - a URL to an image which will be the bot's avatar. This image MUST be proccessed by GroupMe's [Image Service](images.md) before it can be sent.
+		string - a URL to an image which will be the bot's avatar. This image MUST be proccessed by GroupMe's [Image Service](../uploads/images.md) before it can be sent.
 		
 	* *callback_url*
 	
@@ -134,7 +134,7 @@ POST /bots/post
 
 	array - A polymorphic list of attachments (locations, images, replies, etc). You may have more than one of any type of attachment, provided clients can display it.
 	
-	For more information on types of attachments and how to send them, check out the [attachments documentation](attachments.md)
+	For more information on types of attachments and how to send them, check out the [attachments documentation](../common/attachments.md)
 
 ```json linenums="1" title="HTTP Response"
 Status: 201 Created

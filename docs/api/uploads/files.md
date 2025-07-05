@@ -39,4 +39,4 @@ A complete job will contain the following JSON in the response, with a header of
 }
 ```
 
-The completed file upload is ready to send as a file [attachment](attachments.md), using the `file_id` as a reference to the uploaded file. Files uploaded to one group may not be shared to another group
+The completed file upload is ready to send as a file [attachment](../common/attachments.md), using the `file_id` as a reference to the uploaded file. Files uploaded to one group may not be shared to another group

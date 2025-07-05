@@ -318,7 +318,7 @@ POST /groups
 	
 * *image_url*
 
-	string - GroupMe [Image Service](images.md) URL
+	string - GroupMe [Image Service](../uploads/images.md) URL
 	
 * *share*
 
@@ -423,7 +423,7 @@ POST /groups/:id/update
 	
 * *image_url*
 
-	string - A URL to use as the avatar for the group. in order to be used, the Image must first be uploaded to GroupMe's [Image Service](images.md).
+	string - A URL to use as the avatar for the group. in order to be used, the Image must first be uploaded to GroupMe's [Image Service](../uploads/images.md).
 	
 * *office_mode*
 
@@ -450,7 +450,7 @@ POST /groups/:id/update
 
 * *like_icon*
 
-  	object - The GroupMe powerup emoji to set as the group's like icon. See the [emoji documentation](emoji.md) for more information on what these values mean.
+  	object - The GroupMe powerup emoji to set as the group's like icon. See the [emoji documentation](../common/emoji.md) for more information on what these values mean.
   
 * *visibility*
 

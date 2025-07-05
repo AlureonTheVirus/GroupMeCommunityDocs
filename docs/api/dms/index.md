@@ -237,7 +237,7 @@ Status: 200 OK
 
 Send a DM to another user
 
-If you want to attach an image, you must first process it through the image service (More on that in the [attachments documentation](attachments.md)).
+If you want to attach an image, you must first process it through the image service (More on that in the [attachments documentation](../common/attachments.md)).
 
 Attachments of type emoji rely on data from emoji PowerUps.
 
@@ -298,7 +298,7 @@ POST /direct_messages
 
 	array - A polymorphic list of attachments (locations, images, etc). You may have more than one of any type of attachment, provided clients can display it.
 	
-	For more information on types of attachments and how to send them, check out the [attachments documentation](attachments.md)
+	For more information on types of attachments and how to send them, check out the [attachments documentation](../common/attachments.md)
 
 ```json linenums="1" title="HTTP Response"
 Status: 201 Created

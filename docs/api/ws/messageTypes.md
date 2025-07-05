@@ -46,7 +46,7 @@ This and [`typing`](#typing) are the only two message types clients are permitte
 
 ## `line.create`
 
-A message was sent in a channel you participate in. This is the most common type of message, and includes many events that normally send system messages (like member join/leave events). More on events can be found [here](events.md).
+A message was sent in a channel you participate in. This is the most common type of message, and includes many events that normally send system messages (like member join/leave events). More on events can be found [here](../common/events.md).
 
 Generally, incoming messages will look like this:
 
@@ -100,7 +100,7 @@ Generally, incoming messages will look like this:
 
   number - the timestamp corresponding to when the notification was sent.
 
-However, in some cases you may observe a system message with an attached `subject.event` property. These events are documented [here](events.md).
+However, in some cases you may observe a system message with an attached `subject.event` property. These events are documented [here](../common/events.md).
 
 ```json linenums="1" title="Data Object Structure"
 {
@@ -214,7 +214,7 @@ Generally, incoming messages will look like this:
 
   number - the timestamp corresponding to when the notification was sent.
 
-However, in some cases you may observe a system message with an attached `subject.event` property. These are documented [here](events.md).
+However, in some cases you may observe a system message with an attached `subject.event` property. These are documented [here](../common/events.md).
 
 ```json linenums="1" title="Data Object Structure"
 {

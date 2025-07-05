@@ -168,9 +168,9 @@ Status: 200 OK
 
 Send a message to a group
 
-If you want to attach an image, you must first process it through GroupMe's image service (More on that in the [attachments documentation](attachments.md))
+If you want to attach an image, you must first process it through GroupMe's image service (More on that in the [attachments documentation](../common/attachments.md))
 
-Attachments of type emoji rely on data from [GroupMe Emoji powerups](emoji.md).
+Attachments of type emoji rely on data from [GroupMe Emoji powerups](../common/emoji.md).
 
 Clients use a placeholder character in the message text and specify a replacement charmap to substitute emoji characters
 
@@ -221,7 +221,7 @@ POST /groups/:group_id/messages
 
 	array - A polymorphic list of attachments (locations, images, replies, etc). You may have more than one of any type of attachment, provided clients can display it.
 	
-	For more information on types of attachments and how to send them, check out the [attachments documentation](attachments.md)
+	For more information on types of attachments and how to send them, check out the [attachments documentation](../common/attachments.md)
 
 ```json linenums="1" title="HTTP Response"
 Status: 201 Created
@@ -273,9 +273,9 @@ Status: 201 Created
 
 Edit a message you've already sent
 
-If you want to attach an image, you must first process it through GroupMe's image service (More on that in the [attachments documentation](attachments.md))
+If you want to attach an image, you must first process it through GroupMe's image service (More on that in the [attachments documentation](../common/attachments.md))
 
-Attachments of type emoji rely on data from [GroupMe Emoji powerups](emoji.md).
+Attachments of type emoji rely on data from [GroupMe Emoji powerups](../common/emoji.md).
 
 > [!important]
 > This request is relative to `https://api.groupme.com/v4/`, not `https://api.groupme.com/v3/`.
@@ -308,7 +308,7 @@ PUT https://api.groupme.com/v4/groups/:group_id/messages/:message_id
 
 	array - A polymorphic list of attachments (locations, images, replies, etc). You may have more than one of any type of attachment, provided clients can display it.
 	
-	For more information on types of attachments and how to send them, check out the [attachments documentation](attachments.md)
+	For more information on types of attachments and how to send them, check out the [attachments documentation](../common/attachments.md)
 
 ```json linenums="1" title="HTTP Response"
 Status: 200 OK
