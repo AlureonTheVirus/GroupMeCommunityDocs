@@ -1,5 +1,3 @@
-// Get the Material Design Icons link icon by checking if it's already loaded on the page
-// or creating it with the correct SVG content
 function getMaterialLinkIcon() {
   // First, try to find an existing twemoji icon to copy styling
   const existingTwemoji = document.querySelector('.twemoji svg');
@@ -15,15 +13,12 @@ function getMaterialLinkIcon() {
   }
   
   // Fallback: create with Material for MkDocs twemoji styling
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="twemoji" style="width: 1.125em; height: 1.125em; vertical-align: top; margin-left: 0.25em;"><path fill="currentColor" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="twemoji" style="width: 1.125em; height: 1.125em; vertical-align: baseline; margin-left: 0.25em; transform: translateY(0.1em);"><path fill="currentColor" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>`;
 }
 
 const materialLinkIcon = getMaterialLinkIcon();
 
 function addPermanentLinks() {
-  console.log("Adding permanent links to headers...");
-  
-  // Find all comments first, then work backwards to find their associated headers
   const walker = document.createTreeWalker(
     document.body,
     NodeFilter.SHOW_COMMENT,
@@ -32,14 +27,13 @@ function addPermanentLinks() {
   );
   
   let comment;
-  const processedComments = new Set(); // Avoid processing the same comment twice
+  const processedComments = new Set();
   
   while (comment = walker.nextNode()) {
     if (comment.nodeValue.trim().startsWith("official-doc:") && !processedComments.has(comment)) {
       processedComments.add(comment);
       
       const url = comment.nodeValue.trim().replace("official-doc:", "").trim();
-      console.log("Found official-doc comment with URL:", url);
       
       // Find the closest preceding header
       let currentNode = comment.previousSibling;
@@ -84,14 +78,8 @@ function addPermanentLinks() {
       }
       
       if (foundHeader) {
-        console.log("Associating comment with header:", foundHeader.textContent.trim());
-        
-        // Check if this specific URL already exists in the header
         const existingLinks = Array.from(foundHeader.querySelectorAll('a.headerlink'));
-        if (existingLinks.some(link => link.href === url)) {
-          console.log("Link already exists, skipping");
-          continue;
-        }
+        if (existingLinks.some(link => link.href === url)) continue;
         
         const link = document.createElement("a");
         link.href = url;
@@ -100,7 +88,25 @@ function addPermanentLinks() {
         link.target = "_blank";
         link.rel = "noopener";
         
-        // Wrap the icon in a span like MkDocs does
+        // Add Material for MkDocs tooltip attributes
+        // Check if the site uses data-md-tooltip or other tooltip systems
+        const sampleTooltipElement = document.querySelector('[data-md-tooltip]') || 
+                                    document.querySelector('[title]') ||
+                                    document.querySelector('.md-tooltip');
+        
+        if (sampleTooltipElement && sampleTooltipElement.hasAttribute('data-md-tooltip')) {
+          link.setAttribute('data-md-tooltip', 'Permanent link');
+          link.removeAttribute('title'); // Remove title if using data-md-tooltip
+        }
+        
+        const existingHeaderLink = document.querySelector('.md-content__button, .md-header__button, a[title*="Edit"], a[title*="edit"]');
+        if (existingHeaderLink) {
+          const classesToCopy = ['md-content__button', 'md-header__button', 'md-button', 'md-button--primary'].filter(cls => 
+            existingHeaderLink.classList.contains(cls)
+          );
+          classesToCopy.forEach(cls => link.classList.add(cls));
+        }
+        
         const iconSpan = document.createElement("span");
         iconSpan.className = "twemoji";
         iconSpan.innerHTML = getMaterialLinkIcon();
@@ -108,17 +114,55 @@ function addPermanentLinks() {
         link.appendChild(iconSpan);
         
         foundHeader.appendChild(link);
-        console.log("Added permanent link to header:", foundHeader.textContent.trim(), "->", url);
         
-        // Verify the link was actually added
-        const verification = foundHeader.querySelector('a.headerlink[href="' + url + '"]');
-        if (verification) {
-          console.log("✓ Link successfully added and verified");
-        } else {
-          console.log("✗ Link creation failed - not found in DOM");
-        }
-      } else {
-        console.log("No header found for comment with URL:", url);
+        setTimeout(() => {
+          if (typeof app !== 'undefined' && app.tooltip) {
+            app.tooltip.initialize();
+          }
+          
+          if (typeof tippy !== 'undefined') {
+            tippy(link, {
+              content: 'Official documentation link',
+              placement: 'bottom'
+            });
+          }
+          
+          if (!link.hasAttribute('data-md-tooltip') && !link.querySelector('.md-tooltip')) {
+            link.addEventListener('mouseenter', function(e) {
+              const tooltip = document.createElement('div');
+              tooltip.className = 'md-tooltip';
+              tooltip.textContent = 'Official documentation link';
+              tooltip.style.cssText = `
+                position: absolute;
+                background: var(--md-tooltip-bg-color, #000);
+                color: var(--md-tooltip-fg-color, #fff);
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                z-index: 1000;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.2s;
+              `;
+              
+              document.body.appendChild(tooltip);
+              
+              const rect = link.getBoundingClientRect();
+              tooltip.style.left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+              tooltip.style.top = (rect.bottom + 5) + 'px';
+              
+              setTimeout(() => tooltip.style.opacity = '1', 10);
+              
+              const hideTooltip = () => {
+                tooltip.style.opacity = '0';
+                setTimeout(() => tooltip.remove(), 200);
+                link.removeEventListener('mouseleave', hideTooltip);
+              };
+              
+              link.addEventListener('mouseleave', hideTooltip);
+            });
+          }
+        }, 100);
       }
     }
   }
@@ -126,7 +170,6 @@ function addPermanentLinks() {
   console.log("Permanent links processing complete.");
 }
 
-// Run on initial page load
 document.addEventListener("DOMContentLoaded", addPermanentLinks);
 
 const observer = new MutationObserver(function(mutations) {
