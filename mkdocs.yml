@@ -88,6 +88,15 @@ plugins:
       exclude_comitters:
         - web-flow
 
+extra: 
+  social:
+    - icon: simple/groupme
+      link: https://groupme.com/join_group/27317261/ibNNhx
+    - icon: fontawesome/brands/github
+      link: https://github.com/groupme-js/GroupMeCommunityDocs
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/5yxWtuuEZg
+
 markdown_extensions:
   - abbr
   - pymdownx.snippets
