@@ -4,6 +4,7 @@ title: Home
 description: Community-led effort to document the reverse-engineered GroupMe API.
 hide:
   - toc
+  - footer
 ---
 
 # Welcome to the OpenGM Project
