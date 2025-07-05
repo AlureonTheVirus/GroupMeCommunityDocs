@@ -9,22 +9,6 @@
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/files/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/images/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/video/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/account/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
@@ -102,6 +86,22 @@
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/subgroups/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/uploads/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/uploads/files/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/uploads/images/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/uploads/video/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
