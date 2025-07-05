@@ -70,7 +70,7 @@ Events related to group membership changes (users joining, leaving, etc.). These
                 string - The nickname of the user who added the new member(s).
 
 
-??? groupme "**`membership.announce.joined`**"
+??? noicon "**`membership.announce.joined`**"
 
     Indicates that a user has joined the group (e.g., via a share link or if the group is open).
 
@@ -107,7 +107,7 @@ Events related to group membership changes (users joining, leaving, etc.). These
                 string - The nickname of the user who joined.
 
 
-??? sprocket "**`membership.announce.rejoined`**"
+??? noicon "**`membership.announce.rejoined`**"
 
     Indicates that a user has rejoined the group.
 
