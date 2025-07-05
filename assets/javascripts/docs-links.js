@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const link = document.createElement("a");
     link.href = url;
-    link.title = "Extra link";
-    link.className = "header-docs-link";
-    link.innerHTML = materialLinkIcon;
+    link.title = "Official GroupMe Documentation";
+    link.className = "headerlink";
+    link.innerHTML = "X";
     link.target = "_blank";
     header.appendChild(link);
   });
