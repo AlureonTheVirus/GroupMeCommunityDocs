@@ -135,30 +135,33 @@ nav:
     - api/index.md
     - Webhook Bots: api/bots.md
     - WebSocket Gateway:
-      - api/ws/websocket.md
+      - api/ws/index.md
       - Message Types: api/ws/messageTypes.md
     - Account Management: 
-      - api/account/self.md
+      - api/account/index.md
       - Contacts: api/account/contacts.md
       - Oauth/MFA: api/account/oauth.md
     - Groups:
-      - api/groups/groups.md
+      - api/groups/index.md
       - Subgroups: api/groups/subgroups.md
       - Members: api/groups/members.md
       - Messages: api/groups/messages.md
       - Polls: api/groups/polls.md
       - Discovery: api/groups/directories.md
     - Direct Messages:
-      - api/dms/dms.md
+      - api/dms/index.md
     - CDN:
+      - api/cdn/index.md
       - Image Uploads: api/cdn/images.md
       - Video Uploads: api/cdn/video.md
       - File Uploads: api/cdn/files.md
     - Common Structures:
+      - api/common/index.md
       - Message Attachments: api/common/attachments.md
       - Emoji Powerups: api/common/emoji.md
       - Message Events: api/common/events.md
     - Misc:
+      - api/misc/index.md
       - Emoji Reactions: api/misc/reactions.md
       - Calandar Events: api/misc/calendar.md
       - Image Galleries: api/misc/gallery.md
