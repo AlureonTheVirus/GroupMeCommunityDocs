@@ -24,7 +24,7 @@ If you have any questions or would like to get in touch, please join the [GroupM
 - :material-message: __[Direct Messages]__ – How to list, read, and send DMs, as well as how to block/unblock users
 - :material-chat-processing: __[Conversation Management]__ – How to make calls allowed in both DMs and Groups, such as creating calendar events, pinning messages, reacting to messages and more
 - :material-code-json: __[Common API Structures]__ – How to leverage common structures used in the API, such as attacments, emojis, and system events
-- :material-image: __[CDN Managment]__ – How to upload Images to GroupMe's CDN
+- :material-image: __[CDN Management]__ – How to upload Images to GroupMe's CDN
 
 </div>
 
