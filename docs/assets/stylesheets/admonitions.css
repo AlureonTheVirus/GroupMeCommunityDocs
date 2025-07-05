@@ -31,8 +31,8 @@
 .md-typeset .groupme > .admonition-title::before,
 .md-typeset .groupme > summary::before {
   background-color: rgb(2, 166, 242);
-  -webkit-mask-image: var(--md-admonition-icon--pied-piper);
-          mask-image: var(--md-admonition-icon--pied-piper);
+  -webkit-mask-image: var(--md-admonition-icon--groupme);
+          mask-image: var(--md-admonition-icon--groupme);
 }
 
 /* Sprocket admonition */
@@ -47,6 +47,6 @@
 .md-typeset .sprocket > .admonition-title::before,
 .md-typeset .sprocket > summary::before {
   background-color: rgb(2, 166, 242);
-  -webkit-mask-image: var(--md-admonition-icon--pied-piper);
-          mask-image: var(--md-admonition-icon--pied-piper);
+  -webkit-mask-image: var(--md-admonition-icon--sprocket);
+          mask-image: var(--md-admonition-icon--sprocket);
 }
