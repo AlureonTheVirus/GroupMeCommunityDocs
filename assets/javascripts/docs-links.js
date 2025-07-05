@@ -129,38 +129,6 @@ function addPermanentLinks() {
 // Run on initial page load
 document.addEventListener("DOMContentLoaded", addPermanentLinks);
 
-// For static sites with client-side navigation:
-
-// 1. Hash changes (for anchor navigation)
-window.addEventListener("hashchange", () => {
-  console.log("Hash changed, processing links...");
-  setTimeout(addPermanentLinks, 100);
-});
-
-// 2. History changes (for pushState/replaceState navigation)
-window.addEventListener("popstate", () => {
-  console.log("Popstate event, processing links...");
-  setTimeout(addPermanentLinks, 100);
-});
-
-// 3. For MkDocs Material theme specifically - listen for their navigation
-// Override pushState and replaceState to detect programmatic navigation
-const originalPushState = history.pushState;
-const originalReplaceState = history.replaceState;
-
-history.pushState = function() {
-  originalPushState.apply(history, arguments);
-  console.log("PushState detected, processing links...");
-  setTimeout(addPermanentLinks, 200);
-};
-
-history.replaceState = function() {
-  originalReplaceState.apply(history, arguments);
-  console.log("ReplaceState detected, processing links...");
-  setTimeout(addPermanentLinks, 200);
-};
-
-// 4. Modern approach: use MutationObserver for DOM changes
 const observer = new MutationObserver(function(mutations) {
   let shouldProcess = false;
   mutations.forEach(function(mutation) {
@@ -183,18 +151,7 @@ const observer = new MutationObserver(function(mutations) {
   }
 });
 
-// Start observing
 observer.observe(document.body, {
   childList: true,
   subtree: true
 });
-
-// 5. Additional fallback: periodically check for new content
-let lastUrl = location.href;
-setInterval(() => {
-  if (location.href !== lastUrl) {
-    console.log("URL change detected, processing links...");
-    lastUrl = location.href;
-    setTimeout(addPermanentLinks, 100);
-  }
-}, 1000);
