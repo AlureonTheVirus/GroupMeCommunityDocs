@@ -9,6 +9,17 @@
   display: none;
 }
 
+.md-typeset .noicon > .admonition-title,
+.md-typeset .noicon > summary {
+  padding-left: 0.8em; /* match body text */
+}
+
+/* Optional: remove border radius if needed */
+.md-typeset .noicon > .admonition-title,
+.md-typeset .noicon > summary {
+  border-radius: 0.2em 0.2em 0 0;
+}
+
 .md-typeset .admonition.noicon,
 .md-typeset details.noicon {
   border-color: rgb(158, 158, 158);
@@ -19,7 +30,8 @@
   background-color: rgba(158, 158, 158, 0.1);
 }
 
-/* GroupMe admonition */
+
+/* groupme admonition */
 .md-typeset .admonition.groupme,
 .md-typeset details.groupme {
   border-color: rgb(2, 166, 242);
@@ -35,7 +47,7 @@
           mask-image: var(--md-admonition-icon--groupme);
 }
 
-/* Sprocket admonition */
+/* sprocket admonition */
 .md-typeset .admonition.sprocket,
 .md-typeset details.sprocket {
   border-color: rgb(2, 166, 242);
