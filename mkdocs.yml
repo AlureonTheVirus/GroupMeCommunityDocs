@@ -41,7 +41,11 @@ theme:
   edit_uri: edit/master/docs
 
   extra_css:
-    - assets/stylesheets/extra.css
+    - assets/stylesheets/admonitions.css
+    - assets/stylesheets/docs-links.css
+
+  extra_javascript:
+    - assets/javascripts/docs-links.js
 
   features:
     - content.action.edit
