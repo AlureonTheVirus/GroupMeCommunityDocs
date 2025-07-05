@@ -150,22 +150,23 @@ nav:
       - Discovery: api/groups/directories.md
     - Direct Messages:
       - api/dms/index.md
-    - CDN:
-      - api/cdn/index.md
-      - Image Uploads: api/cdn/images.md
-      - Video Uploads: api/cdn/video.md
-      - File Uploads: api/cdn/files.md
+    - Conversations:
+      - api/conversations/index.md
+      - Emoji Reactions: api/conversations/reactions.md
+      - Calandar Events: api/conversations/calendar.md
+      - Image Galleries: api/conversations/gallery.md
+      - Pinning Messages: api/conversations/pins.md
     - Common Structures:
       - api/common/index.md
       - Message Attachments: api/common/attachments.md
       - Emoji Powerups: api/common/emoji.md
       - Message Events: api/common/events.md
-    - Misc:
-      - api/misc/index.md
-      - Emoji Reactions: api/misc/reactions.md
-      - Calandar Events: api/misc/calendar.md
-      - Image Galleries: api/misc/gallery.md
-      - Pinning Messages: api/misc/pins.md
+    - CDN Management:
+      - api/cdn/index.md
+      - Image Uploads: api/cdn/images.md
+      - Video Uploads: api/cdn/video.md
+      - File Uploads: api/cdn/files.md
+
   - Examples:
     - examples/index.md
     - DinoBot: examples/dinobot.md
