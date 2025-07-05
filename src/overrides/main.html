@@ -4,8 +4,13 @@
 
 {% block extrahead %}
   {{ super() }}
-  <!-- main.html | Added "navigation.instant" support -->
-  <link rel="canonical" href=".">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/docs-links.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/admonitions.css' | url }}">
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ 'assets/javascripts/docs-links.js' | url }}"></script>
 {% endblock %}
 
 <!-- Announcement bar -->
