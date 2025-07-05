@@ -57,6 +57,26 @@
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/conversations/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/conversations/calendar/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/conversations/gallery/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/conversations/pins/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/conversations/reactions/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/dms/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
@@ -82,26 +102,6 @@
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/subgroups/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/calendar/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/gallery/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/pins/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/reactions/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
