@@ -48,6 +48,7 @@ Lastly, while GroupMe does offer API endpoints for creating, destroying, and ind
 ***
 
 ## Create
+<!-- official-doc: https://dev.groupme.com/docs/v3#bots_create -->
 
 Create a bot. The response will include your bot_id - do NOT publish or let anyone else see this! Anyone with this will be able to send messages using your bot!
 
@@ -101,6 +102,7 @@ Status: 201 Created
 ***
 
 ## Send Message
+<!-- official-doc: https://dev.groupme.com/docs/v3#bots_post -->
 
 Post a message from a bot
 
@@ -141,6 +143,7 @@ Status: 201 Created
 ***
 
 ## Index
+<!-- official-doc: https://dev.groupme.com/docs/v3#bots_index -->
 
 List bots that you have created. The response will include multiple `bot_id`s - do NOT publish these or let anyone else see these! Anyone with this will be able to send messages using your bot!
 
@@ -165,6 +168,7 @@ Status: 200 OK
 ***
 
 ## Destroy
+<!-- official-doc: https://dev.groupme.com/docs/v3#bots_destroy -->
 
 Remove a bot that you have created
 

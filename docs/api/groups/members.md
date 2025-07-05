@@ -142,6 +142,8 @@ Status: 202 Accepted
 ***
 
 ## Fetch "Add" Results
+<!-- official-doc: https://dev.groupme.com/docs/v3#members_results -->
+
 Get the membership results from an add call.
 
 Successfully created memberships will be returned, including any GUIDs that were sent up in the add request. If GUIDs were absent, they are filled in automatically. Failed memberships and invites are omitted.
@@ -197,6 +199,7 @@ Results are no longer available. Don't try again.
 ***
 
 ## Remove Member
+<!-- official-doc: https://dev.groupme.com/docs/v3#members_remove -->
 
 Remove a member (or yourself) from a group.
 
@@ -337,6 +340,7 @@ Status: 200 OK
 ***
 
 ## Change nickname
+<!-- official-doc: https://dev.groupme.com/docs/v3#members_update -->
 
 Update your nickname in a group. The nickname must be between 1 and 50 characters.
 

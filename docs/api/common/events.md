@@ -21,201 +21,207 @@ This document lists the different `event.type` values observed, along with the s
 
 Events related to group membership changes (users joining, leaving, etc.). These apply to main groups.
 
-??? noicon "**`membership.announce.added`**"
+### **`membership.announce.added`**
 
-    Indicates that one or more users have been added to the group by an existing member.
+Indicates that one or more users have been added to the group by an existing member.
 
-    ```json linenums="1" title="Object Structure"
-    {
-      "type": "membership.announce.added",
-      "data": {
-        "added_users": [
-          {
-            "id": 131245991,
-            "nickname": "Sprocket"
-          }
-        ],
-        "adder_user": {
-          "id": 93645911,
-          "nickname": "bill"
-        }
+```json linenums="1" title="Object Structure"
+{
+  "type": "membership.announce.added",
+  "data": {
+    "added_users": [
+      {
+        "id": 131245991,
+        "nickname": "Sprocket"
       }
+    ],
+    "adder_user": {
+      "id": 93645911,
+      "nickname": "bill"
     }
-    ```
+  }
+}
+```
 
-    *   *type*
+*   *type*
 
-        string - Must be `membership.announce.added`.
+    string - Must be `membership.announce.added`.
 
-    *   *data* (object) - Contains details of the added members.
+*   *data* (object) - Contains details of the added members.
 
-        *   *added_users* (array of objects) - A list of users who were added. Each object contains:
+    *   *added_users* (array of objects) - A list of users who were added. Each object contains:
 
-            *   *id*
+        *   *id*
 
-                number - The ID of the added user (e.g., `131245991`). (See warning about User ID types).
+            number - The ID of the added user (e.g., `131245991`). (See warning about User ID types).
 
-            *   *nickname*
+        *   *nickname*
 
-                string - The nickname of the added user.
+            string - The nickname of the added user.
 
-        *   *adder_user* (object) - Information about the user who added the new member(s).
+    *   *adder_user* (object) - Information about the user who added the new member(s).
 
-            *   *id*
+        *   *id*
 
-                number - The ID of the user who added the new member(s).
+            number - The ID of the user who added the new member(s).
 
-            *   *nickname*
+        *   *nickname*
 
-                string - The nickname of the user who added the new member(s).
+            string - The nickname of the user who added the new member(s).
 
+***
 
-??? noicon "**`membership.announce.joined`**"
+### **`membership.announce.joined`**
 
-    Indicates that a user has joined the group (e.g., via a share link or if the group is open).
+Indicates that a user has joined the group (e.g., via a share link or if the group is open).
 
-    !!! note
+!!! note
 
-        This event typically fires in groups that either have "Request to Join" enabled or in smaller groups (generally with fewer than ~200 members). In very large, open groups, individual join events might not always be generated.
+    This event typically fires in groups that either have "Request to Join" enabled or in smaller groups (generally with fewer than ~200 members). In very large, open groups, individual join events might not always be generated.
 
-    ```json linenums="1" title="Object Structure"
-    {
-      "type": "membership.announce.joined",
-      "data": {
-        "user": {
-          "id": 131245991,
-          "nickname": "Sprocket"
-        }
-      }
+```json linenums="1" title="Object Structure"
+{
+  "type": "membership.announce.joined",
+  "data": {
+    "user": {
+      "id": 131245991,
+      "nickname": "Sprocket"
     }
-    ```
+  }
+}
+```
 
-    *   *type*
+*   *type*
 
-        string - Must be `membership.announce.joined`.
+    string - Must be `membership.announce.joined`.
 
-    *   *data* (object) - Contains details of the user who joined.
+*   *data* (object) - Contains details of the user who joined.
 
-        *   *user* (object) - Information about the user who joined.
+    *   *user* (object) - Information about the user who joined.
 
-            *   *id*
+        *   *id*
 
-                number - The ID of the user who joined (e.g., `131245991`). (See warning about User ID types).
+            number - The ID of the user who joined (e.g., `131245991`). (See warning about User ID types).
 
-            *   *nickname*
+        *   *nickname*
 
-                string - The nickname of the user who joined.
+            string - The nickname of the user who joined.
 
+***
 
-??? noicon "**`membership.announce.rejoined`**"
+### **`membership.announce.rejoined`**
 
-    Indicates that a user has rejoined the group.
+Indicates that a user has rejoined the group.
 
-    ```json linenums="1" title="Object Structure"
-    {
-      "type": "membership.announce.rejoined",
-      "data": {
-        "user": {
-          "id": 131245991,
-          "nickname": "Sprocket"
-        }
-      }
+```json linenums="1" title="Object Structure"
+{
+  "type": "membership.announce.rejoined",
+  "data": {
+    "user": {
+      "id": 131245991,
+      "nickname": "Sprocket"
     }
-    ```
+  }
+}
+```
 
-    *   *type*
+*   *type*
 
-        string - Must be `membership.announce.rejoined`.
+    string - Must be `membership.announce.rejoined`.
 
-    *   *data* (object) - Contains details of the user who rejoined.
+*   *data* (object) - Contains details of the user who rejoined.
 
-        *   *user* (object) - Information about the user who rejoined.
+    *   *user* (object) - Information about the user who rejoined.
 
-            *   *id*
+        *   *id*
 
-                number - The ID of the user who rejoined (e.g., `131245991`). (See warning about User ID types).
+            number - The ID of the user who rejoined (e.g., `131245991`). (See warning about User ID types).
 
-            *   *nickname*
+        *   *nickname*
 
-                string - The nickname of the user who rejoined.
+            string - The nickname of the user who rejoined.
 
-??? noicon "**`membership.notifications.exited`**"
+***
 
-    Indicates that a user has left the group themselves.
+### **`membership.notifications.exited`**
 
-    ```json linenums="1" title="Object Structure"
-    {
-      "type": "membership.notifications.exited",
-      "data": {
-        "removed_user": {
-          "id": 131245991,
-          "nickname": "Sprocket"
-        }
-      }
+Indicates that a user has left the group themselves.
+
+```json linenums="1" title="Object Structure"
+{
+  "type": "membership.notifications.exited",
+  "data": {
+    "removed_user": {
+      "id": 131245991,
+      "nickname": "Sprocket"
     }
-    ```
+  }
+}
+```
 
-    *   *type*
+*   *type*
 
-        string - Must be `membership.notifications.exited`.
+    string - Must be `membership.notifications.exited`.
 
-    *   *data* (object) - Contains details of the user who exited.
+*   *data* (object) - Contains details of the user who exited.
 
-        *   *removed_user* (object) - Information about the user who exited the group.
+    *   *removed_user* (object) - Information about the user who exited the group.
 
-            *   *id*
+        *   *id*
 
-                number - The ID of the user who exited (e.g., `131245991`). (See warning about User ID types).
+            number - The ID of the user who exited (e.g., `131245991`). (See warning about User ID types).
 
-            *   *nickname*
+        *   *nickname*
 
-                string - The nickname of the user who exited.
+            string - The nickname of the user who exited.
 
-??? noicon "**`membership.notifications.removed`**"
+***
 
-    Indicates that a user has been removed from the group by another member.
+### **`membership.notifications.removed`**
 
-    ```json linenums="1" title="Object Structure"
-    {
-      "type": "membership.notifications.removed",
-      "data": {
-        "remover_user": {
-          "id": 93645911,
-          "nickname": "bill"
-        },
-        "removed_user": {
-          "id": 131245991,
-          "nickname": "Sprocket"
-        }
-      }
+Indicates that a user has been removed from the group by another member.
+
+```json linenums="1" title="Object Structure"
+{
+  "type": "membership.notifications.removed",
+  "data": {
+    "remover_user": {
+      "id": 93645911,
+      "nickname": "bill"
+    },
+    "removed_user": {
+      "id": 131245991,
+      "nickname": "Sprocket"
     }
-    ```
+  }
+}
+```
 
-    *   *type*
+*   *type*
 
-        string - Must be `membership.notifications.removed`.
+    string - Must be `membership.notifications.removed`.
 
-    *   *data* (object) - Contains details of the removed member.
+*   *data* (object) - Contains details of the removed member.
 
-        *   *remover_user* (object) - Information about the user who performed the removal.
+    *   *remover_user* (object) - Information about the user who performed the removal.
 
-            *   *id*
+        *   *id*
 
-                number - The ID of the user who performed the removal.
+            number - The ID of the user who performed the removal.
 
-            *   *nickname*
+        *   *nickname*
 
-                string - The nickname of the user who performed the removal.
+            string - The nickname of the user who performed the removal.
 
-        *   *removed_user* (object) - Information about the user who was removed.
+    *   *removed_user* (object) - Information about the user who was removed.
 
-            *   *id*
+        *   *id*
 
-                number - The ID of the user who was removed (e.g., `131245991`). (See warning about User ID types).
+            number - The ID of the user who was removed (e.g., `131245991`). (See warning about User ID types).
 
-            *   *nickname*
+        *   *nickname*
 
-                string - The nickname of the user who was removed.
+            string - The nickname of the user who was removed.
 
 ***
 

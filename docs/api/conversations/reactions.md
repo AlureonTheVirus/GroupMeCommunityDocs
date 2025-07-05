@@ -30,6 +30,7 @@ If the request succeeds, `meta.errors` will be null, and if the request fails, `
 ***
 
 ## Like
+<!-- official-doc: https://dev.groupme.com/docs/v3#likes_create -->
 
 Like a message. 
 
@@ -96,6 +97,8 @@ Status: 200 OK
 ***
 
 ## Unlike
+<!-- official-doc: https://dev.groupme.com/docs/v3#likes_destroy -->
+
 Unlike / remove your reactions from a message.
 
 ```json linenums="1" title="HTTP Request"

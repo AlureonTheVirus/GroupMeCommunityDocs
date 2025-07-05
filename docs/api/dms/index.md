@@ -30,6 +30,8 @@ If the request succeeds, `meta.errors` will be null, and if the request fails, `
 ***
 
 ## List Existing DM Channels
+<!-- official-doc: https://dev.groupme.com/docs/v3#chats_index -->
+
 Returns a paginated list of direct message chats, or conversations, sorted by updated_at descending.
 
 ```json linenums="1" title="HTTP Request"

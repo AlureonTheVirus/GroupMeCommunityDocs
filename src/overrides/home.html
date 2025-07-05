@@ -3,46 +3,30 @@
 {% block announce %}{% endblock %}
 
 {% block tabs %}
-  <!-- Render the regular navigation tabs -->
   {{ super() }}
 
   <style>
-    /* ------------------------------------------------------------------ */
-    /*  1. General Layout Tweaks                                        */
-    /* ------------------------------------------------------------------ */
     .md-sidebar--secondary { display: none; }
     @media screen and (min-width: 76.25em) {
       .md-sidebar--primary { display: none; }
     }
 
-    /* ------------------------------------------------------------------ */
-    /*  2. Hero Section Container                                       */
-    /* ------------------------------------------------------------------ */
     .tx-container {
       background: linear-gradient(to bottom, var(--md-primary-fg-color), {{ config.home_gradient_hsla }});
       padding: 2rem 0;
     }
 
-    /* ------------------------------------------------------------------ */
-    /*  3. Hero Content & Layout (Mobile-First)                         */
-    /* ------------------------------------------------------------------ */
     .tx-hero { margin: 0; color: var(--md-primary-bg-color); text-align: center; }
     .tx-hero__image { width: 14rem; height: 14rem; margin: 0 auto 1.5rem; }
     .tx-hero__image img { width: 100%; height: 100%; object-fit: contain; }
     .tx-hero h1 { margin-bottom: 1rem; color: currentColor; font-weight: 700; font-size: 2.4rem; }
     .tx-hero p { font-size: 1.1rem; max-width: 35rem; margin-left: auto; margin-right: auto; }
 
-    /* ------------------------------------------------------------------ */
-    /*  4. REFINED BUTTON STYLES                                        */
-    /* ------------------------------------------------------------------ */
     .tx-hero .md-button { margin-top: 0.8rem; margin-right: 0.8rem; border-width: 2px; }
     .tx-hero .md-button:not(.md-button--primary) { background-color: transparent; border-color: var(--md-primary-bg-color); color: var(--md-primary-bg-color) !important; }
     .tx-hero .md-button--primary { background-color: var(--md-primary-bg-color); border-color: var(--md-primary-bg-color); color: #212121 !important; }
     .tx-hero .md-button:hover { background-color: var(--md-primary-fg-color); border-color: var(--md-primary-fg-color); color: var(--md-primary-bg-color) !important; }
     
-    /* ------------------------------------------------------------------ */
-    /*  5. Desktop Layout with Auto Margin                              */
-    /* ------------------------------------------------------------------ */
     @media screen and (min-width: 60em) {
       .tx-hero {
         display: flex;
@@ -50,22 +34,15 @@
         text-align: left;
       }
       .tx-hero__content {
-        /* This element stays aligned to the left by default */
         max-width: 32rem;
       }
       .tx-hero p, .tx-hero h1 { margin-left: 0; margin-right: 0; }
       
       .tx-hero__image {
-        /* THE MAGIC: `margin-left: auto` consumes all available space
-           to its left, pushing the logo to the far right. */
         margin-left: auto;
-
-        /* Reset mobile margins */
         margin-top: 0;
         margin-bottom: 0;
         margin-right: 0;
-
-        /* Ensure the image doesn't shrink if space gets tight */
         flex-shrink: 0;
         width: 17rem;
         height: 17rem;

@@ -30,6 +30,7 @@ If the request succeeds, `meta.errors` will be null, and if the request fails, `
 ***
 
 ## Index
+<!-- official-doc: https://dev.groupme.com/docs/v3#groups_index -->
 
 List the authenticated user's active groups.
 
@@ -112,6 +113,7 @@ Status: 200 OK
 ***
 
 ## Former
+<!-- official-doc: https://dev.groupme.com/docs/v3#groups_index_former -->
 
 List the groups you have left but can rejoin.
 
@@ -216,9 +218,9 @@ Status: 200 OK
 ***
 
 ## Show
+<!-- official-doc: https://dev.groupme.com/docs/v3#groups_show -->
 
 Load a specific group.
-
 
 ```json linenums="1" title="HTTP Request"
 GET /groups/:group_id

@@ -90,6 +90,7 @@ Status: 200 OK
 ***
 
 ## Index Blocks
+<!-- official-doc: https://dev.groupme.com/docs/v3#blocks_index -->
 
 A list of contacts you have blocked. These people cannot DM you or add you to groups.
 
@@ -119,6 +120,7 @@ Status: 200 OK
 ***
 
 ## Block Between?
+<!-- official-doc: https://dev.groupme.com/docs/v3#blocks_between -->
 
 Asks if a block exists between you and another user id
 
@@ -146,6 +148,7 @@ Status: 200 OK
 ***
 
 ## Block
+<!-- official-doc: https://dev.groupme.com/docs/v3#blocks_create -->
 
 Creates a block between you and the contact
 
@@ -177,6 +180,7 @@ Status: 201 Created
 ***
 
 ## Unblock
+<!-- official-doc: https://dev.groupme.com/docs/v3#blocks_delete -->
 
 Removes block between you and other user
 
@@ -201,6 +205,8 @@ Status: 200 OK
 ***
 
 ## Unblock (Alternative method)
+<!-- official-doc: https://dev.groupme.com/docs/v3#blocks_post_delete -->
+
 Removes block between you and other user
 
 ```json linenums="1" title="HTTP Request"
@@ -415,8 +421,9 @@ Status: 200 OK
 
 Delete a relationship from your contact book
 
-> [!important]
-> This request is relative to `https://api.groupme.com/v4/`, not `https://api.groupme.com/v3/`.
+!!! important
+
+    This request is relative to `https://api.groupme.com/v4/`, not `https://api.groupme.com/v3/`.
 
 ```json linenums="1" title="HTTP Request"
 DELETE https://api.groupme.com/v4/relationships/:user_id

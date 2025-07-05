@@ -94,6 +94,7 @@ Status: 200 OK
 ***
 
 ## Update Details
+<!-- official-doc: https://dev.groupme.com/docs/v3#users_update -->
 
 Update attributes about your own account
 

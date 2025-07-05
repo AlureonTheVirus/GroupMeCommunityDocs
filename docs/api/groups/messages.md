@@ -30,6 +30,8 @@ If the request succeeds, `meta.errors` will be null, and if the request fails, `
 ***
 
 ## Index
+<!-- official-doc: https://dev.groupme.com/docs/v3#messages_index -->
+
 Retrieve messages for a group.
 
 By default, messages are returned in groups of 20, ordered by created_at descending. This can be raised or lowered by passing a limit parameter, up to a maximum of 100 messages.
@@ -162,6 +164,7 @@ Status: 200 OK
 ```
 
 ## Send Message
+<!-- official-doc: https://dev.groupme.com/docs/v3#messages_create -->
 
 Send a message to a group
 
