@@ -11,24 +11,16 @@ home_cover_image: assets/sprocket.svg
 home_tagline: GroupMe Community Docs
 home_description: Community GroupMe API documentation for all.
 
-home_gradient_hsla: hsla(160deg,47%,55%,1) # Default Green: hsla(160deg,47%,55%,1)
+home_gradient_hsla: hsla(160deg,47%,55%,1)
 
 home_button1_name: API Reference
 home_button1_url: api/
-home_button1_theme: md-button md-button--primary
-home_button1_blurb: This joker navigates to the shadow wizard armory located in "/Folder1/index.md"                     
+home_button1_theme: md-button md-button--primary                   
   
 home_button2_name: Example Projects
 home_button2_url: examples/
 home_button2_theme: md-button
-home_button2_blurb: This goober navigates to some important thingies located in "/Folder2/index.md"
 
-# Homepage Code Execution
-home_execute_js: | # Javascript to execute when accessing the homepage
-  console.log("This is an example!");
-
-
-# Material Theme Configuration
 theme:
   name: material
 
@@ -163,10 +155,10 @@ nav:
       - Emoji Powerups: api/common/emoji.md
       - Message Events: api/common/events.md
     - CDN Management:
-      - api/cdn/index.md
-      - Image Uploads: api/cdn/images.md
-      - Video Uploads: api/cdn/video.md
-      - File Uploads: api/cdn/files.md
+      - api/uploads/index.md
+      - Image Uploads: api/uploads/images.md
+      - Video Uploads: api/uploads/video.md
+      - File Uploads: api/uploads/files.md
   - Examples:
     - examples/index.md
     - DinoBot: examples/dinobot.md
