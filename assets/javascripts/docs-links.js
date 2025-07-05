@@ -1,4 +1,24 @@
-const materialLinkIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>';
+// Get the Material Design Icons link icon by checking if it's already loaded on the page
+// or creating it with the correct SVG content
+function getMaterialLinkIcon() {
+  // First, try to find an existing twemoji icon to copy styling
+  const existingTwemoji = document.querySelector('.twemoji svg');
+  if (existingTwemoji) {
+    const iconClone = existingTwemoji.cloneNode(true);
+    // Replace the path with the link icon path
+    const path = iconClone.querySelector('path');
+    if (path) {
+      path.setAttribute('d', 'M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5');
+      path.setAttribute('fill', 'currentColor');
+    }
+    return iconClone.outerHTML;
+  }
+  
+  // Fallback: create with Material for MkDocs twemoji styling
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="twemoji" style="width: 1.125em; height: 1.125em; vertical-align: top; margin-left: 0.25em;"><path fill="currentColor" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>`;
+}
+
+const materialLinkIcon = getMaterialLinkIcon();
 
 function addPermanentLinks() {
   console.log("Adding permanent links to headers...");
@@ -79,7 +99,13 @@ function addPermanentLinks() {
         link.className = "headerlink";
         link.target = "_blank";
         link.rel = "noopener";
-        link.innerHTML = materialLinkIcon;
+        
+        // Wrap the icon in a span like MkDocs does
+        const iconSpan = document.createElement("span");
+        iconSpan.className = "twemoji";
+        iconSpan.innerHTML = getMaterialLinkIcon();
+        
+        link.appendChild(iconSpan);
         
         foundHeader.appendChild(link);
         console.log("Added permanent link to header:", foundHeader.textContent.trim(), "->", url);
@@ -103,20 +129,36 @@ function addPermanentLinks() {
 // Run on initial page load
 document.addEventListener("DOMContentLoaded", addPermanentLinks);
 
-// For static sites with client-side navigation, also run when:
+// For static sites with client-side navigation:
+
 // 1. Hash changes (for anchor navigation)
-window.addEventListener("hashchange", addPermanentLinks);
+window.addEventListener("hashchange", () => {
+  console.log("Hash changed, processing links...");
+  setTimeout(addPermanentLinks, 100);
+});
 
 // 2. History changes (for pushState/replaceState navigation)
-window.addEventListener("popstate", addPermanentLinks);
-
-// 3. For MkDocs Material theme specifically (if that's what you're using)
-// Listen for their custom events
-document.addEventListener("DOMSubtreeModified", function(e) {
-  // Debounce to avoid excessive calls
-  clearTimeout(window.linkProcessingTimeout);
-  window.linkProcessingTimeout = setTimeout(addPermanentLinks, 100);
+window.addEventListener("popstate", () => {
+  console.log("Popstate event, processing links...");
+  setTimeout(addPermanentLinks, 100);
 });
+
+// 3. For MkDocs Material theme specifically - listen for their navigation
+// Override pushState and replaceState to detect programmatic navigation
+const originalPushState = history.pushState;
+const originalReplaceState = history.replaceState;
+
+history.pushState = function() {
+  originalPushState.apply(history, arguments);
+  console.log("PushState detected, processing links...");
+  setTimeout(addPermanentLinks, 200);
+};
+
+history.replaceState = function() {
+  originalReplaceState.apply(history, arguments);
+  console.log("ReplaceState detected, processing links...");
+  setTimeout(addPermanentLinks, 200);
+};
 
 // 4. Modern approach: use MutationObserver for DOM changes
 const observer = new MutationObserver(function(mutations) {
@@ -135,6 +177,7 @@ const observer = new MutationObserver(function(mutations) {
   });
   
   if (shouldProcess) {
+    console.log("DOM mutation detected, processing links...");
     clearTimeout(window.linkProcessingTimeout);
     window.linkProcessingTimeout = setTimeout(addPermanentLinks, 100);
   }
@@ -145,3 +188,13 @@ observer.observe(document.body, {
   childList: true,
   subtree: true
 });
+
+// 5. Additional fallback: periodically check for new content
+let lastUrl = location.href;
+setInterval(() => {
+  if (location.href !== lastUrl) {
+    console.log("URL change detected, processing links...");
+    lastUrl = location.href;
+    setTimeout(addPermanentLinks, 100);
+  }
+}, 1000);
