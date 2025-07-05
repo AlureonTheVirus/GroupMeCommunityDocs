@@ -167,9 +167,8 @@ nav:
       - Image Uploads: api/cdn/images.md
       - Video Uploads: api/cdn/video.md
       - File Uploads: api/cdn/files.md
-
   - Examples:
     - examples/index.md
     - DinoBot: examples/dinobot.md
-
-  - Contributing: contributing/index.md
+  - Contributing: 
+    - contributing/index.md
