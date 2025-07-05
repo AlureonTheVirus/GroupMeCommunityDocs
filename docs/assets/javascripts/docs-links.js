@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         link.innerHTML = materialLinkIcon;
         
         header.appendChild(link);
+        console.log("Added permanent link to header:", header.textContent.trim(), "->", url);
         break;
       }
       nextNode = nextNode.nextSibling;
