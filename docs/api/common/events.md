@@ -11,9 +11,9 @@ This document lists the different `event.type` values observed, along with the s
 
 !!! warning "API Inconsistency: User ID Data Types"
 
-  Developers should be aware that within the `event.data` objects detailed below, user IDs (such as `user.id`, `member.id`, `pinned_by`, etc.) are sometimes represented as **numbers** and other times as **strings**. This is inconsistent with the general GroupMe API practice where user IDs are typically strings. These types may be patched at any time. 
+    Developers should be aware that within the `event.data` objects detailed below, user IDs (such as `user.id`, `member.id`, `pinned_by`, etc.) are sometimes represented as **numbers** and other times as **strings**. This is inconsistent with the general GroupMe API practice where user IDs are typically strings. These types may be patched at any time. 
   
-  **This highlights the critical need to handle both types robustly in your code.**
+    **This highlights the critical need to handle both types robustly in your code.**
 
 ***
 
@@ -21,55 +21,54 @@ This document lists the different `event.type` values observed, along with the s
 
 Events related to group membership changes (users joining, leaving, etc.). These apply to main groups.
 
-### **`membership.announce.added`**
+??? noicon "**`membership.announce.added`**"
 
-Indicates that one or more users have been added to the group by an existing member.
+    Indicates that one or more users have been added to the group by an existing member.
 
-```json linenums="1" title="Object Structure"
-{
-  "type": "membership.announce.added",
-  "data": {
-    "added_users": [
-      {
-        "id": 131245991,
-        "nickname": "Sprocket"
+    ```json linenums="1" title="Object Structure"
+    {
+      "type": "membership.announce.added",
+      "data": {
+        "added_users": [
+          {
+            "id": 131245991,
+            "nickname": "Sprocket"
+          }
+        ],
+        "adder_user": {
+          "id": 93645911,
+          "nickname": "bill"
+        }
       }
-    ],
-    "adder_user": {
-      "id": 93645911,
-      "nickname": "bill"
     }
-  }
-}
-```
+    ```
 
-*   *type*
+    *   *type*
 
-    string - Must be `membership.announce.added`.
+        string - Must be `membership.announce.added`.
 
-*   *data* (object) - Contains details of the added members.
+    *   *data* (object) - Contains details of the added members.
 
-    *   *added_users* (array of objects) - A list of users who were added. Each object contains:
+        *   *added_users* (array of objects) - A list of users who were added. Each object contains:
 
-        *   *id*
+            *   *id*
 
-            number - The ID of the added user (e.g., `131245991`). (See warning about User ID types).
+                number - The ID of the added user (e.g., `131245991`). (See warning about User ID types).
 
-        *   *nickname*
+            *   *nickname*
 
-            string - The nickname of the added user.
+                string - The nickname of the added user.
 
-    *   *adder_user* (object) - Information about the user who added the new member(s).
+        *   *adder_user* (object) - Information about the user who added the new member(s).
 
-        *   *id*
+            *   *id*
 
-            number - The ID of the user who added the new member(s).
+                number - The ID of the user who added the new member(s).
 
-        *   *nickname*
+            *   *nickname*
 
-            string - The nickname of the user who added the new member(s).
+                string - The nickname of the user who added the new member(s).
 
-***
 
 ### **`membership.announce.joined`**
 
@@ -77,7 +76,7 @@ Indicates that a user has joined the group (e.g., via a share link or if the gro
 
 !!! note
 
-  This event typically fires in groups that either have "Request to Join" enabled or in smaller groups (generally with fewer than ~200 members). In very large, open groups, individual join events might not always be generated.
+    This event typically fires in groups that either have "Request to Join" enabled or in smaller groups (generally with fewer than ~200 members). In very large, open groups, individual join events might not always be generated.
 
 ```json linenums="1" title="Object Structure"
 {
