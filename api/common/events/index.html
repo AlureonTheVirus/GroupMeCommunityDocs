@@ -1469,48 +1469,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Membership Events">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#membershipannouncejoined" class="md-nav__link">
-    <span class="md-ellipsis">
-      membership.announce.joined
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#membershipannouncerejoined" class="md-nav__link">
-    <span class="md-ellipsis">
-      membership.announce.rejoined
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#membershipnotificationsexited" class="md-nav__link">
-    <span class="md-ellipsis">
-      membership.notifications.exited
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#membershipnotificationsremoved" class="md-nav__link">
-    <span class="md-ellipsis">
-      membership.notifications.removed
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -2356,48 +2314,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Membership Events">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#membershipannouncejoined" class="md-nav__link">
-    <span class="md-ellipsis">
-      membership.announce.joined
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#membershipannouncerejoined" class="md-nav__link">
-    <span class="md-ellipsis">
-      membership.announce.rejoined
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#membershipnotificationsexited" class="md-nav__link">
-    <span class="md-ellipsis">
-      membership.notifications.exited
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#membershipnotificationsremoved" class="md-nav__link">
-    <span class="md-ellipsis">
-      membership.notifications.removed
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -2994,7 +2910,8 @@
 </li>
 </ul>
 </details>
-<h3 id="membershipannouncejoined"><strong><code>membership.announce.joined</code></strong><a class="headerlink" href="#membershipannouncejoined" title="Permanent link">&para;</a></h3>
+<details class="noicon">
+<summary><strong><code>membership.announce.joined</code></strong></summary>
 <p>Indicates that a user has joined the group (e.g., via a share link or if the group is open).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3042,8 +2959,9 @@
 </ul>
 </li>
 </ul>
-<hr />
-<h3 id="membershipannouncerejoined"><strong><code>membership.announce.rejoined</code></strong><a class="headerlink" href="#membershipannouncerejoined" title="Permanent link">&para;</a></h3>
+</details>
+<details class="noicon">
+<summary><strong><code>membership.announce.rejoined</code></strong></summary>
 <p>Indicates that a user has rejoined the group.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Object Structure</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">2</a></span>
@@ -3087,8 +3005,9 @@
 </ul>
 </li>
 </ul>
-<hr />
-<h3 id="membershipnotificationsexited"><strong><code>membership.notifications.exited</code></strong><a class="headerlink" href="#membershipnotificationsexited" title="Permanent link">&para;</a></h3>
+</details>
+<details class="noicon">
+<summary><strong><code>membership.notifications.exited</code></strong></summary>
 <p>Indicates that a user has left the group themselves.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Object Structure</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">2</a></span>
@@ -3132,8 +3051,9 @@
 </ul>
 </li>
 </ul>
-<hr />
-<h3 id="membershipnotificationsremoved"><strong><code>membership.notifications.removed</code></strong><a class="headerlink" href="#membershipnotificationsremoved" title="Permanent link">&para;</a></h3>
+</details>
+<details class="noicon">
+<summary><strong><code>membership.notifications.removed</code></strong></summary>
 <p>Indicates that a user has been removed from the group by another member.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Object Structure</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
@@ -3198,6 +3118,7 @@
 </ul>
 </li>
 </ul>
+</details>
 <hr />
 <h2 id="group-management-events">Group Management Events<a class="headerlink" href="#group-management-events" title="Permanent link">&para;</a></h2>
 <p>Events related to changes in main group settings and properties.</p>
@@ -5576,7 +5497,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 5, 2025 18:03:19 UTC">July 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 5, 2025 18:24:28 UTC">July 5, 2025</span>
   </span>
 
     
