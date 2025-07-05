@@ -141,6 +141,7 @@ nav:
       - Messages: api/groups/messages.md
       - Polls: api/groups/polls.md
       - Discovery: api/groups/directories.md
+      - Campus Directories: api/groups/campus.md
     - Direct Messages:
       - api/dms/index.md
     - Conversations:
