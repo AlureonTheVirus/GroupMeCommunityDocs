@@ -1,19 +1,77 @@
 const materialLinkIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>';
 
-document.addEventListener("DOMContentLoaded", () => {
-
+function addPermanentLinks() {
   console.log("Adding permanent links to headers...");
-  const headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
   
-  headers.forEach(header => {
-    let nextNode = header.nextSibling;
-    while (nextNode) {
-      if (nextNode.nodeType === Node.COMMENT_NODE && nextNode.nodeValue.trim().startsWith("official-doc:")) {
-        console.log("found official-doc comment in header:", header.textContent.trim());
-        const url = nextNode.nodeValue.trim().replace("official-doc:", "").trim();
+  // Find all comments first, then work backwards to find their associated headers
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_COMMENT,
+    null,
+    false
+  );
+  
+  let comment;
+  const processedComments = new Set(); // Avoid processing the same comment twice
+  
+  while (comment = walker.nextNode()) {
+    if (comment.nodeValue.trim().startsWith("official-doc:") && !processedComments.has(comment)) {
+      processedComments.add(comment);
+      
+      const url = comment.nodeValue.trim().replace("official-doc:", "").trim();
+      console.log("Found official-doc comment with URL:", url);
+      
+      // Find the closest preceding header
+      let currentNode = comment.previousSibling;
+      let foundHeader = null;
+      
+      // Go backwards through siblings first
+      while (currentNode && !foundHeader) {
+        if (currentNode.nodeType === Node.ELEMENT_NODE && 
+            /^H[1-6]$/.test(currentNode.tagName)) {
+          foundHeader = currentNode;
+          break;
+        }
+        currentNode = currentNode.previousSibling;
+      }
+      
+      // If not found in siblings, check parent's previous siblings
+      if (!foundHeader) {
+        let parentNode = comment.parentNode;
+        while (parentNode && parentNode !== document.body) {
+          currentNode = parentNode.previousSibling;
+          while (currentNode && !foundHeader) {
+            if (currentNode.nodeType === Node.ELEMENT_NODE) {
+              // Check if this node is a header
+              if (/^H[1-6]$/.test(currentNode.tagName)) {
+                foundHeader = currentNode;
+                break;
+              }
+              // Check if this node contains headers
+              const headerInNode = currentNode.querySelector('h1, h2, h3, h4, h5, h6');
+              if (headerInNode) {
+                // Get the last header in this node
+                const headers = currentNode.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                foundHeader = headers[headers.length - 1];
+                break;
+              }
+            }
+            currentNode = currentNode.previousSibling;
+          }
+          if (foundHeader) break;
+          parentNode = parentNode.parentNode;
+        }
+      }
+      
+      if (foundHeader) {
+        console.log("Associating comment with header:", foundHeader.textContent.trim());
         
-        const existingLinks = Array.from(header.querySelectorAll('a.headerlink'));
-        if (existingLinks.some(link => link.href === url)) break;
+        // Check if this specific URL already exists in the header
+        const existingLinks = Array.from(foundHeader.querySelectorAll('a.headerlink'));
+        if (existingLinks.some(link => link.href === url)) {
+          console.log("Link already exists, skipping");
+          continue;
+        }
         
         const link = document.createElement("a");
         link.href = url;
@@ -23,12 +81,67 @@ document.addEventListener("DOMContentLoaded", () => {
         link.rel = "noopener";
         link.innerHTML = materialLinkIcon;
         
-        header.appendChild(link);
-        console.log("Added permanent link to header:", header.textContent.trim(), "->", url);
-        break;
+        foundHeader.appendChild(link);
+        console.log("Added permanent link to header:", foundHeader.textContent.trim(), "->", url);
+        
+        // Verify the link was actually added
+        const verification = foundHeader.querySelector('a.headerlink[href="' + url + '"]');
+        if (verification) {
+          console.log("✓ Link successfully added and verified");
+        } else {
+          console.log("✗ Link creation failed - not found in DOM");
+        }
+      } else {
+        console.log("No header found for comment with URL:", url);
       }
-      nextNode = nextNode.nextSibling;
+    }
+  }
+  
+  console.log("Permanent links processing complete.");
+}
+
+// Run on initial page load
+document.addEventListener("DOMContentLoaded", addPermanentLinks);
+
+// For static sites with client-side navigation, also run when:
+// 1. Hash changes (for anchor navigation)
+window.addEventListener("hashchange", addPermanentLinks);
+
+// 2. History changes (for pushState/replaceState navigation)
+window.addEventListener("popstate", addPermanentLinks);
+
+// 3. For MkDocs Material theme specifically (if that's what you're using)
+// Listen for their custom events
+document.addEventListener("DOMSubtreeModified", function(e) {
+  // Debounce to avoid excessive calls
+  clearTimeout(window.linkProcessingTimeout);
+  window.linkProcessingTimeout = setTimeout(addPermanentLinks, 100);
+});
+
+// 4. Modern approach: use MutationObserver for DOM changes
+const observer = new MutationObserver(function(mutations) {
+  let shouldProcess = false;
+  mutations.forEach(function(mutation) {
+    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+      for (let node of mutation.addedNodes) {
+        if (node.nodeType === Node.ELEMENT_NODE && 
+            (node.tagName && /^H[1-6]$/.test(node.tagName) || 
+             node.querySelector && node.querySelector('h1, h2, h3, h4, h5, h6'))) {
+          shouldProcess = true;
+          break;
+        }
+      }
     }
   });
-  console.log("Permanent links added to headers.");
+  
+  if (shouldProcess) {
+    clearTimeout(window.linkProcessingTimeout);
+    window.linkProcessingTimeout = setTimeout(addPermanentLinks, 100);
+  }
+});
+
+// Start observing
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
 });
