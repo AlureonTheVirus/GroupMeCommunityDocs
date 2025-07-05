@@ -133,7 +133,8 @@ nav:
   - Home: index.md
   - API Reference:
     - api/index.md
-    - Webhook Bots: api/bots.md
+    - Webhook Bots: 
+      - api/bots/index.md
     - WebSocket Gateway:
       - api/ws/index.md
       - Message Types: api/ws/messageTypes.md
@@ -170,4 +171,5 @@ nav:
   - Examples:
     - examples/index.md
     - DinoBot: examples/dinobot.md
+
   - Contributing: contributing/index.md
