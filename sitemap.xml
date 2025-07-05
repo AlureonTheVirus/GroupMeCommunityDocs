@@ -2,114 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/bots/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/</loc>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/files/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/images/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/CDN/video/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/account/</loc>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/account/contacts/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/account/oauth/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/account/self/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/common/</loc>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/common/attachments/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/common/emoji/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/common/events/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/dms/dms/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/dms/</loc>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/</loc>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/directories/</loc>
-         <lastmod>2025-07-04</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/groups/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/members/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/messages/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/polls/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/groups/subgroups/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/calendar/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/gallery/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/pins/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/misc/reactions/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
+    </url>
+    <url>
+         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/ws/</loc>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/ws/messageTypes/</loc>
-         <lastmod>2025-07-04</lastmod>
-    </url>
-    <url>
-         <loc>https://groupme-js.github.io/GroupMeCommunityDocs/api/ws/websocket/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/contributing/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/examples/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
     <url>
          <loc>https://groupme-js.github.io/GroupMeCommunityDocs/examples/dinobot/</loc>
-         <lastmod>2025-07-04</lastmod>
+         <lastmod>2025-07-05</lastmod>
     </url>
 </urlset>
