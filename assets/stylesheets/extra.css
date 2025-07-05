@@ -11,3 +11,18 @@
 [data-md-color-scheme] > .md-container > * {
   transition: color .25s ease;
 }
+
+.md-typeset .noicon > .admonition-title::before,
+.md-typeset .noicon > summary::before {
+  display: none;
+}
+
+.md-typeset .admonition.noicon,
+.md-typeset details.noicon {
+  border-color: rgb(158, 158, 158);
+}
+
+.md-typeset .noicon > .admonition-title,
+.md-typeset .noicon > summary {
+  background-color: rgba(158, 158, 158, 0.1);
+}
