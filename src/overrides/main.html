@@ -2,12 +2,14 @@
 
 {% extends "base.html" %}
 
+<!-- Add Custom css for every page -->
 {% block extrahead %}
   {{ super() }}
   <link rel="stylesheet" href="{{ 'assets/stylesheets/docs-links.css' | url }}">
   <link rel="stylesheet" href="{{ 'assets/stylesheets/admonitions.css' | url }}">
 {% endblock %}
 
+<!-- Add Custom javascript for every page -->
 {% block scripts %}
   {{ super() }}
   <script src="{{ 'assets/javascripts/docs-links.js' | url }}"></script>
