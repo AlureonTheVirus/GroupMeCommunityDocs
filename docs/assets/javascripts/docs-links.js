@@ -19,6 +19,7 @@ function getMaterialLinkIcon() {
 const materialLinkIcon = getMaterialLinkIcon();
 
 function addPermanentLinks() {
+  console.log("Adding permanent links to headers...");
   const walker = document.createTreeWalker(
     document.body,
     NodeFilter.SHOW_COMMENT,
