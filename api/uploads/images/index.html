@@ -1725,6 +1725,8 @@
       
         
       
+        
+      
     
     
     
@@ -1768,6 +1770,29 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/pingpong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PingPong Bot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1980,13 +2005,15 @@
 
 <h2 id="image-service">Image Service<a class="headerlink" href="#image-service" title="Permanent link">&para;</a></h2>
 <p>Images uploaded to the GroupMe Image CDN will have URLs that look like this: </p>
-<p><code>https://i.groupme.com/{width}x{height}.{format}.{id}</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://i.groupme.com/{width}x{height}.{format}.{id}
+</code></pre></div>
 <p>Where {width} and {height} are in pixels, {format} is for example "png" or "jpeg" and {id} is a unique id e.g.</p>
-<p><code>https://i.groupme.com/480x325.jpeg.9e20b71dd6af4b58bbd132d4a7dec009</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>https://i.groupme.com/480x325.jpeg.9e20b71dd6af4b58bbd132d4a7dec009
+</code></pre></div>
 <h2 id="to-try-this-out-via-curl">To try this out via cURL:<a class="headerlink" href="#to-try-this-out-via-curl" title="Permanent link">&para;</a></h2>
 <p>Store your access token in the GM_TOKEN environment variable first.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>curl<span class="w"> </span><span class="s1">&#39;https://image.groupme.com/pictures&#39;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-Access-Token: </span><span class="nv">$GM_TOKEN</span><span class="s2">&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: image/jpeg&quot;</span><span class="w"> </span>--data-binary<span class="w"> </span>@AwesomePicture.jpg
-</code></pre></div></td></tr></table></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span><span class="s1">&#39;https://image.groupme.com/pictures&#39;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-Access-Token: </span><span class="nv">$GM_TOKEN</span><span class="s2">&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: image/jpeg&quot;</span><span class="w"> </span>--data-binary<span class="w"> </span>@AwesomePicture.jpg
+</code></pre></div>
 <h2 id="thumbnails">Thumbnails<a class="headerlink" href="#thumbnails" title="Permanent link">&para;</a></h2>
 <p>Images are automatically thumbnailed at the following sizes:</p>
 <table>
@@ -2020,35 +2047,35 @@
 <p>You can upload a variety of different kinds of image formats (including GIFs) to the image CDN in order for them to be processed, stored, and thumbnailed.</p>
 <h3 id="uploading-local-images">Uploading local images<a class="headerlink" href="#uploading-local-images" title="Permanent link">&para;</a></h3>
 <p>If you want to send an image you have stored locally, you first have to upload it to GroupMe's servers via their <a href="./">image service</a>. This is done with a simple request:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Request</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//image.groupme.com/pictures</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Request</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//image.groupme.com/pictures</span>
 </code></pre></div></td></tr></table></div>
 <p>Importantly, this request MUST be done with the following headers:</p>
 <ul>
 <li><strong>Content-Type</strong>: "image/jpeg" (For some reason it doesn't work with "image/png" as far as I can tell, but you can still send .png files under "image/jpeg")</li>
 <li><strong>Content-Length</strong>: The size of your image in bytes</li>
-<li><strong>X-Access-Token</strong>: Your user's token</li>
+<li><strong>X-Access-Token</strong>: Your user's API token</li>
 </ul>
 <p>Then, send the binary data of your image file. </p>
 <p>Issues with this feature are often caused by problems with the user token.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Response</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span>
-<span class="normal"><a href="#__codelineno-2-4">4</a></span>
-<span class="normal"><a href="#__codelineno-2-5">5</a></span>
-<span class="normal"><a href="#__codelineno-2-6">6</a></span>
-<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="err">S</span><span class="kc">tatus</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">{</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://i.groupme.com/123456789&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="nt">&quot;picture_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://i.groupme.com/123456789&quot;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">}</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Response</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="err">S</span><span class="kc">tatus</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://i.groupme.com/123456789&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="nt">&quot;picture_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://i.groupme.com/123456789&quot;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="uploading-remote-images">Uploading remote images<a class="headerlink" href="#uploading-remote-images" title="Permanent link">&para;</a></h3>
 <p>If you want to send a remote image by its URL, you'll still have to upload it to GroupMe's servers via their <a href="./">image service</a>. This will behave similar to uploading local images, but with a new url parameter:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Request</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//image.groupme.com/pictures?url=&lt;image_url&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTTP Request</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="err">POST</span><span class="w"> </span><span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//image.groupme.com/pictures?url=&lt;image_url&gt;</span>
 </code></pre></div></td></tr></table></div>
-<p>As far as I can tell, you only need to provide the <strong>X-Access-Token</strong> user token as a header.</p>
+<p>You must to provide the <strong>X-Access-Token</strong> user API token as a header.</p>
 <p><strong>Response</strong></p>
 <p>Your response will be of the same format as above:
 <code>json linenums="1" titile="HTTP Response"
@@ -2081,7 +2108,7 @@ Status: 200 OK
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 5, 2025 18:45:20 UTC">July 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 6, 2025 01:14:46 UTC">July 6, 2025</span>
   </span>
 
     
