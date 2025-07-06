@@ -7,17 +7,21 @@ description: Learn how to interact with GroupMe's Image Service via the API.
 
 Images uploaded to the GroupMe Image CDN will have URLs that look like this: 
 
-```https://i.groupme.com/{width}x{height}.{format}.{id}```
+```
+https://i.groupme.com/{width}x{height}.{format}.{id}
+```
 
 Where {width} and {height} are in pixels, {format} is for example "png" or "jpeg" and {id} is a unique id e.g.
 
-```https://i.groupme.com/480x325.jpeg.9e20b71dd6af4b58bbd132d4a7dec009```
+```
+https://i.groupme.com/480x325.jpeg.9e20b71dd6af4b58bbd132d4a7dec009
+```
 
 ## To try this out via cURL:
 
 Store your access token in the GM_TOKEN environment variable first.
 
-```bash linenums="1"
+```bash
 curl 'https://image.groupme.com/pictures' -X POST -H "X-Access-Token: $GM_TOKEN" -H "Content-Type: image/jpeg" --data-binary @AwesomePicture.jpg
 ```
 
@@ -48,7 +52,7 @@ Importantly, this request MUST be done with the following headers:
 
 * **Content-Type**: "image/jpeg" (For some reason it doesn't work with "image/png" as far as I can tell, but you can still send .png files under "image/jpeg")
 * **Content-Length**: The size of your image in bytes
-* **X-Access-Token**: Your user's token
+* **X-Access-Token**: Your user's API token
 
 Then, send the binary data of your image file. 
 
@@ -72,7 +76,7 @@ If you want to send a remote image by its URL, you'll still have to upload it to
 POST https://image.groupme.com/pictures?url=<image_url>
 ```
 
-As far as I can tell, you only need to provide the **X-Access-Token** user token as a header.
+You must to provide the **X-Access-Token** user API token as a header.
 
 **Response**
 

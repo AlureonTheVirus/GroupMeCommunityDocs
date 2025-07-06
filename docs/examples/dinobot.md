@@ -4,7 +4,7 @@ DinoBot is a simple webhook bot for GroupMe, originally written in C# by Microso
 
 ## Setup
 
-Before you can run DinoBot, you need to set up a GroupMe bot and a callback URL that points to your server/host where the bot will receive and handle messages. The easisest way to create a bot is to use [GroupMe's Bot Creation form](https://dev.groupme.com/bots/new), where you can specify the bot's name, avatar, and callback URL. Alternatively, you can create a bot using the API and your user account's API token. Read more about creating and managing bots in the [Bots API Reference]().
+Before you can run DinoBot, you need to set up a GroupMe bot and a callback URL that points to your server/host where the bot will receive and handle messages. The easisest way to create a bot is to use [GroupMe's Bot Creation form](https://dev.groupme.com/bots/new), where you can specify the bot's name, avatar, and callback URL. Alternatively, you can create a bot using the API and your user account's API token. Read more about creating and managing bots in the [Bots API Reference](../api/bots/index.md).
 
 After registering a new bot with GroupMe, create a new Node.js project and install express.js (An HTTP server framework for JavaScript we will use to catch GroupMe's POST messags to our callback URL).
 
@@ -34,11 +34,14 @@ const app = express();
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000; // Port for the bot to listen on
+const CALLBACK_URL = '/DinoCallback' // The URL path where GroupMe will send POST requests
+const BOT_ID = '[Your Bot ID Here]'; // Your Bot ID from the GroupMe Developer Portal
+
 const MAX_DINOS = 100; // Maximum number of dinos DinoBot can send in one go
 const RESPONSE_WEIGHT = 0.075; // Probability DinoBot will answer a question
 const CAN_ADDRESS_DINO = []; // empty means everyone, add user IDs to only allow specific users to address the bot
 
-async function postEmoji(count, botId) {
+async function postEmoji(count, BOT_ID) {
   if (count > MAX_DINOS) count = MAX_DINOS;
 
   const placeholder = '�' // Placeholder character to be replaced by the emoji
@@ -48,7 +51,7 @@ async function postEmoji(count, botId) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      bot_id: botId,
+      bot_id: BOT_ID,
       text: placeholder.repeat(count),
       attachments: [
         {
@@ -62,11 +65,10 @@ async function postEmoji(count, botId) {
 }
 
 // handle POST requests from GroupMe hitting DinoBot's callback URL
-app.post('/DinoCallback', async (req, res) => {
-  const botId = req.params.botId;
+app.post(CALLBACK_URL, async (req, res) => {
   const msg = req.body;
 
-  if (!msg || !msg.text || !botId) {
+  if (!msg || !msg.text) {
     return res.status(400).send('Invalid request');
   }
 
@@ -78,20 +80,20 @@ app.post('/DinoCallback', async (req, res) => {
   if (dinoMatch) {
     const num = Math.min(parseInt(dinoMatch[2]), MAX_DINOS);
     if (num > 0) {
-      await postEmoji(num, botId);
+      await postEmoji(num);
       return res.status(201);
     }
   }
 
   // respond if someone says DinoBot's name. Try saying "What's up DinoBot?"
   if (text.includes('dinobot')) {
-    await postEmoji(1, botId);
+    await postEmoji(1);
     return res.status(201);
   }
 
   // respond on the off chance dino knows a good answer. Try asking "What is the meaning of life?" or "How do I make a sandwich?"
   if (text.includes('?') && Math.random() < RESPONSE_WEIGHT) {
-    await postEmoji(1, botId);
+    await postEmoji(1);
     return res.status(201);
   }
 
