@@ -32,6 +32,8 @@ description: "A brief, one-sentence summary of the page's content."
 ---
 ```
 
+***
+
 ### 2. Page Title
 
 The first element after the frontmatter must be a Level 1 Heading (`#`) that matches the `title` from the frontmatter.
@@ -39,6 +41,8 @@ The first element after the frontmatter must be a Level 1 Heading (`#`) that mat
 ```markdown
 # Page Title
 ```
+
+***
 
 ### 3. API Boilerplate (For Endpoint Docs)
 
@@ -80,6 +84,8 @@ If the request succeeds, `meta.errors` will be null, and if the request fails, `
 *   **`## Heading 2`**: For major sections, typically a single API endpoint (e.g., "Create a poll", "Index Members").
 *   **`***` (Horizontal Rule)**: Use a horizontal rule to separate each major endpoint section (`##`).
 
+***
+
 ### Code Blocks
 
 Code blocks are essential for showing examples. Use the following format for consistency:
@@ -102,6 +108,8 @@ Status: 200 OK
 *   **Title:** Provide a `title` that describes the block (e.g., "HTTP Request", "HTTP Response", "Object Structure").
 *   **Status Codes:** For `HTTP Response` blocks, include the status line (e.g., `Status: 200 OK`) as the first line.
 *   **Indentation** We use 2 spaces for indentation in code blocks, not tabs. This ensures consistent formatting across different editors and viewers.
+
+***
 
 ### Parameter Lists
 
@@ -135,6 +143,8 @@ When describing parameters for an endpoint, use a bulleted list.
     *   Variable names: `source_guid`
     *   Literal values: `true`, `"image"`, `null`
 
+***
+
 ### Callouts (Admonitions)
 
 Use callouts to highlight important information.
@@ -166,4 +176,8 @@ Use callouts to highlight important information.
     !!! important
         This request is relative to `https://api.groupme.com/v4/`, not `https://api.groupme.com/v3/`.
 
+***
+
 Thank you for helping us keep the documentation clean and consistent!
+
+***

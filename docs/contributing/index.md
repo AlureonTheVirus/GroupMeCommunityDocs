@@ -26,9 +26,13 @@ There are many ways to contribute, and not all of them require writing code or d
 
 For those who want to directly edit or add content, we use the standard GitHub **Fork & Pull Request** workflow. If you've never contributed to an open-source project before, don't worry! Here's a step-by-step guide.
 
+***
+
 ### Step 1: Fork the Repository
 
 First, you need to create your own copy of the repository. Go to the [main repository page](https://github.com/groupme-js/GroupMeCommunityDocs) and click the **"Fork"** button in the top-right corner. This will create a copy under your own GitHub account.
+
+***
 
 ### Step 2: Clone Your Fork
 
@@ -38,6 +42,8 @@ Next, clone your forked repository to your local machine so you can make changes
 git clone https://github.com/YOUR_USERNAME/GroupMeCommunityDocs.git
 cd GroupMeCommunityDocs
 ```
+
+***
 
 ### Step 3: Create a New Branch
 
@@ -50,6 +56,8 @@ git checkout -b fix/correct-reactions-endpoint
 # For a new feature or page
 git checkout -b feat/document-calendar-api
 ```
+
+***
 
 ### Step 4: Make Your Changes
 
@@ -69,6 +77,8 @@ Make sure to follow the existing style and structure of the documentation. This 
     
     We use a special flavor of Markdown that supports additional features like admonitions and special UI elements. You can dind its reference in the [Material for MKDocs Reference Guide](https://squidfunk.github.io/mkdocs-material/reference/)
 
+***
+
 ### Step 5: Commit Your Changes
 
 Once you're happy with your changes, commit them with a clear and descriptive message. 
@@ -78,6 +88,8 @@ Once you're happy with your changes, commit them with a clear and descriptive me
 git commit -m "docs: clarify the difference between reply_id and base_reply_id"
 ```
 
+***
+
 ### Step 6: Push Your Changes
 
 Push your new branch and its commits to your fork on GitHub.
@@ -85,6 +97,8 @@ Push your new branch and its commits to your fork on GitHub.
 ```bash
 git push origin fix/correct-reactions-endpoint
 ```
+
+***
 
 ### Step 7: Open a Pull Request
 
@@ -98,4 +112,8 @@ That's it! A project maintainer will review your changes, provide feedback if ne
 
 Thank you again for your contribution!
 
+***
+
 By submitting a pull request, you agree to license your contribution under the respective licenses of this project as described in our [license](./licensing.md).
+
+***
