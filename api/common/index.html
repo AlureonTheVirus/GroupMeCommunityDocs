@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Overview of common structures used in the GroupMe Community API.">
+        <meta name="description" content="An overview of common data structures used across the GroupMe API, such as attachments, events, and emoji.">
       
       
       
@@ -63,7 +63,7 @@
       
         <meta  property="og:title"  content="Common API Structures - OpenGM API Documentation" >
       
-        <meta  property="og:description"  content="Overview of common structures used in the GroupMe Community API." >
+        <meta  property="og:description"  content="An overview of common data structures used across the GroupMe API, such as attachments, events, and emoji." >
       
         <meta  property="og:image"  content="https://groupme-js.github.io/GroupMeCommunityDocs/assets/images/social/api/common/index.png" >
       
@@ -79,7 +79,7 @@
       
         <meta  name="twitter:title"  content="Common API Structures - OpenGM API Documentation" >
       
-        <meta  name="twitter:description"  content="Overview of common structures used in the GroupMe Community API." >
+        <meta  name="twitter:description"  content="An overview of common data structures used across the GroupMe API, such as attachments, events, and emoji." >
       
         <meta  name="twitter:image"  content="https://groupme-js.github.io/GroupMeCommunityDocs/assets/images/social/api/common/index.png" >
       
@@ -1192,7 +1192,7 @@
   
   
   <span class="md-ellipsis">
-    Conversations
+    Conversation Features
     
   </span>
   
@@ -1209,7 +1209,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
-            Conversations
+            Conversation Features
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1838,6 +1838,24 @@
 
 
 <h1 id="common-api-structures">Common API Structures<a class="headerlink" href="#common-api-structures" title="Permanent link">&para;</a></h1>
+<p>While the GroupMe API has many endpoints for interacting with groups, direct messages, and users, several common data structures appear consistently across all of them. Understanding these core structures is essential for building rich, interactive applications.</p>
+<p>Messages are the lifeblood of the API, and they often contain more than just simple text. They can carry special objects that represent rich media, describe system-level occurrences, or encode custom emoji. This section provides detailed documentation on these fundamental building blocks.</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><strong>📎 <a href="attachments/">Attachments</a></strong></p>
+<p>Learn how to add rich content to your messages. This guide covers all known attachment types, from images and videos to replies, mentions, and locations.</p>
+</li>
+<li>
+<p><strong>⚡️ <a href="events/">Message Events</a></strong></p>
+<p>Discover the system-generated events that report on changes within a chat, such as members joining, the group name changing, or a message being pinned.</p>
+</li>
+<li>
+<p><strong>✨ <a href="emoji/">Emoji (PowerUps)</a></strong></p>
+<p>Dive into GroupMe's custom emoji system. This document explains the <code>charmap</code> structure and how to parse and send messages with "PowerUp" emoji.</p>
+</li>
+</ul>
+</div>
 
 
 
@@ -1860,7 +1878,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 5, 2025 16:58:49 UTC">July 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 6, 2025 02:02:41 UTC">July 6, 2025</span>
   </span>
 
     

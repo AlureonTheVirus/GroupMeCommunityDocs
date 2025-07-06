@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Overview of miscellaneous endpoints related to both group and direct conversations in the GroupMe API.">
+        <meta name="description" content="Learn about features and endpoints common to both Group and Direct Message conversations.">
       
       
       
@@ -26,7 +26,7 @@
     
     
       
-        <title>Conversations - OpenGM API Documentation</title>
+        <title>Conversation Features - OpenGM API Documentation</title>
       
     
     
@@ -61,9 +61,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Conversations - OpenGM API Documentation" >
+        <meta  property="og:title"  content="Conversation Features - OpenGM API Documentation" >
       
-        <meta  property="og:description"  content="Overview of miscellaneous endpoints related to both group and direct conversations in the GroupMe API." >
+        <meta  property="og:description"  content="Learn about features and endpoints common to both Group and Direct Message conversations." >
       
         <meta  property="og:image"  content="https://groupme-js.github.io/GroupMeCommunityDocs/assets/images/social/api/conversations/index.png" >
       
@@ -77,9 +77,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Conversations - OpenGM API Documentation" >
+        <meta  name="twitter:title"  content="Conversation Features - OpenGM API Documentation" >
       
-        <meta  name="twitter:description"  content="Overview of miscellaneous endpoints related to both group and direct conversations in the GroupMe API." >
+        <meta  name="twitter:description"  content="Learn about features and endpoints common to both Group and Direct Message conversations." >
       
         <meta  name="twitter:image"  content="https://groupme-js.github.io/GroupMeCommunityDocs/assets/images/social/api/conversations/index.png" >
       
@@ -107,7 +107,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#conversation-endpoints" class="md-skip">
+        <a href="#conversation-features" class="md-skip">
           Skip to content
         </a>
       
@@ -201,7 +201,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Conversations
+              Conversation Features
             
           </span>
         </div>
@@ -1194,7 +1194,7 @@
   
   
   <span class="md-ellipsis">
-    Conversations
+    Conversation Features
     
   </span>
   
@@ -1211,7 +1211,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
-            Conversations
+            Conversation Features
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1837,7 +1837,29 @@
   
 
 
-<h1 id="conversation-endpoints">Conversation Endpoints<a class="headerlink" href="#conversation-endpoints" title="Permanent link">&para;</a></h1>
+<h1 id="conversation-features">Conversation Features<a class="headerlink" href="#conversation-features" title="Permanent link">&para;</a></h1>
+<p>While Groups and Direct Messages have distinct management endpoints, they share a rich set of features for interaction within a chat. This section documents the API endpoints that are common to all types of conversations, whether it's a large group or a one-on-one DM.</p>
+<p>Here, you'll find information on how to interact with features like message reactions, calendar events, pinned messages, and shared media galleries. These endpoints typically use a generic <code>:conversation_id</code> in their path, which can be substituted with either a <code>group_id</code> or a DM's <code>conversation_id</code>.</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><strong>📅 <a href="calendar/">Calendar Events</a></strong></p>
+<p>Create, view, update, and RSVP to events in any conversation.</p>
+</li>
+<li>
+<p><strong>🖼️ <a href="gallery/">Image Gallery</a></strong></p>
+<p>Browse the history of images and files shared in a group or DM.</p>
+</li>
+<li>
+<p><strong>📌 <a href="pins/">Pinned Messages</a></strong></p>
+<p>Programmatically pin and unpin important messages in a conversation.</p>
+</li>
+<li>
+<p><strong>❤️ <a href="reactions/">Reactions &amp; Likes</a></strong></p>
+<p>Like, unlike, and react to messages using both the classic like system and the newer emoji reactions.</p>
+</li>
+</ul>
+</div>
 
 
 
@@ -1860,7 +1882,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 5, 2025 16:58:49 UTC">July 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 6, 2025 02:02:41 UTC">July 6, 2025</span>
   </span>
 
     
