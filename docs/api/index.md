@@ -28,18 +28,14 @@ If you have any questions or would like to get in touch, please join the [GroupM
 
 </div>
 
-  [Webhook Bots]: api/bots/index.md
-  [Websocket Gateway]: api/ws/index.md
-  [Account Management]: api/account/index.md  
-  [Group Management]: api/groups/index.md
-  [Direct Messages]: api/dms/index.md
-  [Conversation Management]: api/conversations/index.md
-  [Common API Structures]: api/common/index.md
-  [CDN Management]: api/uploads/indexs.md
+  [Webhook Bots]: bots/index.md
+  [Websocket Gateway]: ws/index.md
+  [Account Management]: account/index.md  
+  [Group Management]: groups/index.md
+  [Direct Messages]: dms/index.md
+  [Conversation Management]: conversations/index.md
+  [Common API Structures]: common/index.md
+  [CDN Management]: uploads/indexs.md
 
 
 ***
-
-## Contributing
-
-The GroupMe Community Docs are constantly evolving and updating! Check out the [Contributing Checklist](https://github.com/groupme-js/GroupMeCommunityDocs/issues/32) for insights on what documentation we're still in need of for full API coverage. 
