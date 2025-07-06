@@ -1,6 +1,6 @@
 <div align="center">
     <h1 align="center">
-        <a href="https://groupme-js.github.io/GroupMeCommunityDocs/">
+        <a href="https://groupme-js.github.io/GroupMeCommunityDocs">
         <img src="./.github/assets/opengm_logo_colorized.svg" alt="OpenGM Logo" />
         </a>
     </h1>
@@ -21,8 +21,6 @@
 
 <h2 align="center"><a href="https://groupme-js.github.io/GroupMeCommunityDocs/">View the Documentation Website</a></h2>
 
----
-
 ## About This Project
 
 The GroupMe platform has a vibrant developer community, but the official API documentation has not kept pace with the platform's evolution. This project is a community-led effort to create a comprehensive, accurate, and up-to-date resource for anyone building on the GroupMe API.
@@ -39,17 +37,17 @@ Here you will find:
 
 ## Quick Links
 
--   **[API Reference](./docs/api/index.md)** - A complete breakdown of all known endpoints.
--   **[Bot Examples](./docs/examples/index.md)** - See how to build functional bots.
+-   **[API Reference](https://groupme-js.github.io/GroupMeCommunityDocs/api)** - A complete breakdown of all known endpoints.
+-   **[Bot Examples](https://groupme-js.github.io/GroupMeCommunityDocs/examples)** - See how to build functional bots.
 
 ## Contributing
 
 This project thrives on community contributions! Whether you're fixing a typo, documenting a newly discovered feature, or improving an example, your help is welcome.
 
-To get started, please read our **[Contributing Guide](./docs/contributing/index.md)**, which covers:
+To get started, please read our **[Contributing Guide](https://groupme-js.github.io/GroupMeCommunityDocs/api/contributing)**, which covers:
 
 -   How to submit changes and open a pull request.
--   The **[Style Guide](./docs/contributing/styleguide.md)** for keeping the docs consistent.
+-   The **[Style Guide](https://groupme-js.github.io/GroupMeCommunityDocs/api/contributing/styleguide)** for keeping the docs consistent.
 
 ## Community
 
