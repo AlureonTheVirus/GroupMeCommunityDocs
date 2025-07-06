@@ -39,6 +39,7 @@ function addPermanentLinks() {
       let currentNode = comment.previousSibling;
       let foundHeader = null;
       
+      // Search for header in previous siblings
       while (currentNode && !foundHeader) {
         if (currentNode.nodeType === Node.ELEMENT_NODE && 
             /^H[1-6]$/.test(currentNode.tagName)) {
@@ -48,6 +49,7 @@ function addPermanentLinks() {
         currentNode = currentNode.previousSibling;
       }
       
+      // If no header found, search in parent's previous siblings
       if (!foundHeader) {
         let parentNode = comment.parentNode;
         while (parentNode && parentNode !== document.body) {
@@ -73,22 +75,34 @@ function addPermanentLinks() {
       }
       
       if (foundHeader) {
+        // Check if link already exists
         const existingLinks = Array.from(foundHeader.querySelectorAll('a.headerlink'));
         if (existingLinks.some(link => link.href === url)) continue;
         
+        // Create and configure the link
         const link = document.createElement("a");
         link.href = url;
         link.title = "Permanent link";
         link.className = "headerlink";
         link.target = "_blank";
         link.rel = "noopener";
+        link.innerHTML = materialLinkIcon; // Add the icon as content
+        
+        // Actually append the link to the header
+        foundHeader.appendChild(link);
+        
+        console.log(`Added link to header: ${foundHeader.textContent} -> ${url}`);
+      } else {
+        console.warn(`No header found for comment: ${comment.nodeValue}`);
       }
     }
   }
 }
 
+// Run on DOM ready
 document.addEventListener("DOMContentLoaded", addPermanentLinks);
 
+// Monitor for dynamic content changes
 const observer = new MutationObserver(function(mutations) {
   let shouldProcess = false;
   mutations.forEach(function(mutation) {
