@@ -1,3 +1,8 @@
+---
+title: "Project Licensing"
+description: "Licensing information for the GroupMe Community API Docs project."
+---
+
 # Project Licensing
 
 This project is provided under a dual-license model to ensure that our documentation is shared openly and our code examples are freely usable.

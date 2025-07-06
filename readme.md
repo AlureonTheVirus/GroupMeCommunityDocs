@@ -1,5 +1,10 @@
 <div align="center">
-  <h1 align="center">GroupMe Community API Docs</h1>
+    <h1 align="center">
+        <a href="https://groupme-js.github.io/GroupMeCommunityDocs/">
+        <img src="./.github/assets/opengm_logo_colorized.svg" alt="OpenGM Logo" />
+        </a>
+    </h1>
+  <h2 align="center">GroupMe Community API Docs</h1>
   <p align="center">
     The complete, up-to-date, and community-driven documentation for the GroupMe API.
   </p>
@@ -7,7 +12,6 @@
 
 <div align="center">
   <!-- IMPORTANT: Replace 'alureonthevirus/GroupMeCommunityDocs' with your own repo path -->
-  <a href="https://github.com/groupme-js/GroupMeCommunityDocs/actions/workflows/deploy.yml"><img src="https://github.com/groupme-js/GroupMeCommunityDocs/actions/workflows/deploy.yml/badge.svg" alt="Docs Status"></a>
   <a href="https://github.com/groupme-js/GroupMeCommunityDocs/blob/main/LICENSE.md"><img src="https://img.shields.io/badge/Docs-CC--BY--4.0-lightgrey.svg" alt="Documentation License"></a>
   <a href="https://github.com/groupme-js/GroupMeCommunityDocs/blob/main/LICENSE-CODE.md"><img src="https://img.shields.io/badge/Code-MIT-blue.svg" alt="Code License"></a>
   <a href="https://groupme.com/join_group/27317261/ibNNhx"><img src="https://img.shields.io/badge/Join-Developer_Chat-00aff0.svg" alt="Join the Developer Chat"></a>
@@ -35,20 +39,17 @@ Here you will find:
 
 ## Quick Links
 
--   **[Getting Started](./guides/getting-started.md)** - Your first steps to making an API call.
--   **[API Reference](./api/index.md)** - A complete breakdown of all known endpoints.
--   **[Bot Examples](./examples/index.md)** - See how to build functional bots.
--   **[Common Structures](./api/common/index.md)** - Understand attachments, events, and other core objects.
+-   **[API Reference](./docs/api/index.md)** - A complete breakdown of all known endpoints.
+-   **[Bot Examples](./docs/examples/index.md)** - See how to build functional bots.
 
 ## Contributing
 
 This project thrives on community contributions! Whether you're fixing a typo, documenting a newly discovered feature, or improving an example, your help is welcome.
 
-To get started, please read our **[Contributing Guide](./contributing/index.md)**, which covers:
+To get started, please read our **[Contributing Guide](./docs/contributing/index.md)**, which covers:
 
 -   How to submit changes and open a pull request.
--   The **[Style Guide](./contributing/styleguide.md)** for keeping the docs consistent.
--   Our **[Code of Conduct](./contributing/code-of-conduct.md)** to ensure a welcoming environment for all.
+-   The **[Style Guide](./docs/contributing/styleguide.md)** for keeping the docs consistent.
 
 ## Community
 
@@ -60,7 +61,7 @@ Have a question, an idea, or just want to chat with other GroupMe developers?
 
 This project is under a dual-license model:
 
--   All documentation content is licensed under **[CC-BY-4.0](./LICENSE.md)**.
--   All source code, including examples and snippets, is licensed under the **[MIT License](./LICENSE-CODE.md)**.
+-   All documentation content is licensed under **[CC-BY-4.0](./docs/LICENSE.md)**.
+-   All source code, including examples and snippets, is licensed under the **[MIT License](./docs/LICENSE-CODE.md)**.
 
 By contributing, you agree to license your contributions under these terms.
