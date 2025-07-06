@@ -7,6 +7,8 @@ description: A collection of example projects that utilize the GroupMe Community
 
 The GroupMe API allows for two primary methods of creating bots: **Webhook Bots** and **User Bots**. Each has distinct advantages and is suited for different tasks. Understanding their differences is key to building your project.
 
+***
+
 ## Webhook Bots vs. User Bots
 
 ### Webhook Bots (Callback/Webhook Bots)
@@ -28,6 +30,8 @@ User Bots are more powerful and complex. They act on behalf of a real user accou
 -   **Authentication:** They use a user's personal `access_token`.
 -   **Scope:** They can see everything the associated user can see—all group chats, direct messages, and events like users joining/leaving.
 -   **Best for:** Advanced applications that require monitoring activity across multiple groups, managing chats, or providing real-time logging or cross-group functionality.
+
+***
 
 ## Our Examples
 
