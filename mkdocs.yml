@@ -6,15 +6,32 @@ copyright: Copyright &copy; 2025 - OpenGM Project
 
 site_description: "The OpenGM Project: Community GroupMe API documentation for all."
 
+# Custom Homepage Elements
+home_cover_image: assets/sprocket.svg
+home_tagline: GroupMe Community Docs
+home_description: Community GroupMe API documentation for all.
+
+home_gradient_hsla: hsla(160deg,47%,55%,1)
+
+home_button1_name: API Reference
+home_button1_url: api/
+home_button1_theme: md-button md-button--primary                   
+  
+home_button2_name: Example Projects
+home_button2_url: examples/
+home_button2_theme: md-button
+
 theme:
   name: material
+
   font:
     text: Mona Sans
+
   icon:
     logo: OpenGM/sprocket
     repo: fontawesome/brands/github
 
-  favicon: assets/sprocket.svg
+  favicon: overrides/assets/sprocket.svg
 
   code:
     highlight_theme: dracula
@@ -26,15 +43,18 @@ theme:
   features:
     - content.action.edit
     - content.action.view
+    - content.tabs.link
+    - content.code.copy
+    - content.tooltips
     - navigation.instant
     - navigation.instant.progress
     - navigation.top
+    - navigation.tabs
     - navigation.sections
-    - toc.integrate
+    - navigation.footer
+    - navigation.indexes
     - search.suggest
     - search.share
-    - navigation.footer
-    - content.code.copy
     - header.autohide
     - announce.dismiss
 
@@ -68,7 +88,18 @@ plugins:
       exclude_comitters:
         - web-flow
 
+extra: 
+  social:
+    - icon: simple/groupme
+      link: https://groupme.com/join_group/27317261/ibNNhx
+    - icon: fontawesome/brands/github
+      link: https://github.com/groupme-js/GroupMeCommunityDocs
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/5yxWtuuEZg
+
 markdown_extensions:
+  - abbr
+  - pymdownx.snippets
   - attr_list
   - md_in_html
   - admonition
@@ -83,6 +114,9 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true
@@ -92,3 +126,51 @@ markdown_extensions:
       options:
         custom_icons:
           - overrides/.icons
+
+nav:
+  - Home: index.md
+  - API Reference:
+    - api/index.md
+    - Webhook Bots: 
+      - api/bots/index.md
+    - WebSocket Gateway:
+      - api/ws/index.md
+      - Message Types: api/ws/messageTypes.md
+    - Account Management: 
+      - api/account/index.md
+      - Contacts: api/account/contacts.md
+      - Oauth/MFA: api/account/oauth.md
+    - Groups:
+      - api/groups/index.md
+      - Subgroups: api/groups/subgroups.md
+      - Members: api/groups/members.md
+      - Messages: api/groups/messages.md
+      - Polls: api/groups/polls.md
+      - Discovery: api/groups/directories.md
+      - Campus Directories: api/groups/campus.md
+    - Direct Messages:
+      - api/dms/index.md
+    - Conversation Features:
+      - api/conversations/index.md
+      - Emoji Reactions: api/conversations/reactions.md
+      - Calandar Events: api/conversations/calendar.md
+      - Image Galleries: api/conversations/gallery.md
+      - Pinning Messages: api/conversations/pins.md
+    - Common Structures:
+      - api/common/index.md
+      - Message Attachments: api/common/attachments.md
+      - Emoji Powerups: api/common/emoji.md
+      - Message Events: api/common/events.md
+    - CDN Management:
+      - api/uploads/index.md
+      - Image Uploads: api/uploads/images.md
+      - Video Uploads: api/uploads/video.md
+      - File Uploads: api/uploads/files.md
+  - Examples:
+    - examples/index.md
+    - PingPong Bot: examples/pingpong.md
+    - DinoBot: examples/dinobot.md
+  - Contributing: 
+    - contributing/index.md
+    - Style Guide: contributing/styleguide.md
+    - Licensing: contributing/licensing.md

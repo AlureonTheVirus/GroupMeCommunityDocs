@@ -1,0 +1,23 @@
+<!-- Elements added to "main.html" will be displayed on all pages -->
+
+{% extends "base.html" %}
+
+<!-- Custom css for every page -->
+{% block extrahead %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/admonitions.css' | url }}">
+{% endblock %}
+
+<!-- Custom javascript for every page -->
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ 'assets/javascripts/docs-links.js' | url }}"></script>
+{% endblock %}
+
+<!-- Announcement bar -->
+{% block announce %}
+  For updates join the <strong>API Development Group</strong> on <strong>GroupMe</strong>:
+  <a rel="me" href="https://groupme.com/join_group/27317261/ibNNhx">
+    <strong>https://groupme.com/join_group/27317261/ibNNhx</strong>
+  </a>
+{% endblock %}
