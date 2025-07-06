@@ -3,7 +3,8 @@ title: Image Service
 description: Learn how to interact with GroupMe's Image Service via the API.
 ---
 
-## Image Service
+# Image Service
+<!-- official-doc: https://dev.groupme.com/docs/image_service -->
 
 Images uploaded to the GroupMe Image CDN will have URLs that look like this: 
 

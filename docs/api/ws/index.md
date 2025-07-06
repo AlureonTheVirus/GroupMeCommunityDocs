@@ -19,6 +19,7 @@ Both send information about specific channels that a client wouldn't need to sen
 ***
 
 ## Connecting to the Gateway
+<!-- official-doc: https://dev.groupme.com/tutorials/push -->
 
 For verbosity, we outline how to authenticate and connect using a Faye client library, in pure WebSockets (in case you don't have access to a library), and finally in pure HTTP to do manual long-polling.
 
