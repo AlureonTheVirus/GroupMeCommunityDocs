@@ -18,15 +18,15 @@ Each type of media has a specific endpoint and set of requirements.
 
 <div class="grid cards" markdown>
 
--   **🖼️ [Images](images.md)**
+-   **:material-image: [Images](images.md)**
     
     Learn how to upload images to the GroupMe image service to get a `picture_url` that can be included in messages. This section covers accepted formats, size limits, and the full API workflow.
 
--   **🎬 [Videos](video.md)**
+-   **:material-video: [Videos](video.md)**
     
     This guide details the process for uploading video files. It covers supported video formats, resolution and size constraints, and how to get a shareable URL for use in a `video` attachment.
 
--   **📎 [Files](files.md)**
+-   **:material-file-cog: [Files](files.md)**
 
     For other content like documents or generic file types, use the file attachment service. This section explains how to upload arbitrary files and attach them to messages.
 

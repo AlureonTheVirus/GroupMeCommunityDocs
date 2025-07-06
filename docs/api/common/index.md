@@ -11,15 +11,15 @@ Messages are the lifeblood of the API, and they often contain more than just sim
 
 <div class="grid cards" markdown>
 
--   **📎 [Attachments](attachments.md)**
+-   **:material-attachment-plus: [Message Attachments](attachments.md)**
     
     Learn how to add rich content to your messages. This guide covers all known attachment types, from images and videos to replies, mentions, and locations.
 
--   **⚡️ [Message Events](events.md)**
+-   **:material-flag-triangle: [Message Events](events.md)**
     
     Discover the system-generated events that report on changes within a chat, such as members joining, the group name changing, or a message being pinned.
 
--   **✨ [Emoji (PowerUps)](emoji.md)**
+-   **:fontawesome-solid-face-smile-wink: [Emoji (GroupMe PowerUps)](emoji.md)**
     
     Dive into GroupMe's custom emoji system. This document explains the `charmap` structure and how to parse and send messages with "PowerUp" emoji.
 

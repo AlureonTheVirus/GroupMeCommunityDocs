@@ -11,19 +11,19 @@ Here, you'll find information on how to interact with features like message reac
 
 <div class="grid cards" markdown>
 
--   **📅 [Calendar Events](calendar.md)**
+-   **:material-calendar: [Calendar Events](calendar.md)**
     
     Create, view, update, and RSVP to events in any conversation.
 
--   **🖼️ [Image Gallery](gallery.md)**
+-   **:material-image-search: [Image Gallery](gallery.md)**
     
     Browse the history of images and files shared in a group or DM.
 
--   **📌 [Pinned Messages](pins.md)**
+-   **:material-pin: [Pinned Messages](pins.md)**
     
     Programmatically pin and unpin important messages in a conversation.
 
--   **❤️ [Reactions & Likes](reactions.md)**
+-   **:fontawesome-solid-face-smile-wink: [Reactions & Likes](reactions.md)**
 
     Like, unlike, and react to messages using both the classic like system and the newer emoji reactions.
 
