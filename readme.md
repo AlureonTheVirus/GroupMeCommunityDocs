@@ -1,55 +1,66 @@
-# Overview
+<div align="center">
+  <h1 align="center">GroupMe Community API Docs</h1>
+  <p align="center">
+    The complete, up-to-date, and community-driven documentation for the GroupMe API.
+  </p>
+</div>
 
-GroupMe has a thriving developer community which has created a variety of applications, bots, and tools. However, while the platform has constantly matured, the public documentation has not. In an effort to help other developers understand and utilize the platform better, this is a community-led effort to document everything possible. If you discover something not listed here, or you find an error in what is listed, please bring it up on the discussion page or submit a pull request.
+<div align="center">
+  <!-- IMPORTANT: Replace 'alureonthevirus/GroupMeCommunityDocs' with your own repo path -->
+  <a href="https://github.com/groupme-js/GroupMeCommunityDocs/actions/workflows/deploy.yml"><img src="https://github.com/groupme-js/GroupMeCommunityDocs/actions/workflows/deploy.yml/badge.svg" alt="Docs Status"></a>
+  <a href="https://github.com/groupme-js/GroupMeCommunityDocs/blob/main/LICENSE.md"><img src="https://img.shields.io/badge/Docs-CC--BY--4.0-lightgrey.svg" alt="Documentation License"></a>
+  <a href="https://github.com/groupme-js/GroupMeCommunityDocs/blob/main/LICENSE-CODE.md"><img src="https://img.shields.io/badge/Code-MIT-blue.svg" alt="Code License"></a>
+  <a href="https://groupme.com/join_group/27317261/ibNNhx"><img src="https://img.shields.io/badge/Join-Developer_Chat-00aff0.svg" alt="Join the Developer Chat"></a>
+</div>
 
-Much of this information is pulled from [dev.groupme.com](https://dev.groupme.com/), which is the official GroupMe developers site. However, most of its information is outdated or incomplete, so please help keep this repo up-to-date.
+<br />
 
-If you have any questions or would like to get in touch, please join the [GroupMe API Development Group](https://groupme.com/join_group/27317261/ibNNhx) or open an issue.
+<h2 align="center"><a href="https://groupme-js.github.io/GroupMeCommunityDocs/">View the Documentation Website</a></h2>
 
-**This documentation is not associated with GroupMe or Microsoft**
+---
 
-## Contents:
+## About This Project
 
-[Group management](docs/groups.md) - How to create, join, list, update, etc. groups.
+The GroupMe platform has a vibrant developer community, but the official API documentation has not kept pace with the platform's evolution. This project is a community-led effort to create a comprehensive, accurate, and up-to-date resource for anyone building on the GroupMe API.
 
-[Subgroup management](docs/subtopics.md) - How to work with subgroups within a parent group.
+Here you will find:
 
-[Member management](docs/members.md) - How to add, remove, and update members in a group.
+-   ✅ **Complete Endpoint Reference:** Detailed documentation for the v3, v4, and other unlisted API endpoints.
+-   📚 **In-Depth Guides:** Clear explanations of core concepts like the WebSocket gateway, attachments, and the emoji system.
+-   🤖 **Practical Examples:** Working bot examples to help you get started quickly.
+-   ✨ **Undocumented Features:** Information on hidden parameters, event types, and API behavior not found anywhere else.
 
-[Group Messages](docs/messages.md) - How to list and send messages in groups.
+> [!important]  
+> **Disclaimer:** This documentation is a community effort and is not officially associated with, or endorsed by, GroupMe or Microsoft.
 
-[Direct Messages](docs/dms.md) - How to list, read, and send DMs, as well as how to block/unblock users.
+## Quick Links
 
-[Likes](docs/likes.md) - How to like/unlike messages, and how to see the leaderboard in groups.
-
-[Calendar Events](docs/calendar.md) - How to list, create, and edit calendar events in a group.
-
-[Directory Management](docs/directories.md) - How to list, search, and join public and campus group directories.
-
-[Users/Contact Management](docs/users.md) - How to create, destroy, and manage contacts; as well as fetch info on other users outside of groups.
-
-[Bots](docs/bots.md) - How to create, index, and use bots.
-
-[Account Management](docs/self.md) - How to access/update information about an account, turning on/off SMS mode, and indexing and destroying tokens.
-
-[Attachments](docs/attachments.md) - Information on how message attachments work, as well as how to upload images to be sent as attachments.
-
-[Videos](docs/video.md) - Information on how to upload videos to be sent as attachments.
-
-[Polls](docs/polls.md) - Information on how to make and view polls.
-
-[Websocket Gateway](docs/push.md) - How to connect to the Push service to get real-time interaction with your program.
-
-[Emoji](docs/emoji.md) - How GroupMe's custom emoji system works, as well as how to display and send emoji.
-
-[Pins](docs/pins.md) - How to use GroupMe's new Pin functionality.
-
-[Image Service](docs/images.md) - How to upload Images to GroupMe's CDN.
-
-[Oauth/MFA](docs/oauth.md) - How to manage API tokens and handle multi-factor authentication with GroupMe.
-
-***
+-   **[Getting Started](./guides/getting-started.md)** - Your first steps to making an API call.
+-   **[API Reference](./api/index.md)** - A complete breakdown of all known endpoints.
+-   **[Bot Examples](./examples/index.md)** - See how to build functional bots.
+-   **[Common Structures](./api/common/index.md)** - Understand attachments, events, and other core objects.
 
 ## Contributing
 
-The GroupMe Community Docs are constantly evolving and updating! Check out the [Contributing Checklist](https://github.com/groupme-js/GroupMeCommunityDocs/issues/32) for insights on what documentation we're still in need of for full API coverage. 
+This project thrives on community contributions! Whether you're fixing a typo, documenting a newly discovered feature, or improving an example, your help is welcome.
+
+To get started, please read our **[Contributing Guide](./contributing/index.md)**, which covers:
+
+-   How to submit changes and open a pull request.
+-   The **[Style Guide](./contributing/styleguide.md)** for keeping the docs consistent.
+-   Our **[Code of Conduct](./contributing/code-of-conduct.md)** to ensure a welcoming environment for all.
+
+## Community
+
+Have a question, an idea, or just want to chat with other GroupMe developers?
+
+➡️ **[Join the GroupMe API Development Chat](https://groupme.com/join_group/27317261/ibNNhx)**
+
+## License
+
+This project is under a dual-license model:
+
+-   All documentation content is licensed under **[CC-BY-4.0](./LICENSE.md)**.
+-   All source code, including examples and snippets, is licensed under the **[MIT License](./LICENSE-CODE.md)**.
+
+By contributing, you agree to license your contributions under these terms.
