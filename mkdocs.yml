@@ -172,3 +172,5 @@ nav:
     - DinoBot: examples/dinobot.md
   - Contributing: 
     - contributing/index.md
+    - Style Guide: contributing/styleguide.md
+    - Licensing: contributing/licensing.md

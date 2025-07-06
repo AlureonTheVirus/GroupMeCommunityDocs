@@ -97,3 +97,5 @@ Go back to your fork on GitHub. You should see a prompt to **"Compare & pull req
 That's it! A project maintainer will review your changes, provide feedback if needed, and merge it once it's ready.
 
 Thank you again for your contribution!
+
+By submitting a pull request, you agree to license your contribution under the respective licenses of this project as described in our [license](./licensing.md).
