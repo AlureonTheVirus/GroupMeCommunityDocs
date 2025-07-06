@@ -1967,13 +1967,16 @@
 <hr />
 <h2 id="submitting-a-change-pull-requests">Submitting a Change (Pull Requests)<a class="headerlink" href="#submitting-a-change-pull-requests" title="Permanent link">&para;</a></h2>
 <p>For those who want to directly edit or add content, we use the standard GitHub <strong>Fork &amp; Pull Request</strong> workflow. If you've never contributed to an open-source project before, don't worry! Here's a step-by-step guide.</p>
+<hr />
 <h3 id="step-1-fork-the-repository">Step 1: Fork the Repository<a class="headerlink" href="#step-1-fork-the-repository" title="Permanent link">&para;</a></h3>
 <p>First, you need to create your own copy of the repository. Go to the <a href="https://github.com/groupme-js/GroupMeCommunityDocs">main repository page</a> and click the <strong>"Fork"</strong> button in the top-right corner. This will create a copy under your own GitHub account.</p>
+<hr />
 <h3 id="step-2-clone-your-fork">Step 2: Clone Your Fork<a class="headerlink" href="#step-2-clone-your-fork" title="Permanent link">&para;</a></h3>
 <p>Next, clone your forked repository to your local machine so you can make changes.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_USERNAME/GroupMeCommunityDocs.git
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>GroupMeCommunityDocs
 </code></pre></div>
+<hr />
 <h3 id="step-3-create-a-new-branch">Step 3: Create a New Branch<a class="headerlink" href="#step-3-create-a-new-branch" title="Permanent link">&para;</a></h3>
 <p>It's best practice to make your changes in a new branch instead of the <code>main</code> branch. This keeps your work organized. Choose a descriptive name for your branch.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># For a bug fix or correction</span>
@@ -1982,6 +1985,7 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># For a new feature or page</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feat/document-calendar-api
 </code></pre></div>
+<hr />
 <h3 id="step-4-make-your-changes">Step 4: Make Your Changes<a class="headerlink" href="#step-4-make-your-changes" title="Permanent link">&para;</a></h3>
 <p>Now you're ready to make your changes! Open the project in your favorite text editor (like VS Code) and start editing the Markdown (<code>.md</code>) files in the <code>docs/</code> directory.</p>
 <p>Make sure to follow the existing style and structure of the documentation. This is laid out in our <a href="styleguide/">Style Guide</a>, but if you have any questions please reach out <em>before</em> making your change. Here are some key points to remember:</p>
@@ -1996,18 +2000,22 @@
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    We use a special flavor of Markdown that supports additional features like admonitions and special UI elements. You can dind its reference in the [<span class="nt">Material for MKDocs Reference Guide</span>](<span class="na">https://squidfunk.github.io/mkdocs-material/reference/</span>)
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="gu">### Step 5: Commit Your Changes</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>***
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Once you&#39;re happy with your changes, commit them with a clear and descriptive message. 
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="gu">### Step 5: Commit Your Changes</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>```bash
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="gh"># Example commit</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>git commit -m &quot;docs: clarify the difference between reply_id and base_reply_id&quot;
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>Once you&#39;re happy with your changes, commit them with a clear and descriptive message. 
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>```bash
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="gh"># Example commit</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>git commit -m &quot;docs: clarify the difference between reply_id and base_reply_id&quot;
 </code></pre></div>
+<hr />
 <h3 id="step-6-push-your-changes">Step 6: Push Your Changes<a class="headerlink" href="#step-6-push-your-changes" title="Permanent link">&para;</a></h3>
 <p>Push your new branch and its commits to your fork on GitHub.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>fix/correct-reactions-endpoint
 </code></pre></div>
+<hr />
 <h3 id="step-7-open-a-pull-request">Step 7: Open a Pull Request<a class="headerlink" href="#step-7-open-a-pull-request" title="Permanent link">&para;</a></h3>
 <p>Go back to your fork on GitHub. You should see a prompt to <strong>"Compare &amp; pull request"</strong>. Click it, and it will take you to a new page.</p>
 <ul>
@@ -2017,7 +2025,9 @@
 </ul>
 <p>That's it! A project maintainer will review your changes, provide feedback if needed, and merge it once it's ready.</p>
 <p>Thank you again for your contribution!</p>
+<hr />
 <p>By submitting a pull request, you agree to license your contribution under the respective licenses of this project as described in our <a href="licensing/">license</a>.</p>
+<hr />
 
 
 
@@ -2040,7 +2050,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 6, 2025 03:12:33 UTC">July 6, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 6, 2025 03:59:20 UTC">July 6, 2025</span>
   </span>
 
     
